@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <bottom>
+    <VBox alignment="CENTER" prefHeight="112.0" prefWidth="600.0">
+      <children>
+        <Button mnemonicParsing="false" text="Sair" />
+      </children>
+    </VBox>
+  </bottom>
+  <center>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../m1.png" />
+          </image>
+        </ImageView>
+        <Button mnemonicParsing="false" text="Consultar Histórico" HBox.hgrow="ALWAYS">
+          <HBox.margin>
+            <Insets left="50.0" right="50.0" />
+          </HBox.margin>
+        </Button>
+        <Button alignment="CENTER" mnemonicParsing="false" text="Gerir Favoritos">
+          <HBox.margin>
+            <Insets left="-0.0" right="10.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </center>
+  <top>
+    <ImageView fitHeight="140.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <image>
+        <Image url="@../logo_isecMeals.png" />
+      </image>
+    </ImageView>
+  </top>
+</BorderPane>
