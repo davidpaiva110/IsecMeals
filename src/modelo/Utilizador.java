@@ -1,5 +1,18 @@
 package modelo;
 
+
+/**********************************************/
+/***************** ISECMEALS ******************/
+/* Autor: David Paiva                         */
+/* Autor: Rafael Sá                           */
+/* Autor: Francisco Silva                     */
+/* Autor: Ricardo Roque                       */
+/* Data de Edição: 12/05/2019                 */
+/* Ficheiro: Utilizador.java                  */
+/* Descrição: Representa um utilizador        */
+/**********************************************/
+
+
 public class Utilizador {
 
     private long numeroUtilizador;
@@ -7,7 +20,7 @@ public class Utilizador {
     //Isto que está para baixo, não sei se vai ser usado. dado que vamos recorrer sempre à base de dodos
     private String nome;
     private Double saldo; //Este pode não ser necessário
-    private boolean eUtilizador; // true, se for administrador | false, se for utilizador
+    private int eUtilizador; // 0, se for administrador | 1, se for utilizador
 
 
 
@@ -48,7 +61,7 @@ public class Utilizador {
         this.saldo = saldo;
     }
 
-    public boolean iseUtilizador() {
+    public int iseUtilizador() {
         return eUtilizador;
     }
 }
