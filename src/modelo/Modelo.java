@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +22,15 @@ public class Modelo  implements IUtilizador, IEmenta{
 
     private Utilizador utilizador;
     private List<Refeicao> ementa;
+    private ComunicacaoBD database;
 
     /**
      * Construtor
      */
-    public Modelo(){
+    public Modelo() throws SQLException, ClassNotFoundException {
+        database=new ComunicacaoBD();
         ementa = new ArrayList<>();
+        database.connectToDatabase();
     }
 
     /**
