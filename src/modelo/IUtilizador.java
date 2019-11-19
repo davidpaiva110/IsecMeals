@@ -2,25 +2,37 @@ package modelo;
 
 import java.util.List;
 
+
+/*************************************************************************************************/
+/********************************************* ISECMEALS *****************************************/
+/* Autor: David Paiva                                                                            */
+/* Autor: Rafael Sá                                                                              */
+/* Autor: Francisco Silva                                                                        */
+/* Autor: Ricardo Roque                                                                          */
+/* Data de Edição: 12/05/2019                                                                    */
+/* Ficheiro: IUtilizador.java                                                                    */
+/* Descrição: Protótipos dos métodos relativos a ações a fazer pelo utilizador ou administrador  */
+/*************************************************************************************************/
+
 public interface IUtilizador {
 
     public boolean login(String user, String password);
     public double getSaldoUtilizador();
 
     // ==== Pratos Favoritos ====
-    public boolean removerFavorito(int idFavorito);
+    public boolean removeFavorito(int idFavorito);
     public List getFavoritos();
-    public boolean adicianoFavorito(String descricaoFavorito);
+    public boolean addFavorito(String descricaoFavorito);
 
     // ==== Senhas ====
     public List getHistoricoSenhas();
-    public boolean comprarSenha(Refeicao dadosSenha);
-    public boolean cancelarSenha(int idSenha);
-    public boolean alterarSenha(Refeicao novosDadosSenha);
+    public boolean buySenha(Refeicao dadosSenha);
+    public boolean cancelSenha(int idSenha);
+    public boolean changeSenha(Refeicao novosDadosSenha);
 
     // ===== Funcionalidades do Administrador =====
     public double setNovoSaldoUtilizador();
-    public boolean adicionaUtilizador(Utilizador novoUtilizador);
+    public boolean addUtilizador(Utilizador novoUtilizador);
     public boolean removeUtilizador(long numeroUtilizador);
 
 

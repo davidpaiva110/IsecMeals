@@ -7,6 +7,19 @@ import modelo.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**********************************************/
+/***************** ISECMEALS ******************/
+/* Autor: David Paiva                         */
+/* Autor: Rafael Sá                           */
+/* Autor: Francisco Silva                     */
+/* Autor: Ricardo Roque                       */
+/* Data de Edição: 12/05/2019                 */
+/* Ficheiro: Controlador.java                 */
+/* Descrição: Delega os métodos do modelo     */
+/**********************************************/
+
+
 public class Controlador {
 
     private Modelo modelo;

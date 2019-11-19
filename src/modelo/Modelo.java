@@ -4,6 +4,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**********************************************/
+/***************** ISECMEALS ******************/
+/* Autor: David Paiva                         */
+/* Autor: Rafael Sá                           */
+/* Autor: Francisco Silva                     */
+/* Autor: Ricardo Roque                       */
+/* Data de Edição: 12/05/2019                 */
+/* Ficheiro: Modelo.java                      */
+/* Descrição: Lógica da Aplicação             */
+/**********************************************/
+
+
+
 public class Modelo  implements IUtilizador, IEmenta{
 
     private Utilizador utilizador;
@@ -46,7 +60,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false se não foi possível remover
      */
     @Override
-    public boolean removerFavorito(int idFavorito) {
+    public boolean removeFavorito(int idFavorito) {
         return false;
     }
 
@@ -63,7 +77,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean adicianoFavorito(String descricaoFavorito) {
+    public boolean addFavorito(String descricaoFavorito) {
         return false;
     }
 
@@ -80,7 +94,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean comprarSenha(Refeicao dadosSenha) {
+    public boolean buySenha(Refeicao dadosSenha) {
         return false;
     }
 
@@ -89,7 +103,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelada com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelarSenha(int idSenha) {
+    public boolean cancelSenha(int idSenha) {
         return false;
     }
 
@@ -98,7 +112,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se alterada com sucesso | false caso contrario
      */
     @Override
-    public boolean alterarSenha(Refeicao novosDadosSenha) {
+    public boolean changeSenha(Refeicao novosDadosSenha) {
         return false;
     }
 
@@ -118,7 +132,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se foi adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean adicionaUtilizador(Utilizador novoUtilizador) {
+    public boolean addUtilizador(Utilizador novoUtilizador) {
         return false;
     }
 
@@ -145,7 +159,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se foi adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean adicionaNovaRefeicao(Refeicao novaRefeicao) {
+    public boolean addNovaRefeicao(Refeicao novaRefeicao) {
         return false;
     }
 
@@ -154,7 +168,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se alterado com sucesso | false caso contrário
      */
     @Override
-    public boolean alteraRefeicao(Refeicao dadosRefeicao) {
+    public boolean changeRefeicao(Refeicao dadosRefeicao) {
         return false;
     }
 
@@ -164,7 +178,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelado com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelarRefeicao(int idRefeicao) {
+    public boolean cancelRefeicao(int idRefeicao) {
         return false;
     }
 
