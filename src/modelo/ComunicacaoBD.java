@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.Password.PasswordUtils;
+
 import java.sql.*;
 
 public class ComunicacaoBD {
@@ -62,11 +64,33 @@ public class ComunicacaoBD {
         double saldo=-1;
         String sql="SELECT saldo FROM utilizador WHERE numero=" + number;
         ResultSet rs=executeQuery(sql);
-        while(rs.next())
-            saldo=rs.getDouble("saldo");
+        while(rs.next()) {
+            saldo = rs.getDouble("saldo");
+        }
         return saldo;
     }
 
+    /**
+     * Efetua o login na aplicação
+     * @param number número do utilizador inserido
+     * @param password password do utilizador inserida
+     * @return true SE o login for bem sucedido
+     * @throws Exception SE o login não for bem sucedido
+     */
+    public static boolean login(int number, String password) throws Exception {
+        String passwordDB;
+        String sql = "SELECT password FROM utilizador WHERE numero=" + number;
+        ResultSet rs = executeQuery(sql);
+        if(rs.next()) {
+            passwordDB=rs.getString("password");
+        }else{
+            throw new Exception("O número de utilizador não está registado!");
+        }
+        if(!PasswordUtils.verifyUserPassword(password, passwordDB, PasswordUtils.getSalt())){
+            throw new Exception("Password incorreta!");
+        }
+        return true;
+    }
     
 }
 
