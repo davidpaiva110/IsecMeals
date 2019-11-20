@@ -42,7 +42,7 @@
   <top>
     <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
       <image>
-        <Image url="file:/C:/Users/franc/Desktop/GPS/IsecMeals/src/logo_isecMeals.png" />
+        <Image url="@../logo_isecMeals.png" />
       </image>
     </ImageView>
   </top>
