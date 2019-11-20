@@ -16,7 +16,7 @@ import java.util.List;
 
 public interface IUtilizador {
 
-    public boolean login(String user, String password);
+    public boolean login(int user, String password);
     public double getSaldoUtilizador();
 
     // ==== Pratos Favoritos ====
@@ -33,7 +33,7 @@ public interface IUtilizador {
     // ===== Funcionalidades do Administrador =====
     public double setNovoSaldoUtilizador();
     public boolean addUtilizador(Utilizador novoUtilizador);
-    public boolean removeUtilizador(long numeroUtilizador);
+    public boolean removeUtilizador(int numeroUtilizador);
 
 
 }

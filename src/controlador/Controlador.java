@@ -4,6 +4,7 @@ import modelo.Modelo;
 import modelo.Refeicao;
 import modelo.Utilizador;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,12 @@ public class Controlador {
     private Modelo modelo;
 
 
-    public Controlador() {
+    public Controlador() throws ClassNotFoundException, SQLException {
         this.modelo = new Modelo();
     }
 
     public boolean testeLogin(){
-        return modelo.login("ola", "adeus");
+        return modelo.login(1234, "adeus");
     }
 
 }

@@ -48,7 +48,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return
      */
     @Override
-    public boolean login(String user, String password){
+    public boolean login(int user, String password){
         //Implementar a chamada à base de dados para realizar o login
         //if(/*a flag for qualquer coisa é utilizador*/)
             //this.utilizador = new Utilizador(user, flag); //recebe o username e a flag para sabermos se é ou não administrador
@@ -142,7 +142,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false caso contrário
      */
     @Override
-    public boolean removeUtilizador(long numeroUtilizador) {
+    public boolean removeUtilizador(int numeroUtilizador) {
         return false;
     }
 
