@@ -19,7 +19,7 @@ public class Utilizador {
     private String password;
     //Isto que está para baixo, não sei se vai ser usado. dado que vamos recorrer sempre à base de dodos
     private String nome;
-    private Double saldo; //Este pode não ser necessário
+    private double saldo; //Este pode não ser necessário
     private int eUtilizador; // 0, se for administrador | 1, se for utilizador
 
 

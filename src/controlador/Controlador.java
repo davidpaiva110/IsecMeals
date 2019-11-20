@@ -26,7 +26,9 @@ public class Controlador {
     private Modelo modelo;
 
 
+
     public Controlador() throws ClassNotFoundException, SQLException {
+
         this.modelo = new Modelo();
     }
 
