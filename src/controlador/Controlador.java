@@ -4,6 +4,7 @@ import modelo.Modelo;
 import modelo.Refeicao;
 import modelo.Utilizador;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Controlador {
     private Modelo modelo;
 
 
-    public Controlador() {
+    public Controlador() throws SQLException, ClassNotFoundException {
         this.modelo = new Modelo();
     }
 
