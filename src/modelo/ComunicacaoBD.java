@@ -77,7 +77,6 @@ public class ComunicacaoBD {
     }
 
     /**
-<<<<<<< HEAD
      * Efetua o login na aplicação
      * @param number número do utilizador inserido
      * @param password password do utilizador inserida
