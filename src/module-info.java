@@ -3,5 +3,5 @@ module IsecMeals {
     requires javafx.controls;
     requires java.sql;
 
-    opens sample;
+    opens vistas;
 }

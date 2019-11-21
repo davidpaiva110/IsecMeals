@@ -33,7 +33,7 @@
         </HBox>
         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" prefHeight="-1.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Entrar" />
+            <Button id="btLogin" mnemonicParsing="false" prefHeight="-1.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Entrar" />
           </children>
         </HBox>
       </children>
@@ -42,7 +42,7 @@
   <top>
     <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
       <image>
-        <Image url="file:/C:/Users/franc/Desktop/GPS/IsecMeals/src/logo_isecMeals.png" />
+        <Image url="@../logo_isecMeals.png" />
       </image>
     </ImageView>
   </top>

@@ -1,4 +1,5 @@
-package sample;
+package vistas;
 
 public class Controller {
+
 }
