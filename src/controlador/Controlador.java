@@ -32,8 +32,8 @@ public class Controlador {
         this.modelo = new Modelo();
     }
 
-    public boolean testeLogin(){
-        return modelo.login(1234, "adeus");
+    public boolean login(int number, String password) throws Exception{
+        return modelo.login(number, password);
     }
 
 }

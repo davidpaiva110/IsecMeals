@@ -16,7 +16,7 @@ import java.util.List;
 
 public interface IUtilizador {
 
-    public boolean login(int user, String password);
+    public boolean login(int user, String password) throws Exception;
     public double getSaldoUtilizador();
 
     // ==== Pratos Favoritos ====

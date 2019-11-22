@@ -48,11 +48,12 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return
      */
     @Override
-    public boolean login(int user, String password){
-        //Implementar a chamada à base de dados para realizar o login
-        //if(/*a flag for qualquer coisa é utilizador*/)
-            //this.utilizador = new Utilizador(user, flag); //recebe o username e a flag para sabermos se é ou não administrador
-        return true;
+    public boolean login(int user, String password) throws Exception{
+        boolean resp=database.login(user, password);
+        if(resp){
+            //this.utilizador = new Utilizador(user, flag);
+        }
+        return resp;
     }
 
     /**
