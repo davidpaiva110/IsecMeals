@@ -25,7 +25,7 @@
                 <Label text="Label" />
               </children>
             </HBox>
-            <Label style="-fx-text-fill: #7D222B;&#10;" text="Sopa">
+            <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Sopa">
               <font>
                 <Font size="18.0" fx:id="x2" />
               </font>
@@ -36,38 +36,60 @@
             <Label text="Label" VBox.margin="$x1" />
             <HBox prefHeight="-1.0" prefWidth="-1.0">
               <children>
-                <Label alignment="CENTER" font="$x2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" style="-fx-text-fill: #7D222B;" text="Prato de Carne">
+                <Label alignment="CENTER" font="$x2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Prato de Carne">
                   <HBox.margin>
                     <Insets left="10.0" fx:id="x1" />
                   </HBox.margin>
                 </Label>
-                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.margin="$x1">
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="file:/C:/Users/franc/Desktop/GPS/IsecMeals/src/m6.PNG" />
                   </image>
+                  <HBox.margin>
+                    <Insets left="10.0" fx:id="x1" />
+                  </HBox.margin>
                 </ImageView>
               </children>
             </HBox>
-            <Label text="Label" VBox.margin="$x1" />
+            <Label text="Label">
+              <VBox.margin>
+                <Insets left="10.0" fx:id="x1" />
+              </VBox.margin>
+            </Label>
             <HBox prefHeight="-1.0" prefWidth="-1.0">
               <children>
-                <Label id="x1" alignment="CENTER" font="$x2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="119.0" style="-fx-text-fill: #7D222B;" text="Prato de Peixe" HBox.margin="$x1" />
-                <ImageView id="x2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.margin="$x1">
+                <Label id="x1" alignment="CENTER" font="$x2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="129.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Prato de Peixe">
+                  <HBox.margin>
+                    <Insets left="10.0" fx:id="x1" />
+                  </HBox.margin>
+                </Label>
+                <ImageView id="x2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="file:/C:/Users/franc/Desktop/GPS/IsecMeals/src/m6.PNG" />
                   </image>
+                  <HBox.margin>
+                    <Insets left="10.0" fx:id="x1" />
+                  </HBox.margin>
                 </ImageView>
               </children>
             </HBox>
-            <Label text="Label" VBox.margin="$x1" />
+            <Label text="Label">
+              <VBox.margin>
+                <Insets left="10.0" fx:id="x1" />
+              </VBox.margin>
+            </Label>
             <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0">
               <children>
-                <Label style="-fx-text-fill: #7D222B;" text="Preço:">
+                <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Preço:">
                   <font>
                     <Font size="16.0" />
                   </font>
                 </Label>
-                <Label text="Label" HBox.margin="$x1" />
+                <Label text="Label">
+                  <HBox.margin>
+                    <Insets left="10.0" fx:id="x1" />
+                  </HBox.margin>
+                </Label>
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
