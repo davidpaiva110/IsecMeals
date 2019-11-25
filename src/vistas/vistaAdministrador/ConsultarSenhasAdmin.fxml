@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="400.0" tableMenuButtonVisible="false">
+        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="250.0" prefWidth="75.0" text="Prato Favorito" />
-            <TableColumn maxWidth="200.0" minWidth="0.0" prefWidth="150.0" text="Opção" />
+            <TableColumn minWidth="0.0" prefWidth="100.0" text="Senha" />
+            <TableColumn prefWidth="110.0" text="Almoço/Jantar" />
+            <TableColumn prefWidth="80.0" text="Data" />
+            <TableColumn prefWidth="65.0" text="Preço" />
+            <TableColumn prefWidth="120.0" text="Alterar Senha" />
+            <TableColumn prefWidth="120.0" text="Cancelar Senha" />
           </columns>
         </TableView>
       </children>

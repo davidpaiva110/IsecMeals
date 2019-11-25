@@ -29,7 +29,7 @@
   <center>
     <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
       <children>
-        <VBox id="x3" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="130.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;&#10;">
+        <VBox id="x3" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="130.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;&#10;">
           <children>
             <Label id="x1" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Sopa">
               <font>
@@ -49,7 +49,7 @@
             <Insets bottom="10.0" top="50.0" fx:id="x3" />
           </HBox.margin>
         </VBox>
-        <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+        <VBox alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
           <children>
             <Label alignment="CENTER_LEFT" contentDisplay="RIGHT" font="$x1" prefHeight="29.0" prefWidth="140.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;&#10;&#10;" text="Prato Principal" />
             <HBox prefHeight="0.0" prefWidth="200.0">
@@ -66,7 +66,7 @@
             </HBox>
           </children>
         </VBox>
-        <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+        <VBox alignment="TOP_CENTER" maxHeight="170.0" prefHeight="0.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
           <children>
             <Label font="$x1" prefWidth="100.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Sobremesa">
               <VBox.margin>
@@ -94,7 +94,7 @@
             </HBox>
           </children>
         </VBox>
-        <VBox id="x7" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+        <VBox id="x7" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
           <children>
             <Label id="x1" font="$x1" prefWidth="134.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Complementos" />
             <HBox id="x4" fx:id="x8" prefHeight="0.0" prefWidth="200.0">
