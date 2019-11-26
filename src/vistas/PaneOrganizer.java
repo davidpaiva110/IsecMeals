@@ -31,22 +31,24 @@ public class PaneOrganizer {
         loader=new FXMLLoader(getClass().getResource("menu.fxml"));
         loader.setController(new MenuUserController(this));
         menuUser=loader.load();
-
         new Scene(menuUser, 600, 400);
+
         loader=new FXMLLoader(getClass().getResource("consultaEmenta.fxml"));
         loader.setController(new ConsultaEmentaController(this));
         consulaEmenta=loader.load();
         new Scene(consulaEmenta, 600, 400);
+
         loader=new FXMLLoader(getClass().getResource("GestaoSennhas.fxml"));
         loader.setController(new GerirSenhasController(this));
         gerirSenhas=loader.load();
         new Scene(gerirSenhas, 600, 400);
+
         loader=new FXMLLoader(getClass().getResource("GestaoFavoritos.fxml"));
         loader.setController(new GerirFavoritosController(this));
         gerirFavoritos=loader.load();
         new Scene(gerirFavoritos, 600, 400);
 
-        loader= new FXMLLoader(getClass().getResource("vistas/vistaAdministrador/PaginaInicialAdmin.fxml"));
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/PaginaInicialAdmin.fxml"));
         loader.setController(new MenuAdminControler(this));
          menuAdmin=loader.load();
         new Scene(menuAdmin, 600, 400);
@@ -73,6 +75,9 @@ public class PaneOrganizer {
     }
     public void setConsultaEmentaView(){
         primaryStage.setScene(consulaEmenta.getScene());
+    }
+    public  void setMenuAdminVIew(){
+        primaryStage.setScene(menuAdmin.getScene());
     }
     public void setGestaoSenhasView(){
         primaryStage.setScene(gerirSenhas.getScene());

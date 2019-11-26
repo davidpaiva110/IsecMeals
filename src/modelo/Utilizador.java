@@ -20,7 +20,7 @@ public class Utilizador {
     //Isto que está para baixo, não sei se vai ser usado. dado que vamos recorrer sempre à base de dodos
     private String nome;
     private double saldo; //Este pode não ser necessário
-    private int eUtilizador; // 0, se for administrador | 1, se for utilizador
+    private int eUtilizador; // 0, se for utilizador| 1 se for administrador
     public Utilizador(int numeroUtilizador, int eUtilizador ) {
         this.numeroUtilizador = numeroUtilizador;
         this.eUtilizador = eUtilizador;
@@ -62,7 +62,7 @@ public class Utilizador {
         this.saldo = saldo;
     }
 
-    public int iseUtilizador() {
+    public int geteUtilizador() {
         return eUtilizador;
     }
 
