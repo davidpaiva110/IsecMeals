@@ -12,13 +12,11 @@ public class PaneOrganizer {
     Controlador controlador;
     BorderPane root;
     BorderPane menuUser;
-<<<<<<< HEAD
+
     BorderPane consulaEmenta;
     BorderPane gerirSenhas;
     BorderPane gerirFavoritos;
-=======
-    BorderPane menuConsultaEmenta;
->>>>>>> paiva
+
     Stage primaryStage;
 
     public PaneOrganizer(Controlador controlador, Stage stage) throws IOException {
@@ -32,7 +30,7 @@ public class PaneOrganizer {
         loader=new FXMLLoader(getClass().getResource("menu.fxml"));
         loader.setController(new MenuUserController(this));
         menuUser=loader.load();
-<<<<<<< HEAD
+
         new Scene(menuUser, 600, 400);
         loader=new FXMLLoader(getClass().getResource("consultaEmenta.fxml"));
         loader.setController(new ConsultaEmentaController(this));
@@ -46,8 +44,7 @@ public class PaneOrganizer {
         loader.setController(new GerirFavoritosController(this));
         gerirFavoritos=loader.load();
         new Scene(gerirFavoritos, 600, 400);
-=======
->>>>>>> paiva
+
 
         primaryStage.setTitle("IsecMeals");
         primaryStage.setScene(new Scene(root, 600, 400));
