@@ -14,10 +14,12 @@
       <children>
         <TableView fx:id="tableSenhas" editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="100.0" prefWidth="150.0" text="Senha" fx:id="colSenha" />
-            <TableColumn prefWidth="150.0" text="Almoço/Jantar" fx:id="colAlmocoJantar" />
-            <TableColumn prefWidth="150.0" text="Data" fx:id="colData" />
-            <TableColumn prefWidth="150.0" text="Quantidade" fx:id="colQuantidade" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="73.0" text="Número" fx:id="colNumero" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Prato" fx:id="colPrato" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="134.0" text="Sobremesa" fx:id="colSobremesa" />
+            <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="91.0" text="Preço Total" fx:id="colPreco" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="75.0" text="Alterar" fx:id="colAlterar" />
+            <TableColumn prefWidth="75.0" text="Cancelar" fx:id="colCancelar" />
           </columns>
         </TableView>
       </children>
@@ -25,6 +27,13 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label text="Gerir Senhas" textFill="#7d222b" BorderPane.alignment="CENTER_LEFT">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
