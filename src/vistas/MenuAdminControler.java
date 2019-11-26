@@ -13,17 +13,17 @@ public class MenuAdminControler {
 
     @FXML
     private void handleGerirEmenta(ActionEvent action) throws IOException { po.setGerirEmentaAdminView(); }
-/*
+
     @FXML
-    private void handleGerirUtilizadores(ActionEvent action){
+    private void handleGerirUtilizadores(ActionEvent action) throws IOException {
         po.setGerirUtilizadoresAdminView();
     }
 
     @FXML
-    private void handleSenhaaCompradas(ActionEvent action){
+    private void handleSenhasCompradas(ActionEvent action) throws IOException {
         po.setSenhaaCompradasAdminView();
     }
-*/
+
     @FXML
     private void handleSair(ActionEvent action){
         po.getControlador().logout();

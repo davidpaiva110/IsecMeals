@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import modelo.Refeicao;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -173,6 +174,15 @@ public class ConsultaEmentaController {
         }
 
 
+    }
+    @FXML
+    private void handleSair(ActionEvent action){
+        po.getControlador().logout();
+        po.setLoginView();
+    }
+    @FXML
+    private void handleVoltar(ActionEvent action) throws IOException {
+        po.setMenuUserView();
     }
 }
 

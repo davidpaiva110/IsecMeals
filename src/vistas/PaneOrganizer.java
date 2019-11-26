@@ -17,7 +17,9 @@ public class PaneOrganizer {
     BorderPane gerirFavoritos;
     BorderPane menuAdmin;
     BorderPane gerirEmentaAdmin;
-
+    BorderPane gerirUtilizadoresAdmin;
+    BorderPane VerSenhasCompradasAdmin;
+    BorderPane AdicionaRefeicaoAdmin;
     Stage primaryStage;
 
     FXMLLoader loader;
@@ -86,10 +88,25 @@ public class PaneOrganizer {
         new Scene(gerirEmentaAdmin, 600, 400);
         primaryStage.setScene(gerirEmentaAdmin.getScene());
     }
-   /* public void setGerirUtilizadoresAdminView() {
-        primaryStage.setScene();
+    public void setGerirUtilizadoresAdminView() throws IOException {
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/GerirUtilizadoresAdmin.fxml"));
+        loader.setController(new GerirUtilizadoresAdminControler(this));
+        gerirUtilizadoresAdmin=loader.load();
+        new Scene( gerirUtilizadoresAdmin, 600, 400);
+        primaryStage.setScene(gerirUtilizadoresAdmin.getScene());
     }
-    public void setSenhaaCompradasAdminView() {
-        primaryStage.setScene();
-    }*/
+    public void setSenhaaCompradasAdminView() throws IOException {
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/ConsultarSenhasAdmin.fxml"));
+        loader.setController(new VerSenhasCompradasAdminControler(this));
+        VerSenhasCompradasAdmin=loader.load();
+        new Scene( VerSenhasCompradasAdmin, 600, 400);
+        primaryStage.setScene(VerSenhasCompradasAdmin.getScene());
+    }
+    public void setAdicionaRefeicaoView() throws IOException {
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/AdicionarRefeicaoAdmin.fxml"));
+        loader.setController(new AdicionaRefeicaoAdminControler(this));
+        AdicionaRefeicaoAdmin=loader.load();
+        new Scene( AdicionaRefeicaoAdmin, 600, 400);
+        primaryStage.setScene(AdicionaRefeicaoAdmin.getScene());
+    }
 }
