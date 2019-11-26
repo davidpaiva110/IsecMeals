@@ -16,7 +16,8 @@ public class PaneOrganizer {
     BorderPane consulaEmenta;
     BorderPane gerirSenhas;
     BorderPane gerirFavoritos;
-
+    BorderPane menuAdmin;
+    BorderPane gerirEmentaAdmin;
     Stage primaryStage;
 
     public PaneOrganizer(Controlador controlador, Stage stage) throws IOException {
@@ -45,6 +46,15 @@ public class PaneOrganizer {
         gerirFavoritos=loader.load();
         new Scene(gerirFavoritos, 600, 400);
 
+        loader= new FXMLLoader(getClass().getResource("vistas/vistaAdministrador/PaginaInicialAdmin.fxml"));
+        loader.setController(new MenuAdminControler(this));
+         menuAdmin=loader.load();
+        new Scene(menuAdmin, 600, 400);
+
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/GerirEmentaAdmin.fxml"));
+        loader.setController(new GerirEmentaAdminControler(this));
+        gerirEmentaAdmin=loader.load();
+        new Scene(gerirEmentaAdmin, 600, 400);
 
         primaryStage.setTitle("IsecMeals");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -70,5 +80,15 @@ public class PaneOrganizer {
     public void setGestaoFavoritosView(){
         primaryStage.setScene(gerirFavoritos.getScene());
     }
+    public void setGerirEmentaAdminView() {
+        primaryStage.setScene(gerirEmentaAdmin.getScene());
+    }
+   /* public void setGerirUtilizadoresAdminView() {
+        primaryStage.setScene();
+    }
+    public void setSenhaaCompradasAdminView() {
+        primaryStage.setScene();
+    }*/
+
 
 }

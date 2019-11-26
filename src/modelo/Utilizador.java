@@ -21,9 +21,7 @@ public class Utilizador {
     private String nome;
     private double saldo; //Este pode não ser necessário
     private int eUtilizador; // 0, se for administrador | 1, se for utilizador
-
-
-    public Utilizador(int numeroUtilizador, int eUtilizador) {
+    public Utilizador(int numeroUtilizador, int eUtilizador ) {
         this.numeroUtilizador = numeroUtilizador;
         this.eUtilizador = eUtilizador;
     }
@@ -67,4 +65,6 @@ public class Utilizador {
     public int iseUtilizador() {
         return eUtilizador;
     }
+
+    public void seteUtilizador(int eut){this.eUtilizador=eut;}
 }
