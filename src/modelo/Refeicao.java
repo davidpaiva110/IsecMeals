@@ -39,4 +39,77 @@ public class Refeicao {
         this.almocoJantar = almocoJantar;
         this.data = data;
     }
+
+
+    public int getIdRefeicao() {
+        return idRefeicao;
+    }
+
+    public void setIdRefeicao(int idRefeicao) {
+        this.idRefeicao = idRefeicao;
+    }
+
+    public String getSopa() {
+        return sopa;
+    }
+
+    public void setSopa(String sopa) {
+        this.sopa = sopa;
+    }
+
+    public String getPratoCarne() {
+        return pratoCarne;
+    }
+
+    public void setPratoCarne(String pratoCarne) {
+        this.pratoCarne = pratoCarne;
+    }
+
+    public String getPratoPeixe() {
+        return pratoPeixe;
+    }
+
+    public void setPratoPeixe(String pratoPeixe) {
+        this.pratoPeixe = pratoPeixe;
+    }
+
+    public String getSombremesa1() {
+        return sombremesa1;
+    }
+
+    public void setSombremesa1(String sombremesa1) {
+        this.sombremesa1 = sombremesa1;
+    }
+
+    public String getSombremesa2() {
+        return sombremesa2;
+    }
+
+    public void setSombremesa2(String sombremesa2) {
+        this.sombremesa2 = sombremesa2;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getAlmocoJantar() {
+        return almocoJantar;
+    }
+
+    public void setAlmocoJantar(int almocoJantar) {
+        this.almocoJantar = almocoJantar;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }
