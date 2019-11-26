@@ -157,7 +157,7 @@ public class ConsultaEmentaController {
             Button btnS = new Button();
             btnS.setStyle("-fx-border-color: #8A817A; -fx-background-color: #7D222B;-fx-text-fill: white;");
             btnS.setText("Selecionar");
-            btnS.setId(""+ref.getIdRefeicao());
+            btnS.setId(""+ref.getIdRefeicao());  //Estou atribuir o id do botão igual ao id da refeição
             btnS.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
