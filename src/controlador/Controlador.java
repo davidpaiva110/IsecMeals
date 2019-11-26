@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.Modelo;
 import modelo.Refeicao;
+import modelo.Senha;
 import modelo.Utilizador;
 
 import java.sql.SQLException;
@@ -46,4 +47,11 @@ public class Controlador {
 
     }
 
+    public ArrayList<Senha> getSenhasCompradas() throws SQLException {
+        return modelo.getSenhasCompradas();
+    }
+
+    public Refeicao getRefeicao(int id) throws SQLException {
+        return modelo.getRefeicao(id);
+    }
 }
