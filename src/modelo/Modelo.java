@@ -156,7 +156,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return uma lista com a ementa para os dias disponíveis
      */
     @Override
-    public List getEmenta() throws SQLException {
+    public ArrayList<Refeicao> getEmenta() throws SQLException {
         return database.getEmenta();
     }
 

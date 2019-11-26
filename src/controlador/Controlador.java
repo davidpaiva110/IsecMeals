@@ -41,7 +41,7 @@ public class Controlador {
         modelo.logout();
     }
 
-    public List getEmenta() throws SQLException {
+    public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
 
     }

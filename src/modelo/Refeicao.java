@@ -40,6 +40,8 @@ public class Refeicao {
         this.data = data;
     }
 
+    public Refeicao() {
+    }
 
     public int getIdRefeicao() {
         return idRefeicao;

@@ -102,14 +102,14 @@ public class ComunicacaoBD {
      * @return ementa
      * @throws SQLException
      */
-    public List<Refeicao> getEmenta() throws SQLException {
-        List<Refeicao> ementa = new ArrayList<>();
+    public ArrayList<Refeicao> getEmenta() throws SQLException {
+        ArrayList<Refeicao> ementa = new ArrayList<>();
         String currentDate = this.getCurrentDate();
         String endDate = this.getEndDate(currentDate);
-        String sql = "SELECT * FROM refeicoes WHERE date>" + currentDate + " and date<" + endDate;
+        String sql = "SELECT * FROM refeicoes WHERE data>" + currentDate + " and data<" + endDate;
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
-            Refeicao newRefeicao = new Refeicao(rs.getInt("ifrefeicao"),
+            Refeicao newRefeicao = new Refeicao(rs.getInt("idrefeicao"),
                     rs.getString("sopa"),
                     rs.getString("pratocarne"),
                     rs.getString("pratopeixe"),
@@ -131,11 +131,13 @@ public class ComunicacaoBD {
         Calendar calender = Calendar.getInstance();
         String currentDate = LocalDate.now().toString();
         String[] result  = currentDate.split("-");
+        currentDate = new String();
         for(int i=0; i< result.length; i++){
-            currentDate = result[i];
+            currentDate += result[i];
             if(i != 2)
                 currentDate += "/";
         }
+
         Date d = new Date(currentDate);
         calender.setTime(d);
         calender.add(Calendar.DAY_OF_MONTH, 2);
