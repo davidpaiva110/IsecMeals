@@ -131,12 +131,12 @@ public class ComunicacaoBD {
      */
     public ArrayList<Senha> getSenhas(double idUser) throws SQLException {
         ArrayList<Senha> senhas = new ArrayList<>();
-        String sql = "SELECT idsenha,prato,sobremesa,precototal,idrefeicao FROM senha WHERE numero=" + idUser;
+        String sql = "SELECT idsenha,prato,sobremensa,precototal,idrefeicao FROM senha WHERE numero=" + idUser;
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
             Senha senha = new Senha(rs.getInt("idsenha"),
                     rs.getString("prato"),
-                    rs.getString("sobremesa"),
+                    rs.getString("sobremensa"),
                     rs.getDouble("precototal"),
                     rs.getInt("idrefeicao"));
             senhas.add(senha);

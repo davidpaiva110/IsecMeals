@@ -19,32 +19,15 @@ public class PaneOrganizer {
 
     Stage primaryStage;
 
+    FXMLLoader loader;
+
     public PaneOrganizer(Controlador controlador, Stage stage) throws IOException {
         this.controlador = controlador;
         primaryStage=stage;
 
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("login.fxml"));
+        loader=new FXMLLoader(getClass().getResource("login.fxml"));
         loader.setController(new LoginController(this));
         root=loader.load();
-
-        loader=new FXMLLoader(getClass().getResource("menu.fxml"));
-        loader.setController(new MenuUserController(this));
-        menuUser=loader.load();
-
-        new Scene(menuUser, 600, 400);
-        loader=new FXMLLoader(getClass().getResource("consultaEmenta.fxml"));
-        loader.setController(new ConsultaEmentaController(this));
-        consulaEmenta=loader.load();
-        new Scene(consulaEmenta, 600, 400);
-        loader=new FXMLLoader(getClass().getResource("GestaoSennhas.fxml"));
-        loader.setController(new GerirSenhasController(this));
-        gerirSenhas=loader.load();
-        new Scene(gerirSenhas, 600, 400);
-        loader=new FXMLLoader(getClass().getResource("GestaoFavoritos.fxml"));
-        loader.setController(new GerirFavoritosController(this));
-        gerirFavoritos=loader.load();
-        new Scene(gerirFavoritos, 600, 400);
-
 
         primaryStage.setTitle("IsecMeals");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -58,16 +41,32 @@ public class PaneOrganizer {
     public void setLoginView(){
         primaryStage.setScene(root.getScene());
     }
-    public void setMenuUserView(){
+    public void setMenuUserView() throws IOException {
+        loader=new FXMLLoader(getClass().getResource("menu.fxml"));
+        loader.setController(new MenuUserController(this));
+        menuUser=loader.load();
+        new Scene(menuUser, 600, 400);
         primaryStage.setScene(menuUser.getScene());
     }
-    public void setConsultaEmentaView(){
+    public void setConsultaEmentaView() throws IOException {
+        loader=new FXMLLoader(getClass().getResource("consultaEmenta.fxml"));
+        loader.setController(new ConsultaEmentaController(this));
+        consulaEmenta=loader.load();
+        new Scene(consulaEmenta, 600, 400);
         primaryStage.setScene(consulaEmenta.getScene());
     }
-    public void setGestaoSenhasView(){
+    public void setGestaoSenhasView() throws IOException {
+        loader=new FXMLLoader(getClass().getResource("GestaoSennhas.fxml"));
+        loader.setController(new GerirSenhasController(this));
+        gerirSenhas=loader.load();
+        new Scene(gerirSenhas, 600, 400);
         primaryStage.setScene(gerirSenhas.getScene());
     }
-    public void setGestaoFavoritosView(){
+    public void setGestaoFavoritosView() throws IOException {
+        loader=new FXMLLoader(getClass().getResource("GestaoFavoritos.fxml"));
+        loader.setController(new GerirFavoritosController(this));
+        gerirFavoritos=loader.load();
+        new Scene(gerirFavoritos, 600, 400);
         primaryStage.setScene(gerirFavoritos.getScene());
     }
 
