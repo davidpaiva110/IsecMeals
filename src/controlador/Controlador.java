@@ -36,4 +36,8 @@ public class Controlador {
         return modelo.login(number, password);
     }
 
+    public List getEmenta() throws SQLException {
+        return modelo.getEmenta();
+    }
+
 }

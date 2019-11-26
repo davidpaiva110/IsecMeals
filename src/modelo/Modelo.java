@@ -51,7 +51,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     public boolean login(int user, String password) throws Exception{
         boolean resp=database.login(user, password);
         if(resp){
-            //this.utilizador = new Utilizador(user, flag);
+            this.utilizador = new Utilizador(user, 1);
         }
         return resp;
     }
@@ -151,8 +151,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return uma lista com a ementa para os dias disponíveis
      */
     @Override
-    public List getEmenta() {
-        return null;
+    public List getEmenta() throws SQLException {
+        return database.getEmenta();
     }
 
     /**

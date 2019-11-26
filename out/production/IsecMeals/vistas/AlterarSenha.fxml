@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <bottom>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <Label text="Total a Pagar:" />
+        <Label alignment="CENTER" text="Label">
+          <HBox.margin>
+            <Insets left="5.0" />
+          </HBox.margin>
+        </Label>
+        <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Alterar">
+          <HBox.margin>
+            <Insets left="20.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </bottom>
+  <center>
+    <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
+      <children>
+        <VBox id="x3" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="130.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;&#10;">
+          <children>
+            <Label id="x1" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Sopa">
+              <font>
+                <Font size="18.0" fx:id="x1" />
+              </font>
+              <VBox.margin>
+                <Insets left="10.0" />
+              </VBox.margin>
+            </Label>
+            <Label id="x2" alignment="CENTER" text="Label">
+              <VBox.margin>
+                <Insets left="10.0" />
+              </VBox.margin>
+            </Label>
+          </children>
+          <HBox.margin>
+            <Insets bottom="10.0" top="50.0" fx:id="x3" />
+          </HBox.margin>
+        </VBox>
+        <VBox alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+          <children>
+            <Label alignment="CENTER_LEFT" contentDisplay="RIGHT" font="$x1" prefHeight="29.0" prefWidth="140.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;&#10;&#10;" text="Prato Principal" />
+            <HBox prefHeight="0.0" prefWidth="200.0">
+              <children>
+                <CheckBox mnemonicParsing="false" text="" />
+                <Label text="Label" />
+              </children>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="150.0">
+              <children>
+                <CheckBox id="x1" mnemonicParsing="false" text="" />
+                <Label fx:id="x2" text="Label" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" maxHeight="170.0" prefHeight="0.0" prefWidth="155.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+          <children>
+            <Label font="$x1" prefWidth="100.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Sobremesa">
+              <VBox.margin>
+                <Insets left="10.0" />
+              </VBox.margin>
+            </Label>
+            <HBox prefHeight="0.0" prefWidth="200.0">
+              <children>
+                <CheckBox mnemonicParsing="false" text="" />
+                <Label text="Label" />
+              </children>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="200.0">
+              <children>
+                <CheckBox id="x1" mnemonicParsing="false" text="" />
+                <Label text="LABEL" />
+                <Label id="x2" fx:id="x7" text="Label" />
+                <HBox id="x8" fx:id="x9" prefHeight="0.0" prefWidth="160.0">
+                  <children>
+                    <CheckBox id="x1" fx:id="x6" mnemonicParsing="false" text="" />
+                    <fx:reference source="x7" />
+                  </children>
+                </HBox>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+        <VBox id="x7" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+          <children>
+            <Label id="x1" font="$x1" prefWidth="134.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Complementos" />
+            <HBox id="x4" fx:id="x8" prefHeight="0.0" prefWidth="200.0">
+              <children>
+                <CheckBox id="x2" fx:id="x4" mnemonicParsing="false" text="" />
+                <Label id="x2" text="Label" />
+              </children>
+            </HBox>
+            <fx:reference source="x9" />
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+  </center>
+  <top>
+    <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0">
+          <bottom>
+            <HBox alignment="CENTER" prefHeight="126.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+              <children>
+                <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Senha" />
+                <Label text="Label">
+                  <HBox.margin>
+                    <Insets left="10.0" />
+                  </HBox.margin>
+                </Label>
+                <Label text="Label">
+                  <HBox.margin>
+                    <Insets left="10.0" right="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+              <BorderPane.margin>
+                <Insets />
+              </BorderPane.margin>
+            </HBox>
+          </bottom>
+        </BorderPane>
+      </center>
+      <left>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+              <HBox.margin>
+                <Insets left="10.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+              <HBox.margin>
+                <Insets left="15.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </left>
+      <right>
+        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Saldo Disponível:" />
+            <Label alignment="CENTER_RIGHT" text="Label" />
+          </children>
+          <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" top="15.0" />
+          </BorderPane.margin>
+        </HBox>
+      </right>
+    </BorderPane>
+  </top>
+</BorderPane>

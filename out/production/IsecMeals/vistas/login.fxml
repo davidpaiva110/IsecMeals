@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <center>
+    <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <children>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../m4.PNG" />
+              </image>
+            </ImageView>
+            <TextField fx:id="tfUser" prefHeight="37.0" prefWidth="204.0" />
+          </children>
+        </HBox>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../m5.PNG" />
+              </image>
+            </ImageView>
+            <PasswordField fx:id="tfPassword" alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="204.0" style="-fx-setPromptText(&quot;Search&quot;);" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Label fx:id="lbErroLogin" alignment="TOP_CENTER" text="" textFill="RED" />
+          </children>
+        </HBox>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button fx:id="btLogin" mnemonicParsing="false" onAction="#handleBtEntrar" prefHeight="-1.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Entrar" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </center>
+  <top>
+    <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <image>
+        <Image url="@../logo_isecMeals.png" />
+      </image>
+    </ImageView>
+  </top>
+</BorderPane>

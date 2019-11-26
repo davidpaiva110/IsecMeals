@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 
 public interface IEmenta {
-    public List getEmenta();
+    public List getEmenta() throws SQLException;
 
     // ===== Funcionalidades do Administrador =====
     public boolean addNovaRefeicao(Refeicao novaRefeicao);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <center>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="400.0" tableMenuButtonVisible="false">
+          <columns>
+            <TableColumn minWidth="250.0" prefWidth="75.0" text="Prato Favorito" />
+            <TableColumn maxWidth="200.0" minWidth="0.0" prefWidth="150.0" text="Opção" />
+          </columns>
+        </TableView>
+      </children>
+    </HBox>
+  </center>
+  <top>
+    <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <left>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+              <HBox.margin>
+                <Insets left="10.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+              <HBox.margin>
+                <Insets left="15.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </left>
+    </BorderPane>
+  </top>
+</BorderPane>
