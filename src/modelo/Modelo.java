@@ -51,7 +51,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     public boolean login(int user, String password) throws Exception{
         boolean resp=database.login(user, password);
         if(resp){
-            this.utilizador = new Utilizador(user, 1);
+            this.utilizador = database.getUtilizador(user);
         }
         return resp;
     }

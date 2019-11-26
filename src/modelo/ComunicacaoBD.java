@@ -76,6 +76,18 @@ public class ComunicacaoBD {
         return saldo;
     }
 
+    public static Utilizador  getUtilizador(int number ) throws  SQLException{
+       Utilizador usr= new Utilizador(number,-1);
+        String sql="SELECT *FROM utilizador WHERE numero=" + number;
+        ResultSet rs=executeQuery(sql);
+        while(rs.next()) {
+            usr.setNome(rs.getString("nome"));
+            usr.seteUtilizador(rs.getInt("permissao"));
+            usr.setSaldo(getSaldo(number));
+        }
+        return  usr;
+    }
+
     /**
      * Efetua o login na aplicação
      * @param number número do utilizador inserido
