@@ -24,6 +24,9 @@ public class LoginController {
         String password=tfPassword.getText();
         try {
             po.getControlador().login(Integer.parseInt(user), password);
+            tfUser.setText("");
+            tfPassword.setText("");
+            lbErroLogin.setText("");
             po.setMenuUserView();
         } catch (Exception e) {
             lbErroLogin.setText(e.getMessage());
