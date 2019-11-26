@@ -118,7 +118,7 @@ public class ComunicacaoBD {
         ArrayList<Refeicao> ementa = new ArrayList<>();
         String currentDate = this.getCurrentDate();
         String endDate = this.getEndDate(currentDate);
-        String sql = "SELECT * FROM refeicoes WHERE data>" + currentDate + " and data<" + endDate;
+        String sql = "SELECT * FROM refeicoes WHERE data>'" + currentDate + "' and data<='" + endDate +"'";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
             Refeicao newRefeicao = new Refeicao(rs.getInt("idrefeicao"),
@@ -129,7 +129,7 @@ public class ComunicacaoBD {
                     rs.getString("sobremesa2"),
                     rs.getDouble("preco"),
                     rs.getInt("horario"),
-                    rs.getDate("data"));
+                    rs.getString("data"));
             ementa.add(newRefeicao);
         }
         return ementa;
@@ -169,7 +169,7 @@ public class ComunicacaoBD {
                     rs.getString("sobremesa2"),
                     rs.getDouble("preco"),
                     rs.getInt("horario"),
-                    rs.getDate("data"));
+                    rs.getString("data"));
         }
         return refeicao;
     }
@@ -181,18 +181,6 @@ public class ComunicacaoBD {
     private String getCurrentDate(){
         Calendar calender = Calendar.getInstance();
         String currentDate = LocalDate.now().toString();
-        String[] result  = currentDate.split("-");
-        currentDate = new String();
-        for(int i=0; i< result.length; i++){
-            currentDate += result[i];
-            if(i != 2)
-                currentDate += "/";
-        }
-
-        Date d = new Date(currentDate);
-        calender.setTime(d);
-        calender.add(Calendar.DAY_OF_MONTH, 2);
-        currentDate = calender.get(Calendar.YEAR) + "/" + calender.get(Calendar.MONTH) + "/" + calender.get(Calendar.DAY_OF_MONTH);
         return  currentDate;
     }
 
@@ -205,10 +193,13 @@ public class ComunicacaoBD {
         String date = null;
 
         Calendar calender = Calendar.getInstance();
-        Date d = new Date(currentDate);
-        calender.setTime(d);
+        String[] result  = currentDate.split("-");
+        calender.set(Calendar.YEAR, Integer.parseInt(result[0]));
+        calender.set(Calendar.MONTH, Integer.parseInt(result[1]));
+        calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));  //
 
         int dayOfWeek = calender.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek = dayOfWeek -2;
         switch (dayOfWeek){
             case Calendar.MONDAY:
                 calender.add(Calendar.DAY_OF_MONTH, 4);
@@ -231,9 +222,8 @@ public class ComunicacaoBD {
                 calender.add(Calendar.DAY_OF_MONTH, 5);
                 break;
         }
-        date = calender.get(Calendar.YEAR) + "/" + calender.get(Calendar.MONTH) + "/" + calender.get(Calendar.DAY_OF_MONTH);
+        date =calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
-
     }
     
 }

@@ -38,6 +38,7 @@ public class ConsultaEmentaController {
         this.po = po;
         try {
             ementa = po.controlador.getEmenta();
+            //System.out.println(ementa.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,7 +63,7 @@ public class ConsultaEmentaController {
             dataHB.setPrefHeight(29.0);
             dataHB.setStyle("");
             Label dataLB = new Label();
-            dataLB.setText(ref.getData().getDay()+"/"+ref.getData().getMonth()+"/"+ref.getData().getYear());
+            dataLB.setText(ref.getData());
             dataHB.getChildren().add(dataLB);
 
             //Almoço/Jantar
