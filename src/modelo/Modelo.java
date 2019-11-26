@@ -90,11 +90,21 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @return lista com o histórico de senhas compradas do utilizador
+     * @return lista com as senhas compradas do utilizador
      */
     @Override
-    public List getHistoricoSenhas() {
-        return null;
+    public ArrayList<Senha> getSenhasCompradas() throws SQLException {
+        return database.getSenhas(utilizador.getNumeroUtilizador());
+    }
+
+    /**
+     *
+     * @param id identificador da refeição
+     * @return refeição pretendida
+     */
+    @Override
+    public Refeicao getRefeicao(int id) throws SQLException {
+        return database.getRefeicao(id);
     }
 
     /**

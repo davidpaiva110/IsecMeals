@@ -136,6 +136,45 @@ public class ComunicacaoBD {
     }
 
     /**
+     *
+     * @param idUser identificador do utilizador
+     * @return lista de senhas compradas pelo utilizador
+     * @throws SQLException
+     */
+    public ArrayList<Senha> getSenhas(double idUser) throws SQLException {
+        ArrayList<Senha> senhas = new ArrayList<>();
+        String sql = "SELECT idsenha,prato,sobremesa,precototal,idrefeicao FROM senha WHERE numero=" + idUser;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            Senha senha = new Senha(rs.getInt("idsenha"),
+                    rs.getString("prato"),
+                    rs.getString("sobremesa"),
+                    rs.getDouble("precototal"),
+                    rs.getInt("idrefeicao"));
+            senhas.add(senha);
+        }
+        return senhas;
+    }
+
+    public Refeicao getRefeicao(int id) throws SQLException {
+        Refeicao refeicao=null;
+        String sql = "SELECT * FROM refeicoes WHERE idrefeicao=" + id;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            refeicao = new Refeicao(rs.getInt("idrefeicao"),
+                    rs.getString("sopa"),
+                    rs.getString("pratocarne"),
+                    rs.getString("pratopeixe"),
+                    rs.getString("sobremesa1"),
+                    rs.getString("sobremesa2"),
+                    rs.getDouble("preco"),
+                    rs.getInt("horario"),
+                    rs.getDate("data"));
+        }
+        return refeicao;
+    }
+
+    /**
      * Coloca a data atual mais um dia no formato "YYYY/MM/DD"
      * @return data atual
      */

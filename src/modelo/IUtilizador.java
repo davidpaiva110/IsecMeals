@@ -1,5 +1,7 @@
 package modelo;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,7 +29,8 @@ public interface IUtilizador {
     public boolean addFavorito(String descricaoFavorito);
 
     // ==== Senhas ====
-    public List getHistoricoSenhas();
+    public ArrayList<Senha> getSenhasCompradas() throws SQLException;
+    public Refeicao getRefeicao(int id) throws SQLException;
     public boolean buySenha(Refeicao dadosSenha);
     public boolean cancelSenha(int idSenha);
     public boolean changeSenha(Refeicao novosDadosSenha);

@@ -8,11 +8,6 @@ public class MenuUserController {
 
     PaneOrganizer po;
 
-    @FXML private Button btConsultarEmenta;
-    @FXML private Button btGerirSenhas;
-    @FXML private Button btGerirFavoritos;
-    @FXML private Button btSair;
-
     public MenuUserController(PaneOrganizer po) {
         this.po = po;
     }
