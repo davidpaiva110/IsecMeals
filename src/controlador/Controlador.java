@@ -35,7 +35,7 @@ public class Controlador {
     public boolean login(int number, String password) throws Exception{
         return modelo.login(number, password);
     }
-
+public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public void logout() {
         modelo.logout();

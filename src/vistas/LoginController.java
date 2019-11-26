@@ -27,7 +27,12 @@ public class LoginController {
             tfUser.setText("");
             tfPassword.setText("");
             lbErroLogin.setText("");
-            po.setMenuUserView();
+            if (po.getControlador().geteutilizador()==0){
+                po.setMenuUserView();
+            }else{
+                po.setMenuAdminVIew();
+            }
+
         } catch (Exception e) {
             lbErroLogin.setText(e.getMessage());
         }

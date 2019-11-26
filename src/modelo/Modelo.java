@@ -55,7 +55,9 @@ public class Modelo  implements IUtilizador, IEmenta{
         }
         return resp;
     }
-
+    public  int gettipoUtilizador(){
+    return  utilizador.geteUtilizador();
+}
     @Override
     public void logout() {
         utilizador=null;

@@ -19,6 +19,7 @@ public interface IUtilizador {
     public boolean login(int user, String password) throws Exception;
     public void logout();
     public double getSaldoUtilizador();
+    public  int gettipoUtilizador();
 
     // ==== Pratos Favoritos ====
     public boolean removeFavorito(int idFavorito);
