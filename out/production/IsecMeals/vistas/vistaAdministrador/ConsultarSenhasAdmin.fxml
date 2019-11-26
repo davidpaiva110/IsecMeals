@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <center>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
+          <columns>
+            <TableColumn minWidth="0.0" prefWidth="100.0" text="Senha" />
+            <TableColumn prefWidth="110.0" text="Almoço/Jantar" />
+            <TableColumn prefWidth="80.0" text="Data" />
+            <TableColumn prefWidth="65.0" text="Preço" />
+            <TableColumn prefWidth="120.0" text="Alterar Senha" />
+            <TableColumn prefWidth="120.0" text="Cancelar Senha" />
+          </columns>
+        </TableView>
+      </children>
+    </HBox>
+  </center>
+  <top>
+    <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <left>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+              <HBox.margin>
+                <Insets left="10.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+              <HBox.margin>
+                <Insets left="15.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </left>
+    </BorderPane>
+  </top>
+</BorderPane>

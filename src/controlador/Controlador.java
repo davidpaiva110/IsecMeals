@@ -36,4 +36,8 @@ public class Controlador {
         return modelo.login(number, password);
     }
 
+    public void logout(){
+        modelo.logout();
+    }
+
 }

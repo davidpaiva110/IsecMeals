@@ -56,6 +56,11 @@ public class Modelo  implements IUtilizador, IEmenta{
         return resp;
     }
 
+    @Override
+    public void logout() {
+        utilizador=null;
+    }
+
     /**
      * @param idFavorito do favorito que se pretende remover da lista de favoritos
      * @return true se removido com sucesso | false se não foi possível remover
