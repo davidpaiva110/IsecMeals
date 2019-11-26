@@ -4,6 +4,7 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static jdk.nashorn.internal.objects.Global.Infinity;
 
 public class ConsultaEmentaController {
 
@@ -38,9 +41,7 @@ public class ConsultaEmentaController {
             e.printStackTrace();
         }
 
-        ementa = new ArrayList<>();
-        Date data = new Date("12/12/2019");
-        ementa.add( new Refeicao(2, "creme cenoura", "vitela", "filetes", "fruta", "gelatina", 1, 1, data) );
+
     }
 
     public void initialize() {
@@ -60,7 +61,7 @@ public class ConsultaEmentaController {
             dataHB.setPrefHeight(29.0);
             dataHB.setStyle("");
             Label dataLB = new Label();
-            dataLB.setText(ref.getData().toString());
+            dataLB.setText(ref.getData().getDay()+"/"+ref.getData().getMonth()+"/"+ref.getData().getYear());
             dataHB.getChildren().add(dataLB);
 
             //Almoço/Jantar
@@ -78,14 +79,30 @@ public class ConsultaEmentaController {
             sopaTitle.setFont(new Font("Arial", 18.0));
             sopaTitle.setText("Sopa");
             Label sopaDesc = new Label();
-            sopaTitle.setText(ref.getSopa());
+            sopaDesc.setText(ref.getSopa());
 
             //Prato Carne
             HBox carneHB = new HBox();
+            carneHB.setPrefHeight(-1.0);
+            carneHB.setPrefWidth(-1.0);
+            //carneHB.setPadding(new Insets(10.0));
             Label carneTitle = new Label();
+            carneTitle.setAlignment(Pos.CENTER);
+            carneTitle.setMaxHeight(-Infinity);
+            carneTitle.setMaxWidth(-Infinity);
+            carneTitle.setMinHeight(-Infinity);
+            carneTitle.setMinWidth(-Infinity);
             carneTitle.setText("Prato Carne");
+            carneTitle.setPrefHeight(-1.0);
+            carneTitle.setPrefWidth(-1.0);
+            carneTitle.setStyle("-fx-text-fill: #7D222B;-fx-font-weight: bold;");
+            carneTitle.setFont(new Font("Arial", 18.0));
             ImageView favIcon = new ImageView();
-            File file = new File("../m6.PNG");
+            favIcon.setFitHeight(30.0);
+            favIcon.setFitWidth(30.0);
+            favIcon.setPickOnBounds(true);
+            favIcon.setPreserveRatio(true);
+            File file = new File("..\\m6.PNG");
             Image image = new Image(file.toURI().toString());
             favIcon.setImage(image);
             carneHB.getChildren().addAll(carneTitle, favIcon);
@@ -94,25 +111,51 @@ public class ConsultaEmentaController {
 
             //Prato Peixe
             HBox peixeHB = new HBox();
+            peixeHB.setPrefHeight(-1.0);
+            peixeHB.setPrefWidth(-1.0);
             Label peixeTitle = new Label();
-            carneTitle.setText("Prato Carne");
+            peixeTitle.setAlignment(Pos.CENTER);
+            peixeTitle.setMaxHeight(-Infinity);
+            peixeTitle.setMaxWidth(-Infinity);
+            peixeTitle.setMinHeight(-Infinity);
+            peixeTitle.setMinWidth(-Infinity);
+            peixeTitle.setText("Prato Peixe");
+            peixeTitle.setPrefHeight(-1.0);
+            peixeTitle.setPrefWidth(-1.0);
+            peixeTitle.setStyle("-fx-text-fill: #7D222B;-fx-font-weight: bold;");
+            peixeTitle.setFont(new Font("Arial", 18.0));
             ImageView favIcon2 = new ImageView();
-            favIcon.setImage(image);
+            favIcon2.setImage(image);
+            favIcon.setFitHeight(30.0);
+            favIcon.setFitWidth(30.0);
+            favIcon.setPickOnBounds(true);
+            favIcon.setPreserveRatio(true);
             peixeHB.getChildren().addAll(peixeTitle, favIcon2);
             Label peixeDesc = new Label();
             peixeDesc.setText(ref.getPratoPeixe());
 
             //Preço
             HBox precoHB = new HBox();
+            precoHB.setAlignment(Pos.CENTER);
+            precoHB.setMaxHeight(200.0);
+            precoHB.setPrefHeight(100.0);
+            precoHB.setPrefWidth(200.0);
             Label precoTitle = new Label();
-            precoTitle.setText("Preço");
+            precoTitle.setText("Preço: ");
+            precoTitle.setStyle("-fx-text-fill: #7D222B;-fx-font-weight: bold;");
+            precoTitle.setFont(new Font("Arial", 16.0));
             Label precoDesc = new Label();
-            precoDesc.setText("" + ref.getPreco());
+            precoDesc.setFont(new Font(16.0));
+            precoDesc.setText("" + ref.getPreco() +" €");
             precoHB.getChildren().addAll(precoTitle, precoDesc);
 
             //Botão Selecionar
             HBox btHB = new HBox();
+            btHB.setAlignment(Pos.CENTER);
+            btHB.setPrefHeight(100.0);
+            btHB.setPrefWidth(200.0);
             Button btnS = new Button();
+            btnS.setStyle("-fx-border-color: #8A817A; -fx-background-color: #7D222B;-fx-text-fill: white;");
             btnS.setText("Selecionar");
             btnS.setId(""+ref.getIdRefeicao());
             btnS.setOnAction(new EventHandler<ActionEvent>() {
