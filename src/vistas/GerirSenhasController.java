@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Senha;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class GerirSenhasController {
     }
 
     @FXML
-    private void handleVoltar(ActionEvent action){
+    private void handleVoltar(ActionEvent action) throws IOException {
         po.setMenuUserView();
     }
 
@@ -37,9 +38,9 @@ public class GerirSenhasController {
         tableSenhas.setEditable(false);
         try {
             senhas = po.getControlador().getSenhasCompradas();
-            //for (Senha senha:senhas) {
-            //    tableSenhas.getItems().add(senha);
-            //}
+            for (Senha senha : senhas) {
+                //tableSenhas.getItems().add(senha);
+            }
         } catch (SQLException e) {
             tableSenhas.setPlaceholder(new Label(e.getMessage().toString()));
         }

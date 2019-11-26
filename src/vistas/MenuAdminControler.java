@@ -3,6 +3,8 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import java.io.IOException;
+
 public class MenuAdminControler {
     PaneOrganizer po;
     public MenuAdminControler(PaneOrganizer po) {
@@ -10,7 +12,7 @@ public class MenuAdminControler {
     }
 
     @FXML
-    private void handleGerirEmenta(ActionEvent action){ po.setGerirEmentaAdminView(); }
+    private void handleGerirEmenta(ActionEvent action) throws IOException { po.setGerirEmentaAdminView(); }
 /*
     @FXML
     private void handleGerirUtilizadores(ActionEvent action){
