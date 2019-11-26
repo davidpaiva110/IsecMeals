@@ -25,7 +25,7 @@ public class Refeicao {
     private String sombremesa1;
     private String sombremesa2;
     private double preco;
-    private int almocoJantar;   // 0 - ??? | 1 - ????
+    private int horario;   // 0 - ??? | 1 - ????
     private Date data;
 
     public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, Date data) {
@@ -36,7 +36,43 @@ public class Refeicao {
         this.sombremesa1 = sombremesa1;
         this.sombremesa2 = sombremesa2;
         this.preco = preco;
-        this.almocoJantar = almocoJantar;
+        this.horario = almocoJantar;
         this.data = data;
+    }
+
+    public int getIdRefeicao() {
+        return idRefeicao;
+    }
+
+    public String getSopa() {
+        return sopa;
+    }
+
+    public String getPratoCarne() {
+        return pratoCarne;
+    }
+
+    public String getPratoPeixe() {
+        return pratoPeixe;
+    }
+
+    public String getSombremesa1() {
+        return sombremesa1;
+    }
+
+    public String getSombremesa2() {
+        return sombremesa2;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getHorario() {
+        return horario;
+    }
+
+    public Date getData() {
+        return data;
     }
 }

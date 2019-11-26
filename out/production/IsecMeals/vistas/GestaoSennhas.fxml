@@ -12,12 +12,12 @@
   <center>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
+        <TableView fx:id="tableSenhas" editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="100.0" prefWidth="150.0" text="Senha" />
-            <TableColumn prefWidth="150.0" text="Almoço/Jantar" />
-            <TableColumn prefWidth="150.0" text="Data" />
-            <TableColumn prefWidth="150.0" text="Quantidade" />
+            <TableColumn minWidth="100.0" prefWidth="150.0" text="Senha" fx:id="colSenha" />
+            <TableColumn prefWidth="150.0" text="Almoço/Jantar" fx:id="colAlmocoJantar" />
+            <TableColumn prefWidth="150.0" text="Data" fx:id="colData" />
+            <TableColumn prefWidth="150.0" text="Quantidade" fx:id="colQuantidade" />
           </columns>
         </TableView>
       </children>
@@ -28,12 +28,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>
