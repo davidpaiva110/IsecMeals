@@ -33,15 +33,15 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="204.0">
           <children>
-            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button fx:id="btnVoltar" onAction="#handleVoltar" depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
-              </HBox.margin>
+              </HBox.margin>212
             </Button>
           </children>
         </HBox>
@@ -49,7 +49,7 @@
       <right>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="213.0" BorderPane.alignment="CENTER_LEFT">
           <children>
-            <Button mnemonicParsing="false" prefHeight="-1.0" prefWidth="225.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Adicionar Nova Refeição" textFill="WHITE">
+            <Button fx:id="btnaddRefeicao" onAction="#handleAdicionaRefeicao" mnemonicParsing="false" prefHeight="-1.0" prefWidth="225.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Adicionar Nova Refeição" textFill="WHITE">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>

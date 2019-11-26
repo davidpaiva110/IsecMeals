@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class GerirEmentaAdminControler {
+public class VerSenhasCompradasAdminControler {
     PaneOrganizer po;
-    public GerirEmentaAdminControler(PaneOrganizer po) {
+    public VerSenhasCompradasAdminControler(PaneOrganizer po){
         this.po=po;
-    }
+    };
     @FXML
     private void handleSair(ActionEvent action){
         po.getControlador().logout();
@@ -18,9 +18,5 @@ public class GerirEmentaAdminControler {
     @FXML
     private void handleVoltar(ActionEvent action) throws IOException {
         po.setMenuAdminVIew();
-    }
-    @FXML
-    private void handleAdicionaRefeicao(ActionEvent action) throws IOException {
-        po.setAdicionaRefeicaoView();
     }
 }

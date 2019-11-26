@@ -1,14 +1,15 @@
 package vistas;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class GerirEmentaAdminControler {
+public class AdicionaRefeicaoAdminControler {
     PaneOrganizer po;
-    public GerirEmentaAdminControler(PaneOrganizer po) {
-        this.po=po;
+    public AdicionaRefeicaoAdminControler(PaneOrganizer po) {
+    this.po=po;
     }
     @FXML
     private void handleSair(ActionEvent action){
@@ -17,10 +18,7 @@ public class GerirEmentaAdminControler {
     }
     @FXML
     private void handleVoltar(ActionEvent action) throws IOException {
-        po.setMenuAdminVIew();
+        po.setGerirEmentaAdminView();
     }
-    @FXML
-    private void handleAdicionaRefeicao(ActionEvent action) throws IOException {
-        po.setAdicionaRefeicaoView();
-    }
+
 }
