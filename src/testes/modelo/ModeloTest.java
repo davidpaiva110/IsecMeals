@@ -1,82 +1,174 @@
 package modelo;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class ModeloTest {
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-    @org.junit.jupiter.api.Test
+class ModeloTest{
+
+    private Utilizador utilizador;
+    private List<Refeicao> ementa;
+    private ComunicacaoBD database;
+    private Refeicao refeicao;
+
+    @Test
+        //obtem saldo
     void getSaldoUtilizador() {
     }
 
-    @org.junit.jupiter.api.Test
-    void login() {
+    @Test
+        //login com sucesso
+    void login1() throws Exception {
+        utilizador = new Utilizador(90000000,0);
+        utilizador.setPassword("HJ1F5MYP");
+        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
+        assertTrue(resp, "login nao realizado!");
     }
 
-    @org.junit.jupiter.api.Test
-    void gettipoUtilizador() {
+    @Test
+        //password errada
+    void login2() throws Exception {
+        utilizador = new Utilizador(90000000,0);
+        utilizador.setPassword("passworderrada");
+        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
+        assertFalse(resp, "login nao realizado!");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+        //numero utilizador errado, não existe nenhum utilizador com id 90000001
+    void login3() throws Exception {
+        utilizador = new Utilizador(90000001,0);
+        utilizador.setPassword("HJ1F5MYP");
+        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
+        assertFalse(resp, "login nao realizado!");
+    }
+
+    @Test
+        //numero e password errados, nao existe nenhum utilizador com id 90000001
+    void login4() throws Exception {
+        utilizador = new Utilizador(90000001,0);
+        utilizador.setPassword("passworderrada");
+        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
+        assertFalse(resp, "login nao realizado!");
+    }
+
+    @Test
+        //get utilizador utilizador
+    void gettipoUtilizador1() {
+        utilizador = new Utilizador(90000000,0);
+        assertEquals(0, utilizador.geteUtilizador(), "tipo de utilizador nao obtido com sucesso!");
+    }
+
+    @Test
+        //get utilizador administrador
+    void gettipoUtilizador2() {
+        utilizador = new Utilizador(90000000,1);
+        assertEquals(1, utilizador.geteUtilizador(), "tipo de utilizador nao obtido com sucesso!");
+    }
+
+    @Test
     void logout() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void removeFavorito() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getFavoritos() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addFavorito() {
     }
 
-    @org.junit.jupiter.api.Test
-    void getSenhasCompradas() {
+    @Test
+        //get senhas, utilizador só tem 1 senha
+    void getSenhasCompradas1() throws SQLException {
+        ArrayList<Senha> senhas = new ArrayList<>();
+        utilizador = new Utilizador(90000000,0);
+        database.getSenhas(utilizador.getNumeroUtilizador());
+        Senha senha1 = new Senha(90000000,"prato","sobremesa",2.50,999996);
+        senhas.add(senha1);
+        assertEquals(senhas, database.getSenhas(90000000), "senha obtida com sucesso!");
     }
 
-    @org.junit.jupiter.api.Test
-    void getRefeicao() {
+    @Test
+        //get senhas, utilizador tem mais que 1 senha
+    void getSenhasCompradas2() throws SQLException {
+        ArrayList<Senha> senhas = new ArrayList<>();
+        utilizador = new Utilizador(90000000,0);
+        database.getSenhas(utilizador.getNumeroUtilizador());
+        Senha senha1 = new Senha(90000000,"prato","sobremesa",2.50,999996);
+        Senha senha2 = new Senha(90000000,"prato","sobremesa",2.50,999995);
+        Senha senha3 = new Senha(90000000,"prato","sobremesa",2.50,999994);
+        senhas.add(senha1);
+        senhas.add(senha2);
+        senhas.add(senha3);
+        assertEquals(senhas, database.getSenhas(90000000), "senhas obtidas com sucesso!");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+        //get refeição com sucesso
+    void getRefeicao1() throws SQLException {
+        refeicao=new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
+        boolean resp = refeicao.equals(database.getRefeicao(999999));
+        assertTrue(resp, "refeição obtida com sucesso!");
+    }
+
+    @Test
+        //get refeição com sucesso, nao pode haver nenhuma refeicao com id 999998
+    void getRefeicao2() throws SQLException {
+        assertNull(database.getRefeicao(999998), "refeição nao obtida com sucesso!");
+    }
+
+    @Test
     void buySenha() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void cancelSenha() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeSenha() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setNovoSaldoUtilizador() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addUtilizador() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void removeUtilizador() {
     }
 
-    @org.junit.jupiter.api.Test
-    void getEmenta() {
+    @Test
+        //get ementa, 1 dia tem 2 refeições
+    void getEmenta() throws SQLException {
+        Refeicao refeicao1 = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
+        Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-24-28");
+        ementa.add(refeicao1);
+        ementa.add(refeicao2);
+        assertEquals(ementa, database.getEmenta());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addNovaRefeicao() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeRefeicao() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void cancelRefeicao() {
     }
 }
