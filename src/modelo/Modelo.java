@@ -67,8 +67,10 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false se não foi possível remover
      */
     @Override
-    public boolean removeFavorito(int idFavorito) {
-        return false;
+    public boolean removeFavorito(int idFavorito) throws Exception {
+
+            return database.removeFavorito(idFavorito);
+
     }
 
     /**
@@ -90,11 +92,9 @@ public class Modelo  implements IUtilizador, IEmenta{
     /**
      * @return lista com as senhas compradas do utilizador
      */
-    @Override
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return database.getSenhas(utilizador.getNumeroUtilizador());
     }
-
 
     /**
      *
@@ -205,4 +205,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
 
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        return database.getSenhasCompradasAdmin();
+    }
 }

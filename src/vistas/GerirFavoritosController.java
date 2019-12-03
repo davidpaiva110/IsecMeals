@@ -46,7 +46,29 @@ public class GerirFavoritosController {
                  tbFav.getBtRemover().setOnAction(new EventHandler<ActionEvent>() {
                      @Override
                      public void handle(ActionEvent actionEvent) {
-                         System.out.println("Remover" + tbFav.getBtRemover().getId());
+                         ButtonType btSim=new ButtonType("Sim");
+                         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Deseja remover o item "+fav.getPrato()+" dos favoritos? ", btSim, new ButtonType("Não"));
+                         confirmation.setHeaderText("Remover dos favoritos");
+                         confirmation.setTitle("Remover");
+                         confirmation.showAndWait();
+                         if (confirmation.getResult() == btSim) {
+                             try {
+                                 po.getControlador().RemoveFavorito(Integer.parseInt(tbFav.getBtRemover().getId()));
+                             } catch (Exception e) {
+                                 Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+                                 error.setHeaderText("Erro ao Remover o Favorito");
+                                 error.setTitle("Erro");
+                                 error.showAndWait();
+                             }
+                             try {
+                                 po.setGestaoFavoritosView();
+                             } catch (IOException e) {
+                                 Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+                                 error.setHeaderText("Erro ao Atualizar a Vista");
+                                 error.setTitle("Erro");
+                                 error.showAndWait();
+                             }
+                         }
                      }
                  });
                  TabelaFavoritos.getItems().add(tbFav);
@@ -57,6 +79,8 @@ public class GerirFavoritosController {
              TabelaFavoritos.setPlaceholder(new Label(e.getMessage().toString()));
 
          }
+         if (TabelaFavoritos.getItems().size()==0) TabelaFavoritos.setPlaceholder(new Label("Não existem Favoritos"));
+
 
      }
 

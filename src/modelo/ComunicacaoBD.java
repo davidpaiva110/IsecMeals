@@ -3,6 +3,7 @@ package modelo;
 import modelo.Password.PasswordUtils;
 
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -291,5 +292,46 @@ public class ComunicacaoBD {
         int rs=executeUpdate(sql);
     }
 
+    public boolean removeFavorito(int id) throws Exception {
+        String sql = "DELETE FROM favorito WHERE idfavorito=" + id;
+        int rs = executeUpdate(sql);
+        if (rs!=1) {
+            throw new Exception("Erro ao apagar o favorito!");
+        }
+       return true;
+    }
+
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        ArrayList<RefeicaoAdmin> refeicoes = new ArrayList<>();
+        String sql="SELECT idrefeicao,horario,data FROM refeicoes";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            int id= rs.getInt("idrefeicao");
+            int horario= rs.getInt("horario");
+            String aux;
+            if(horario==0){
+                aux="Almoco";
+            }else aux="Jantar";
+
+            String d= rs.getDate("data").toString();
+
+            String sqlquantPeixe="SELECT COUNT(idsenha) FROM senha, refeicoes"+
+                    "WHERE "+id+"refeicoes.idrefeicao= senha.idrefeicao" +
+                    "AND senha.prato=refeicoes.pratopeixe;";
+            ResultSet rsa = executeQuery(sqlquantPeixe);
+            int qtpeixe=rsa.getInt("count(idsenha)");
+
+            String sqlquantCarne="SELECT COUNT(idsenha) FROM senha, refeicoes"+
+                    "WHERE "+id+"refeicoes.idrefeicao= senha.idrefeicao" +
+                    "AND senha.prato=refeicoes.pratocarne;";
+            ResultSet rsc = executeQuery(sqlquantCarne);
+            int qtcarne=rsa.getInt("count(idsenha)");
+
+            refeicoes.add(new RefeicaoAdmin(id,d,aux,qtcarne,qtpeixe));
+
+        }
+
+        return refeicoes;
+    }
 }
 
