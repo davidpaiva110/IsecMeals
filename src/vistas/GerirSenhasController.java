@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import modelo.Refeicao;
 import modelo.Senha;
 
 import java.io.IOException;
@@ -64,7 +65,16 @@ public class GerirSenhasController {
                 tbSenha.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        System.out.println("Alterar" + tbSenha.getBtAlterar().getId());
+                        try {
+                            Senha senha = po.getControlador().getSenha(Integer.parseInt(tbSenha.getBtAlterar().getId()));
+                            Refeicao ref = po.getControlador().getRefeicao(senha.getIdRefeicao());
+                            po.setAlterarSenhaView(ref, senha);
+                        } catch (SQLException | IOException e) {
+                            Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+                            error.setHeaderText("Erro ao Carregar Vista");
+                            error.setTitle("Erro");
+                            error.showAndWait();
+                        }
                     }
                 });
                 tbSenha.getBtCancelar().setOnAction(new EventHandler<ActionEvent>() {

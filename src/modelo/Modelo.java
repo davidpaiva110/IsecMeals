@@ -215,4 +215,13 @@ public class Modelo  implements IUtilizador, IEmenta{
     public boolean hasMoreThan48Hours(int idRefeicao) {
         return database.hasMoreThan48Hours(idRefeicao);
     }
+
+    /**
+     * Devolve uma Senha
+     * @param idSenha ID da senha a devolver
+     * @return objeto do tipo Senha
+     */
+    public Senha getSenha(int idSenha) throws SQLException {
+        return database.getSenha(idSenha);
+    }
 }

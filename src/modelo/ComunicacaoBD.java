@@ -329,5 +329,40 @@ public class ComunicacaoBD {
         if(TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS)>=1) resp=true;
         return resp;
     }
+
+    public Senha getSenha(int idSenha) throws SQLException {
+        Senha senha=null;
+        String sql = "SELECT idrefeicao, prato, sobremensa, precototal FROM senha WHERE idsenha=" + idSenha;
+        ResultSet rs = executeQuery(sql);
+        ArrayList<Complemento> complementos = this.getComplementosSenha(idSenha);
+        while (rs.next()){
+            senha = new Senha(idSenha,
+                    rs.getString("prato"),
+                    rs.getString("sobremensa"),
+                    rs.getDouble("precototal"),
+                    rs.getInt("idrefeicao"),
+                    complementos);
+        }
+        return senha;
+    }
+
+    private ArrayList<Complemento> getComplementosSenha(int idSenha) throws SQLException {
+        ArrayList<Complemento> complementos = new ArrayList<>();
+        String sql = "SELECT * FROM complementosenha WHERE idsenha=" + idSenha;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            int idComplemento = rs.getInt("idcomplemento");
+            String sqlC = "SELECT * FROM complemento WHERE idcomplemento=" + idComplemento;
+            ResultSet rsC = executeQuery(sqlC);
+            while(rsC.next()){
+                complementos.add(new Complemento(idComplemento,
+                        rsC.getString("nome"),
+                        rsC.getFloat("preco")));
+            }
+        }
+        if(complementos.size() <= 0)
+            complementos = null;
+        return complementos;
+    }
 }
 

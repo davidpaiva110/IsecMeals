@@ -44,7 +44,6 @@ public class Controlador {
 
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
-
     }
 
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
@@ -70,5 +69,9 @@ public class Controlador {
 
     public boolean hasMoreThan48Hours(int idRefeicao) {
         return modelo.hasMoreThan48Hours(idRefeicao);
+    }
+
+    public Senha getSenha(int idSenha) throws SQLException {
+        return modelo.getSenha(idSenha);
     }
 }

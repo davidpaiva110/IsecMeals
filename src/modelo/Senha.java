@@ -20,6 +20,15 @@ public class Senha {
         this.complementos = new ArrayList<>();
     }
 
+    public Senha(int idSenha, String prato, String sombremesa, double preco, int idRef, ArrayList<Complemento> comp) {
+        this.idSenha = idSenha;
+        this.prato = prato;
+        this.sombremesa = sombremesa;
+        this.preco = preco;
+        this.idRefeicao=idRef;
+        this.complementos = comp;
+    }
+
     public Senha() {
         this.complementos = new ArrayList<>();
     }
