@@ -63,7 +63,7 @@ public class ComprarSenhaController {
             lbSaldo.setText("Indisponível");
         }
 
-        lbHorario.setText((dadosRefeicao.getAlmocoJantar() == 1) ? "Almoço" : "Jantar");
+        lbHorario.setText((dadosRefeicao.getAlmocoJantar() == 0) ? "Almoço" : "Jantar");
         lbData.setText(dadosRefeicao.getData());
         lbSopaDesc.setText(dadosRefeicao.getSopa());
         lbPratoCarneDesc.setText(dadosRefeicao.getPratoCarne());
@@ -139,6 +139,7 @@ public class ComprarSenhaController {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
+                    System.out.println("i am aqui");
                     po.getControlador().buySenha(senha);
                     po.setMenuUserView();
                 } catch (SQLException e) { }

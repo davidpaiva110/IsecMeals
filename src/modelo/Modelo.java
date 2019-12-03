@@ -112,7 +112,10 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     @Override
     public boolean buySenha(Senha dadosSenha) throws SQLException {
-        return database.addSenha(dadosSenha, utilizador.getNumeroUtilizador());
+        boolean state = database.addSenha(dadosSenha, utilizador.getNumeroUtilizador());
+        if(state == true)
+            database.removeSaldo(utilizador.getNumeroUtilizador(), dadosSenha.getPreco());
+        return  state;
     }
 
     /**

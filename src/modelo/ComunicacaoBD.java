@@ -280,7 +280,7 @@ public class ComunicacaoBD {
     }
 
     public boolean addSenha(Senha senha, int user) throws SQLException {
-        String sql = "INSERT INTO senha (numero, idrefeicao, prato, sobremesa, precototal) VALUES ('" + user +
+        String sql = "INSERT INTO senha (numero, idrefeicao, prato, sobremensa, precototal) VALUES ('" + user +
                 "', '" + senha.getIdRefeicao() + "', '" +
                 senha.getPrato() + "', '"
                 + senha.getSombremesa() + "', '" +
@@ -299,6 +299,13 @@ public class ComunicacaoBD {
             int rs1 = executeUpdate(sql);
         }
         return  true;
+    }
+
+    public void removeSaldo(int number, double saldo) throws SQLException{
+        double saldoAtual=getSaldo(number);
+        saldoAtual-=saldo;
+        String sql="UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
+        int rs=executeUpdate(sql);
     }
 }
 

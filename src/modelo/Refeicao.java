@@ -26,7 +26,7 @@ public class Refeicao {
     private String sombremesa1;
     private String sombremesa2;
     private double preco;
-    private int horario;   // 0 - Jantar | 1 - Almoço
+    private int horario;   // 1 - Jantar | 0 - Almoço
     private String data;
     private ArrayList<Complemento> complementos;
 
