@@ -160,6 +160,7 @@ public class ComunicacaoBD {
         Refeicao refeicao=null;
         String sql = "SELECT * FROM refeicoes WHERE idrefeicao=" + id;
         ResultSet rs = executeQuery(sql);
+        ArrayList<Complemento> complementos = this.getComplementos(id);
         while (rs.next()){
             refeicao = new Refeicao(rs.getInt("idrefeicao"),
                     rs.getString("sopa"),
@@ -169,9 +170,29 @@ public class ComunicacaoBD {
                     rs.getString("sobremesa2"),
                     rs.getDouble("preco"),
                     rs.getInt("horario"),
-                    rs.getString("data"));
+                    rs.getString("data"),
+                    complementos);
         }
         return refeicao;
+    }
+
+    private ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException {
+        ArrayList<Complemento> complementos = new ArrayList<>();
+        String sql = "SELECT * FROM complementorefeicao WHERE idrefeicao=" + idRefeicao;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            int idComplemento = rs.getInt("idcomplemento");
+            String sqlC = "SELECT * FROM complemento WHERE idcomplemento=" + idComplemento;
+            ResultSet rsC = executeQuery(sqlC);
+            while(rsC.next()){
+                complementos.add(new Complemento(idComplemento,
+                        rsC.getString("nome"),
+                        rs.getDouble("preco")));
+            }
+        }
+        if(complementos.size() <= 0)
+            complementos = null;
+        return complementos;
     }
 
     /**

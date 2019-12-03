@@ -55,6 +55,7 @@ public class Controlador {
         return modelo.getRefeicao(id);
     }
 
+
     public boolean cancelSenha(int id) throws Exception{
         return modelo.cancelSenha(id);
     }
@@ -62,4 +63,5 @@ public class Controlador {
     public double getSaldo() throws SQLException {
         return modelo.getSaldoUtilizador();
     }
+
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import modelo.Refeicao;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class PaneOrganizer {
     BorderPane gerirUtilizadoresAdmin;
     BorderPane VerSenhasCompradasAdmin;
     BorderPane AdicionaRefeicaoAdmin;
+    BorderPane comprarSenha;
     Stage primaryStage;
 
     FXMLLoader loader;
@@ -108,5 +110,13 @@ public class PaneOrganizer {
         AdicionaRefeicaoAdmin=loader.load();
         new Scene( AdicionaRefeicaoAdmin, 600, 400);
         primaryStage.setScene(AdicionaRefeicaoAdmin.getScene());
+    }
+
+    public void setComprarSenhaView(Refeicao dadosrefeicao) throws IOException{
+        loader= new FXMLLoader(getClass().getResource("compraSenha.fxml"));
+        loader.setController(new ComprarSenhaController(this, dadosrefeicao));
+        comprarSenha=loader.load();
+        new Scene( comprarSenha, 600, 400);
+        primaryStage.setScene(comprarSenha.getScene());
     }
 }
