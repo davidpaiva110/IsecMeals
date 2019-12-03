@@ -54,4 +54,5 @@ public int geteutilizador(){return  modelo.gettipoUtilizador();}
     public Refeicao getRefeicao(int id) throws SQLException {
         return modelo.getRefeicao(id);
     }
+
 }

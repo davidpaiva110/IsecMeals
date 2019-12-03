@@ -11,6 +11,7 @@ package modelo;
 /* Ficheiro: Refeicao.java                    */
 /* Descrição: Representa uma refeição         */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,10 +26,11 @@ public class Refeicao {
     private String sombremesa1;
     private String sombremesa2;
     private double preco;
-    private int horario;   // 0 - ??? | 1 - ????
+    private int horario;   // 0 - Jantar | 1 - Almoço
     private String data;
+    private ArrayList<Complemento> complementos;
 
-    public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data) {
+    public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> complementos) {
         this.idRefeicao = idRefeicao;
         this.sopa = sopa;
         this.pratoCarne = pratoCarne;
@@ -37,6 +39,19 @@ public class Refeicao {
         this.sombremesa2 = sombremesa2;
         this.preco = preco;
         this.horario = almocoJantar;
+        this.data = data;
+        this.complementos = complementos;
+    }
+
+    public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int horario, String data) {
+        this.idRefeicao = idRefeicao;
+        this.sopa = sopa;
+        this.pratoCarne = pratoCarne;
+        this.pratoPeixe = pratoPeixe;
+        this.sombremesa1 = sombremesa1;
+        this.sombremesa2 = sombremesa2;
+        this.preco = preco;
+        this.horario = horario;
         this.data = data;
     }
 
@@ -115,4 +130,7 @@ public class Refeicao {
         this.data = data;
     }
 
+    public ArrayList<Complemento> getComplementos() {
+        return complementos;
+    }
 }
