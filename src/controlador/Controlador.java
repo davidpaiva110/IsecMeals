@@ -62,4 +62,8 @@ public class Controlador {
     public double getSaldo() throws SQLException {
         return modelo.getSaldoUtilizador();
     }
+
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        return modelo.hasMoreThan48Hours(idRefeicao);
+    }
 }

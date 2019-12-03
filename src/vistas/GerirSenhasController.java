@@ -95,6 +95,10 @@ public class GerirSenhasController {
                         }
                     }
                 });
+                if(!po.getControlador().hasMoreThan48Hours(tbSenha.getIdRefeicao())){ //Verificação das 48 horas de antecedência
+                    tbSenha.noBtCancelar();
+                    tbSenha.noBtAlterar();
+                }
                 tableSenhas.getItems().add(tbSenha);
 
             }

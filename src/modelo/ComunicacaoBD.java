@@ -3,12 +3,15 @@ package modelo;
 import modelo.Password.PasswordUtils;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ComunicacaoBD {
 
@@ -143,7 +146,7 @@ public class ComunicacaoBD {
      */
     public ArrayList<Senha> getSenhas(double idUser) throws SQLException {
         ArrayList<Senha> senhas = new ArrayList<>();
-        String sql = "SELECT idsenha,prato,sobremensa,precototal,idrefeicao FROM senha WHERE numero=" + idUser;
+        String sql = "SELECT idsenha,prato,sobremensa,precototal,idrefeicao FROM senha WHERE numero=" + idUser + " ORDER BY idsenha desc";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
             Senha senha = new Senha(rs.getInt("idsenha"),
@@ -254,6 +257,25 @@ public class ComunicacaoBD {
         saldoAtual+=saldo;
         String sql="UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
         int rs=executeUpdate(sql);
+    }
+
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        Date data=null;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        boolean resp=false;
+        String sql="SELECT DATA FROM REFEICOES WHERE IDREFEICAO=" + idRefeicao;
+        try {
+            ResultSet rs= executeQuery(sql);
+            if(rs.next()) {
+                data = df.parse(rs.getString("DATA"));
+            }
+        } catch (SQLException | ParseException e) {
+            return false;
+        }
+        Date now=new Date();
+        long dif = data.getTime() - now.getTime();
+        if(TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS)>=1) resp=true;
+        return resp;
     }
 }
 

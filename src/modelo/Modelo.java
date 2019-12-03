@@ -204,5 +204,12 @@ public class Modelo  implements IUtilizador, IEmenta{
         return false;
     }
 
-
+    /**
+     * Verifica se ainda falta mais de 48 horas para uma refeição
+     * @param idRefeicao Refeição a verificar
+     * @return true - se faltar mais de 48 horas | false - se faltar menos de 48 horas
+     */
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        return database.hasMoreThan48Hours(idRefeicao);
+    }
 }
