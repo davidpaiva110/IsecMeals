@@ -1,9 +1,6 @@
 package controlador;
 
-import modelo.Modelo;
-import modelo.Refeicao;
-import modelo.Senha;
-import modelo.Utilizador;
+import modelo.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,9 +43,14 @@ public class Controlador {
         return modelo.getEmenta();
 
     }
-
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
+    }
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        return modelo.getSenhasCompradasAdmin();
+    }
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        return modelo.getFavoritos();
     }
 
     public Refeicao getRefeicao(int id) throws SQLException {
@@ -70,5 +72,9 @@ public class Controlador {
 
     public boolean hasMoreThan48Hours(int idRefeicao) {
         return modelo.hasMoreThan48Hours(idRefeicao);
+    }
+
+    public boolean RemoveFavorito(int id) throws Exception {
+        return modelo.removeFavorito(id);
     }
 }

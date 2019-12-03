@@ -269,6 +269,20 @@ public class ComunicacaoBD {
         return date;
     }
 
+
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        ArrayList<Favoritos> favoritos = new ArrayList<>();
+        String sql = "SELECT idfavorito,prato FROM favorito";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            Favoritos favorito = new Favoritos(rs.getInt("idfavorito"),
+                                                rs.getString("prato"));
+            favoritos.add(favorito);
+        }
+        return favoritos;
+    }
+
+
     public boolean deleteSenha(int id) throws Exception {
         String sql = "DELETE FROM Senha WHERE idsenha=" + id;
         int rs = executeUpdate(sql);
@@ -329,22 +343,65 @@ public class ComunicacaoBD {
     }
 
     public boolean hasMoreThan48Hours(int idRefeicao) {
-        Date data=null;
+        Date data = null;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        boolean resp=false;
-        String sql="SELECT DATA FROM REFEICOES WHERE IDREFEICAO=" + idRefeicao;
+        boolean resp = false;
+        String sql = "SELECT DATA FROM REFEICOES WHERE IDREFEICAO=" + idRefeicao;
         try {
-            ResultSet rs= executeQuery(sql);
-            if(rs.next()) {
+            ResultSet rs = executeQuery(sql);
+            if (rs.next()) {
                 data = df.parse(rs.getString("DATA"));
             }
         } catch (SQLException | ParseException e) {
             return false;
         }
-        Date now=new Date();
+        Date now = new Date();
         long dif = data.getTime() - now.getTime();
-        if(TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS)>=1) resp=true;
+        if (TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS) >= 1) resp = true;
         return resp;
+    }
+
+    public boolean removeFavorito(int id) throws Exception {
+        String sql = "DELETE FROM favorito WHERE idfavorito=" + id;
+        int rs = executeUpdate(sql);
+        if (rs!=1) {
+            throw new Exception("Erro ao apagar o favorito!");
+        }
+       return true;
+    }
+
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        ArrayList<RefeicaoAdmin> refeicoes = new ArrayList<>();
+        String sql="SELECT idrefeicao,horario,data FROM refeicoes";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            int id= rs.getInt("idrefeicao");
+            int horario= rs.getInt("horario");
+            String aux;
+            if(horario==0){
+                aux="Almoco";
+            }else aux="Jantar";
+
+            String d= rs.getDate("data").toString();
+
+            String sqlquantPeixe="SELECT COUNT(idsenha) FROM senha, refeicoes"+
+                    "WHERE "+id+"refeicoes.idrefeicao= senha.idrefeicao" +
+                    "AND senha.prato=refeicoes.pratopeixe;";
+            ResultSet rsa = executeQuery(sqlquantPeixe);
+            int qtpeixe=rsa.getInt("count(idsenha)");
+
+            String sqlquantCarne="SELECT COUNT(idsenha) FROM senha, refeicoes"+
+                    "WHERE "+id+"refeicoes.idrefeicao= senha.idrefeicao" +
+                    "AND senha.prato=refeicoes.pratocarne;";
+            ResultSet rsc = executeQuery(sqlquantCarne);
+            int qtcarne=rsa.getInt("count(idsenha)");
+
+            refeicoes.add(new RefeicaoAdmin(id,d,aux,qtcarne,qtpeixe));
+
+        }
+
+        return refeicoes;
+
     }
 }
 
