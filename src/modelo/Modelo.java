@@ -75,9 +75,8 @@ public class Modelo  implements IUtilizador, IEmenta{
     /**
      * @return lista com os favoritos do utilizador
      */
-    @Override
-    public List getFavoritos() {
-        return null;
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        return database.getFavoritos();
     }
 
     /**
@@ -96,6 +95,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return database.getSenhas(utilizador.getNumeroUtilizador());
     }
+
 
     /**
      *

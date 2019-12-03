@@ -25,7 +25,7 @@ public interface IUtilizador {
 
     // ==== Pratos Favoritos ====
     public boolean removeFavorito(int idFavorito);
-    public List getFavoritos();
+    public List getFavoritos() throws SQLException;
     public boolean addFavorito(String descricaoFavorito);
 
     // ==== Senhas ====

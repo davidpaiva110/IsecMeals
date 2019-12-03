@@ -225,6 +225,18 @@ public class ComunicacaoBD {
         date =calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
     }
-    
+
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        ArrayList<Favoritos> favoritos = new ArrayList<>();
+        String sql = "SELECT idfavorito,prato FROM favorito";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()){
+            Favoritos favorito = new Favoritos(rs.getInt("idfavorito"),
+                                                rs.getString("prato"));
+            favoritos.add(favorito);
+        }
+        return favoritos;
+    }
+
 }
 

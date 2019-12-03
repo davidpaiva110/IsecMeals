@@ -1,9 +1,6 @@
 package controlador;
 
-import modelo.Modelo;
-import modelo.Refeicao;
-import modelo.Senha;
-import modelo.Utilizador;
+import modelo.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,6 +46,9 @@ public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
+    }
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        return modelo.getFavoritos();
     }
 
     public Refeicao getRefeicao(int id) throws SQLException {
