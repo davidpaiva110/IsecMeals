@@ -117,25 +117,42 @@ public class ComunicacaoBD {
      * @return ementa
      * @throws SQLException
      */
-    public ArrayList<Refeicao> getEmenta() throws SQLException {
+    public ArrayList<Refeicao> getEmenta(int userNumber) throws SQLException {
         ArrayList<Refeicao> ementa = new ArrayList<>();
+        ArrayList<Integer> auxInt = new ArrayList<>();
         String currentDate = this.getCurrentDate();
         String endDate = this.getEndDate(currentDate);
+
+        String sql2 = "SELECT idrefeicao FROM senha WHERE numero=" + userNumber;
+        ResultSet rs2 = executeQuery(sql2);
+        while(rs2.next()){
+            int idRef = rs2.getInt("idrefeicao");
+            auxInt.add(idRef);
+        }
+        
         String sql = "SELECT * FROM refeicoes WHERE data>'" + currentDate + "' and data<='" + endDate +"'";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
-            ArrayList<Complemento> complementos = this.getComplementos(rs.getInt("idrefeicao"));
-            Refeicao newRefeicao = new Refeicao(rs.getInt("idrefeicao"),
-                    rs.getString("sopa"),
-                    rs.getString("pratocarne"),
-                    rs.getString("pratopeixe"),
-                    rs.getString("sobremesa1"),
-                    rs.getString("sobremesa2"),
-                    rs.getDouble("preco"),
-                    rs.getInt("horario"),
-                    rs.getString("data"),
-                    complementos);
-            ementa.add(newRefeicao);
+            int contador = 0;
+            int idRefeicao = rs.getInt("idrefeicao");
+            for(Integer elem : auxInt){
+                if(elem != idRefeicao)
+                    contador++;
+            }
+            if(contador == auxInt.size()){
+                ArrayList<Complemento> complementos = this.getComplementos(idRefeicao);
+                Refeicao newRefeicao = new Refeicao(idRefeicao,
+                        rs.getString("sopa"),
+                        rs.getString("pratocarne"),
+                        rs.getString("pratopeixe"),
+                        rs.getString("sobremesa1"),
+                        rs.getString("sobremesa2"),
+                        rs.getDouble("preco"),
+                        rs.getInt("horario"),
+                        rs.getString("data"),
+                        complementos);
+                ementa.add(newRefeicao);
+            }
         }
         return ementa;
     }

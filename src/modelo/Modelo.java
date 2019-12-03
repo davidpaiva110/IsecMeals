@@ -176,7 +176,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     @Override
     public ArrayList<Refeicao> getEmenta() throws SQLException {
-        return database.getEmenta();
+        return database.getEmenta(utilizador.getNumeroUtilizador());
     }
 
     /**

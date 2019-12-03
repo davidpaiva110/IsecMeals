@@ -165,7 +165,7 @@ class ModeloTest {
         Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-24-28");
         ementa.add(refeicao1);
         ementa.add(refeicao2);
-        assertEquals(ementa, database.getEmenta());
+        assertEquals(ementa, database.getEmenta(21270564));
     }
 
     @Test
