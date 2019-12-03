@@ -41,7 +41,6 @@ public class Controlador {
 
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
-
     }
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
@@ -76,5 +75,9 @@ public class Controlador {
 
     public boolean RemoveFavorito(int id) throws Exception {
         return modelo.removeFavorito(id);
+    }
+
+    public Senha getSenha(int idSenha) throws SQLException {
+        return modelo.getSenha(idSenha);
     }
 }

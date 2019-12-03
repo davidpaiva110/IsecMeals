@@ -3,9 +3,11 @@ package vistas;
 import controlador.Controlador;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import modelo.Refeicao;
+import modelo.Senha;
 
 import java.io.IOException;
 
@@ -22,6 +24,7 @@ public class PaneOrganizer {
     BorderPane VerSenhasCompradasAdmin;
     BorderPane AdicionaRefeicaoAdmin;
     BorderPane comprarSenha;
+    BorderPane alterarSenha;
     Stage primaryStage;
 
     FXMLLoader loader;
@@ -118,5 +121,13 @@ public class PaneOrganizer {
         comprarSenha=loader.load();
         new Scene( comprarSenha, 600, 400);
         primaryStage.setScene(comprarSenha.getScene());
+    }
+
+    public void setAlterarSenhaView(Refeicao ref, Senha senha) throws IOException{
+        loader= new FXMLLoader(getClass().getResource("AlterarSenha.fxml"));
+        loader.setController(new AlterarSenhaController(this, ref, senha));
+        alterarSenha=loader.load();
+        new Scene( alterarSenha, 600, 400);
+        primaryStage.setScene(alterarSenha.getScene());
     }
 }

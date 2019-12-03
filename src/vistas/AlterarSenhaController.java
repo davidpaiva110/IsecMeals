@@ -17,12 +17,12 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ComprarSenhaController {
+public class AlterarSenhaController {
 
     private PaneOrganizer po;
     private Refeicao dadosRefeicao;
-    private ArrayList<Complemento> complementos;
     private Senha senha;
+    private ArrayList<Complemento> complementos;
     private double saldo;
     @FXML Label lbSopaDesc;
     @FXML Label lbPratoCarneDesc;
@@ -39,19 +39,18 @@ public class ComprarSenhaController {
     @FXML Label lbComplementos;
     @FXML Label lbSaldo;
     @FXML Label lbTotalPagar;
-    @FXML Button btnComprar;
+    @FXML Button btnAlterar;
 
 
 
-    public ComprarSenhaController(PaneOrganizer paneOrganizer, Refeicao dadosrefeicao) {
+    public AlterarSenhaController(PaneOrganizer paneOrganizer, Refeicao dadosrefeicao, Senha senha) {
         this.po = paneOrganizer;
         this.dadosRefeicao = dadosrefeicao;
-        this.senha = new Senha();
-        senha.setPreco(dadosrefeicao.getPreco());
+        this.senha = senha;
     }
 
     public void initialize() {
-        senha.setIdRefeicao(dadosRefeicao.getIdRefeicao());
+        /*senha.setIdRefeicao(dadosRefeicao.getIdRefeicao());
         this.complementos = dadosRefeicao.getComplementos();
         lbTotalPagar.setText(""+senha.getPreco());
         try {
@@ -134,18 +133,19 @@ public class ComprarSenhaController {
             }
         }
 
-        //Botão comprar
-        btnComprar.setOnAction(new EventHandler<ActionEvent>() {
+        //Botão alterar
+        btnAlterar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
+                    System.out.println("i am aqui");
                     po.getControlador().buySenha(senha);
                     po.setMenuUserView();
                 } catch (SQLException e) { }
                 catch (IOException e) { }
             }
         });
-
+*/
 
     }
 
@@ -156,6 +156,7 @@ public class ComprarSenhaController {
     }
     @FXML
     private void handleVoltar(ActionEvent action) throws IOException {
-        po.setConsultaEmentaView();
+        po.setGestaoSenhasView();
     }
 }
+

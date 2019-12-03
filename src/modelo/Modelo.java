@@ -219,4 +219,13 @@ public class Modelo  implements IUtilizador, IEmenta{
     public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
         return database.getSenhasCompradasAdmin();
     }
+
+    /**
+     * Devolve uma Senha
+     * @param idSenha ID da senha a devolver
+     * @return objeto do tipo Senha
+     */
+    public Senha getSenha(int idSenha) throws SQLException {
+        return database.getSenha(idSenha);
+    }
 }
