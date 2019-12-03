@@ -53,10 +53,25 @@
     </HBox>
   </center>
   <top>
-    <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-      <image>
-        <Image url="@../logo_isecMeals.png" />
-      </image>
-    </ImageView>
+    <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <bottom>
+        <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+          <image>
+            <Image url="@../logo_isecMeals.png" />
+          </image>
+        </ImageView>
+      </bottom>
+      <right>
+        <HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="200.0">
+          <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Saldo Disponível:" />
+            <Label fx:id="lbSaldo" alignment="CENTER_RIGHT" text="Label" />
+          </children>
+          <padding>
+            <Insets top="15.0" />
+          </padding>
+        </HBox>
+      </right>
+    </BorderPane>
   </top>
 </BorderPane>

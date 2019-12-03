@@ -1,9 +1,6 @@
 package controlador;
 
-import modelo.Modelo;
-import modelo.Refeicao;
-import modelo.Senha;
-import modelo.Utilizador;
+import modelo.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +33,7 @@ public class Controlador {
     public boolean login(int number, String password) throws Exception{
         return modelo.login(number, password);
     }
-public int geteutilizador(){return  modelo.gettipoUtilizador();}
+    public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public void logout() {
         modelo.logout();
@@ -44,14 +41,43 @@ public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
-
     }
-
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
+    }
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        return modelo.getSenhasCompradasAdmin();
+    }
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        return modelo.getFavoritos();
     }
 
     public Refeicao getRefeicao(int id) throws SQLException {
         return modelo.getRefeicao(id);
+    }
+
+
+    public boolean cancelSenha(int id) throws Exception{
+        return modelo.cancelSenha(id);
+    }
+
+    public double getSaldo() throws SQLException {
+        return modelo.getSaldoUtilizador();
+    }
+
+    public boolean buySenha(Senha senha) throws SQLException {
+        return modelo.buySenha(senha);
+    }
+
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        return modelo.hasMoreThan48Hours(idRefeicao);
+    }
+
+    public boolean RemoveFavorito(int id) throws Exception {
+        return modelo.removeFavorito(id);
+    }
+
+    public Senha getSenha(int idSenha) throws SQLException {
+        return modelo.getSenha(idSenha);
     }
 }

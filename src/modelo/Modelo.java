@@ -37,9 +37,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return Saldo do utilizador
      */
     @Override
-    public double getSaldoUtilizador(){
-        //Implementar a chamada à base de dados para receber o saldo do utilizador
-        return 0.0;
+    public double getSaldoUtilizador() throws SQLException {
+        return database.getSaldo(utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -68,16 +67,17 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false se não foi possível remover
      */
     @Override
-    public boolean removeFavorito(int idFavorito) {
-        return false;
+    public boolean removeFavorito(int idFavorito) throws Exception {
+
+            return database.removeFavorito(idFavorito);
+
     }
 
     /**
      * @return lista com os favoritos do utilizador
      */
-    @Override
-    public List getFavoritos() {
-        return null;
+    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+        return database.getFavoritos();
     }
 
     /**
@@ -92,7 +92,6 @@ public class Modelo  implements IUtilizador, IEmenta{
     /**
      * @return lista com as senhas compradas do utilizador
      */
-    @Override
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return database.getSenhas(utilizador.getNumeroUtilizador());
     }
@@ -112,17 +111,25 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean buySenha(Refeicao dadosSenha) {
-        return false;
+    public boolean buySenha(Senha dadosSenha) throws SQLException {
+        boolean state = database.addSenha(dadosSenha, utilizador.getNumeroUtilizador());
+        if(state == true)
+            database.removeSaldo(utilizador.getNumeroUtilizador(), dadosSenha.getPreco());
+        return  state;
     }
 
     /**
-     * @param idSenha a cancelar
-     * @return true se cancelada com sucesso | false caso contrário
+     * Efetua o cancelamento de uma senha de refeição, atualizando também o saldo do utilizador
+     * @param idSenha ID da senha a cancelar
+     * @return true - se o cancelamento for efetuado com sucesso
+     * @throws Exception em caso de Erro
      */
     @Override
-    public boolean cancelSenha(int idSenha) {
-        return false;
+    public boolean cancelSenha(int idSenha) throws Exception{
+        double precoSenha=database.getPrecoSenhaComprada(idSenha);
+        boolean res=database.deleteSenha(idSenha);
+        database.addSaldo(utilizador.getNumeroUtilizador(), precoSenha);
+        return res;
     }
 
     /**
@@ -169,7 +176,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     @Override
     public ArrayList<Refeicao> getEmenta() throws SQLException {
-        return database.getEmenta();
+        return database.getEmenta(utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -196,9 +203,29 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelado com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelRefeicao(int idRefeicao) {
+    public boolean cancelRefeicao(int idRefeicao){
         return false;
     }
 
+    /**
+     * Verifica se ainda falta mais de 48 horas para uma refeição
+     * @param idRefeicao Refeição a verificar
+     * @return true - se faltar mais de 48 horas | false - se faltar menos de 48 horas
+     */
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        return database.hasMoreThan48Hours(idRefeicao);
+    }
 
+    public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
+        return database.getSenhasCompradasAdmin();
+    }
+
+    /**
+     * Devolve uma Senha
+     * @param idSenha ID da senha a devolver
+     * @return objeto do tipo Senha
+     */
+    public Senha getSenha(int idSenha) throws SQLException {
+        return database.getSenha(idSenha);
+    }
 }

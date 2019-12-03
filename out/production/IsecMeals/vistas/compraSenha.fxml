@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <bottom>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
         <Label text="Total a Pagar:" />
-        <Label alignment="CENTER" text="Label">
+        <Label fx:id="lbTotalPagar" alignment="CENTER" text="Label">
           <HBox.margin>
             <Insets left="5.0" />
           </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Comprar">
+        <Button fx:id="btnComprar" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Comprar">
           <HBox.margin>
             <Insets left="20.0" />
           </HBox.margin>
@@ -39,7 +36,7 @@
                 <Insets left="10.0" />
               </VBox.margin>
             </Label>
-            <Label id="x2" alignment="CENTER" text="Label">
+            <Label id="x2" fx:id="lbSopaDesc" alignment="CENTER" text="Label">
               <VBox.margin>
                 <Insets left="10.0" />
               </VBox.margin>
@@ -54,14 +51,14 @@
             <Label alignment="CENTER_LEFT" contentDisplay="RIGHT" font="$x1" prefHeight="29.0" prefWidth="140.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;&#10;&#10;" text="Prato Principal" />
             <HBox prefHeight="0.0" prefWidth="200.0">
               <children>
-                <CheckBox mnemonicParsing="false" text="" />
-                <Label text="Label" />
+                <CheckBox fx:id="cbPC" mnemonicParsing="false" text="" />
+                <Label fx:id="lbPratoCarneDesc" text="Label" />
               </children>
             </HBox>
             <HBox prefHeight="0.0" prefWidth="150.0">
               <children>
-                <CheckBox id="x1" mnemonicParsing="false" text="" />
-                <Label fx:id="x2" text="Label" />
+                <CheckBox id="x1" fx:id="cbPP" mnemonicParsing="false" text="" />
+                <Label fx:id="lbPratoPeixeDesc" text="Label" />
               </children>
             </HBox>
           </children>
@@ -75,18 +72,18 @@
             </Label>
             <HBox prefHeight="0.0" prefWidth="200.0">
               <children>
-                <CheckBox mnemonicParsing="false" text="" />
-                <Label text="Label" />
+                <CheckBox fx:id="cbSobremesa1" mnemonicParsing="false" text="" />
+                <Label fx:id="lbSobremesa1" text="Label" />
               </children>
             </HBox>
             <HBox prefHeight="0.0" prefWidth="200.0">
               <children>
-                <CheckBox id="x1" mnemonicParsing="false" text="" />
-                <Label text="LABEL" />
-                <Label id="x2" fx:id="x7" text="Label" />
-                <HBox id="x8" fx:id="x9" prefHeight="0.0" prefWidth="160.0">
+                <CheckBox id="x1" fx:id="cbSobremesa2" mnemonicParsing="false" text="" />
+                <Label fx:id="lbSobremesa2" text="LABEL" />
+                <Label id="x2" text="Label" fx:id="x7" />
+                <HBox id="x8" prefHeight="0.0" prefWidth="160.0" fx:id="x9">
                   <children>
-                    <CheckBox id="x1" fx:id="x6" mnemonicParsing="false" text="" />
+                    <CheckBox id="x1" mnemonicParsing="false" text="" fx:id="x6" />
                     <fx:reference source="x7" />
                   </children>
                 </HBox>
@@ -94,12 +91,12 @@
             </HBox>
           </children>
         </VBox>
-        <VBox id="x7" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
+        <VBox id="x7" fx:id="vbComplementos" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
           <children>
-            <Label id="x1" font="$x1" prefWidth="134.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Complementos" />
-            <HBox id="x4" fx:id="x8" prefHeight="0.0" prefWidth="200.0">
+            <Label id="x1" fx:id="lbComplementos" font="$x1" prefWidth="134.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Complementos" />
+            <HBox id="x4" prefHeight="0.0" prefWidth="200.0" fx:id="x8">
               <children>
-                <CheckBox id="x2" fx:id="x4" mnemonicParsing="false" text="" />
+                <CheckBox id="x2" mnemonicParsing="false" text="" fx:id="x4" />
                 <Label id="x2" text="Label" />
               </children>
             </HBox>
@@ -117,12 +114,12 @@
             <HBox alignment="CENTER" prefHeight="126.0" prefWidth="190.0" BorderPane.alignment="CENTER">
               <children>
                 <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Senha" />
-                <Label text="Label">
+                <Label fx:id="lbHorario" text="Label">
                   <HBox.margin>
                     <Insets left="10.0" />
                   </HBox.margin>
                 </Label>
-                <Label text="Label">
+                <Label fx:id="lbData" text="Label">
                   <HBox.margin>
                     <Insets left="10.0" right="10.0" />
                   </HBox.margin>
@@ -138,12 +135,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>
@@ -155,7 +152,7 @@
         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
           <children>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Saldo Disponível:" />
-            <Label alignment="CENTER_RIGHT" text="Label" />
+            <Label fx:id="lbSaldo" alignment="CENTER_RIGHT" text="Label" />
           </children>
           <BorderPane.margin>
             <Insets bottom="10.0" right="10.0" top="15.0" />

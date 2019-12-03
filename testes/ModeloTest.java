@@ -17,12 +17,14 @@ class ModeloTest {
     private List<Refeicao> ementa;
     private ComunicacaoBD database;
 
+  
     ModeloTest() throws SQLException, ClassNotFoundException {
         database = new ComunicacaoBD();
         ementa = new ArrayList<>();
         ComunicacaoBD.connectToDatabase();
     }
-
+  
+  
     @Test
         //obtem saldo
     void getSaldoUtilizador() {
@@ -33,7 +35,7 @@ class ModeloTest {
     void login1() throws Exception {
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("HJ1F5MYP");
-        boolean resp = ComunicacaoBD.login(90000000, "HJ1F5MYP");
+        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
         assertTrue(resp, "login realizado com sucesso!");
     }
 
@@ -108,7 +110,6 @@ class ModeloTest {
     @Test
         //get senhas, utilizador tem mais que 1 senha
     void getSenhasCompradas2() throws SQLException {
-        ArrayList<Senha> senhas = new ArrayList<>();
         utilizador = new Utilizador(90000000,0);
         Senha senha1 = new Senha(90000000,"prato","sobremesa",2.50,999996);
         Senha senha2 = new Senha(90000000,"prato","sobremesa",2.50,999995);
@@ -116,6 +117,7 @@ class ModeloTest {
         senhas.add(senha1);
         senhas.add(senha2);
         senhas.add(senha3);
+        database.getSenhas(utilizador.getNumeroUtilizador());
         //connectar senhas ao utilizador
         assertEquals(senhas, database.getSenhas(90000000), "getSenhasCompradas2()");
     }
@@ -131,7 +133,7 @@ class ModeloTest {
     @Test
         //get refeição com sucesso, nao pode haver nenhuma refeicao com id 999998
     void getRefeicao2() throws SQLException {
-        assertNull(database.getRefeicao(999998), "getRefeicao2");
+        assertNull(database.getRefeicao(999998), "getRefeicao2()");
     }
 
     @Test
@@ -161,11 +163,11 @@ class ModeloTest {
     @Test
         //get ementa, 1 dia tem 2 refeições
     void getEmenta() throws SQLException {
-        Refeicao refeicao1 = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-03-28");
-        Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-03-28");
+        Refeicao refeicao1 = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
+        Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-24-28");
         ementa.add(refeicao1);
         ementa.add(refeicao2);
-        assertEquals(ementa, database.getEmenta());
+        assertEquals(ementa, database.getEmenta(21270564));
     }
 
     @Test

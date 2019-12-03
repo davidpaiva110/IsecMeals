@@ -73,7 +73,7 @@ public class ConsultaEmentaController {
             tipoHB.setPrefWidth(115.0);
             tipoHB.setPrefHeight(48.0);
             Label tipoLB = new Label();
-            tipoLB.setText((ref.getAlmocoJantar() == 1) ? "Almoço" : "Jantar");  //Confirmar isto depois
+            tipoLB.setText((ref.getAlmocoJantar() == 0) ? "Almoço" : "Jantar");  //Confirmar isto depois
             tipoHB.getChildren().add(tipoLB);
 
             //Sopa
@@ -164,7 +164,10 @@ public class ConsultaEmentaController {
             btnS.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    System.out.println(btnS.getId());  //apenas para teste
+                    try {
+                        po.setComprarSenhaView(ref);
+                    } catch (IOException e) {
+                    }
                 }
             });
             btHB.getChildren().addAll(btnS);

@@ -20,19 +20,19 @@ public interface IUtilizador {
 
     public boolean login(int user, String password) throws Exception;
     public void logout();
-    public double getSaldoUtilizador();
+    public double getSaldoUtilizador() throws SQLException;
     public  int gettipoUtilizador();
 
     // ==== Pratos Favoritos ====
-    public boolean removeFavorito(int idFavorito);
-    public List getFavoritos();
+    public boolean removeFavorito(int idFavorito) throws Exception;
+    public List getFavoritos() throws SQLException;
     public boolean addFavorito(String descricaoFavorito);
 
     // ==== Senhas ====
     public ArrayList<Senha> getSenhasCompradas() throws SQLException;
     public Refeicao getRefeicao(int id) throws SQLException;
-    public boolean buySenha(Refeicao dadosSenha);
-    public boolean cancelSenha(int idSenha);
+    public boolean buySenha(Senha dadosSenha) throws SQLException;
+    public boolean cancelSenha(int idSenha) throws Exception;
     public boolean changeSenha(Refeicao novosDadosSenha);
 
     // ===== Funcionalidades do Administrador =====

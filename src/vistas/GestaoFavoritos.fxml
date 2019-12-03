@@ -12,10 +12,10 @@
   <center>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="400.0" tableMenuButtonVisible="false">
+        <TableView id="TabFav" fx:id="TabelaFavoritos" editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="400.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="250.0" prefWidth="75.0" text="Prato Favorito" />
-            <TableColumn maxWidth="200.0" minWidth="0.0" prefWidth="150.0" text="Opção" />
+            <TableColumn id="ColPrato" minWidth="250.0" prefWidth="75.0" text="Prato Favorito" fx:id="ColPrato" />
+            <TableColumn id="ColOpcao" maxWidth="200.0" minWidth="0.0" prefWidth="150.0" text="Opção" fx:id="ColOpcao" />
           </columns>
         </TableView>
       </children>
@@ -26,12 +26,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button  fx:id="btnVoltar" onAction="#handleVoltar" depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button fx:id="btnVoltar" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>

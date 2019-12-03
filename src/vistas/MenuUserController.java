@@ -3,12 +3,16 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 public class MenuUserController {
 
     PaneOrganizer po;
+    @FXML Label lbSaldo;
 
     public MenuUserController(PaneOrganizer po) {
         this.po = po;
@@ -35,5 +39,14 @@ public class MenuUserController {
         po.setLoginView();
     }
 
-    public void initialize() {}
+    public void initialize() {
+        try {
+            double saldo = po.getControlador().getSaldo();
+            DecimalFormat df = new DecimalFormat("0.00");
+            String saldoFormatado = df.format(saldo);
+            lbSaldo.setText(saldoFormatado + "€");
+        } catch (SQLException e) {
+            lbSaldo.setText("Indisponível");
+        }
+    }
 }

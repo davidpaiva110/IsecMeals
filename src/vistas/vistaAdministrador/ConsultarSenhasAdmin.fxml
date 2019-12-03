@@ -15,14 +15,13 @@
   <center>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-        <TableView editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
+        <TableView fx:id="tabelarefadmin" editable="true" maxHeight="400.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="0.0" prefWidth="100.0" text="Senha" />
-            <TableColumn prefWidth="110.0" text="Almoço/Jantar" />
-            <TableColumn prefWidth="80.0" text="Data" />
-            <TableColumn prefWidth="65.0" text="Preço" />
-            <TableColumn prefWidth="120.0" text="Alterar Senha" />
-            <TableColumn prefWidth="120.0" text="Cancelar Senha" />
+            <TableColumn minWidth="0.0" prefWidth="100.0" text="ID Refeição" fx:id="colID" />
+            <TableColumn prefWidth="110.0" text="Data" fx:id="colData" />
+            <TableColumn prefWidth="120.0" text="Horário" fx:id="colHorario" />
+            <TableColumn prefWidth="150.0" text="Quant. Peixe" fx:id="colQuantPeixe" />
+            <TableColumn prefWidth="120.0" text="Quant. Carne" fx:id="colQuantCarne" />
           </columns>
         </TableView>
       </children>
@@ -33,12 +32,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button fx:id="btnVoltar" onAction="#handleVoltar"  depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button fx:id="btnVoltar" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>
