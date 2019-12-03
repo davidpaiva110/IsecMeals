@@ -1,19 +1,21 @@
-package modelo;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.sun.source.tree.CompilationUnitTree;
+import modelo.ComunicacaoBD;
+import modelo.Refeicao;
+import modelo.Senha;
+import modelo.Utilizador;
+import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-class ModeloTest{
+import static org.junit.jupiter.api.Assertions.*;
+
+class ModeloTest {
 
     private Utilizador utilizador;
     private List<Refeicao> ementa;
     private ComunicacaoBD database;
-    private Refeicao refeicao;
 
     @Test
         //obtem saldo
@@ -23,15 +25,19 @@ class ModeloTest{
     @Test
         //login com sucesso
     void login1() throws Exception {
+        database = new ComunicacaoBD();
+        ComunicacaoBD.connectToDatabase();
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("HJ1F5MYP");
         boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
-        assertTrue(resp, "login nao realizado!");
+        assertTrue(resp, "login realizado com sucesso!");
     }
 
     @Test
         //password errada
     void login2() throws Exception {
+        database = new ComunicacaoBD();
+        ComunicacaoBD.connectToDatabase();
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("passworderrada");
         boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
@@ -41,6 +47,8 @@ class ModeloTest{
     @Test
         //numero utilizador errado, não existe nenhum utilizador com id 90000001
     void login3() throws Exception {
+        database = new ComunicacaoBD();
+        ComunicacaoBD.connectToDatabase();
         utilizador = new Utilizador(90000001,0);
         utilizador.setPassword("HJ1F5MYP");
         boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
@@ -52,7 +60,7 @@ class ModeloTest{
     void login4() throws Exception {
         utilizador = new Utilizador(90000001,0);
         utilizador.setPassword("passworderrada");
-        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
+        boolean resp = database.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
         assertFalse(resp, "login nao realizado!");
     }
 
@@ -88,7 +96,7 @@ class ModeloTest{
 
     @Test
         //get senhas, utilizador só tem 1 senha
-    void getSenhasCompradas1() throws SQLException {
+    void getSenhasCompradas1() throws SQLException, ClassNotFoundException {
         ArrayList<Senha> senhas = new ArrayList<>();
         utilizador = new Utilizador(90000000,0);
         database.getSenhas(utilizador.getNumeroUtilizador());
@@ -114,8 +122,8 @@ class ModeloTest{
 
     @Test
         //get refeição com sucesso
-    void getRefeicao1() throws SQLException {
-        refeicao=new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
+    void getRefeicao1() throws SQLException, ClassNotFoundException {
+        Refeicao refeicao = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
         boolean resp = refeicao.equals(database.getRefeicao(999999));
         assertTrue(resp, "refeição obtida com sucesso!");
     }
