@@ -64,4 +64,8 @@ public class Controlador {
         return modelo.getSaldoUtilizador();
     }
 
+    public boolean buySenha(Senha senha) throws SQLException {
+        return modelo.buySenha(senha);
+    }
+
 }

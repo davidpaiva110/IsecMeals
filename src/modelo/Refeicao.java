@@ -53,6 +53,7 @@ public class Refeicao {
         this.preco = preco;
         this.horario = horario;
         this.data = data;
+        this.complementos = new ArrayList<>();
     }
 
     public Refeicao() {

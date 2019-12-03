@@ -10,12 +10,12 @@
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
         <Label text="Total a Pagar:" />
-        <Label alignment="CENTER" text="Label">
+        <Label fx:id="lbTotalPagar" alignment="CENTER" text="Label">
           <HBox.margin>
             <Insets left="5.0" />
           </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Comprar">
+        <Button fx:id="btnComprar" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Comprar">
           <HBox.margin>
             <Insets left="20.0" />
           </HBox.margin>
@@ -152,7 +152,7 @@
         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
           <children>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Saldo Disponível:" />
-            <Label alignment="CENTER_RIGHT" text="Label" />
+            <Label fx:id="lbSaldo" alignment="CENTER_RIGHT" text="Label" />
           </children>
           <BorderPane.margin>
             <Insets bottom="10.0" right="10.0" top="15.0" />

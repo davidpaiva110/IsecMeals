@@ -111,8 +111,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean buySenha(Refeicao dadosSenha) {
-        return false;
+    public boolean buySenha(Senha dadosSenha) throws SQLException {
+        return database.addSenha(dadosSenha, utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -203,6 +203,8 @@ public class Modelo  implements IUtilizador, IEmenta{
     public boolean cancelRefeicao(int idRefeicao){
         return false;
     }
+
+
 
 
 }

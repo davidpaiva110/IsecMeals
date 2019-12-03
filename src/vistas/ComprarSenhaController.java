@@ -3,14 +3,18 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Complemento;
 import modelo.Refeicao;
 import modelo.Senha;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ComprarSenhaController {
@@ -33,19 +37,32 @@ public class ComprarSenhaController {
     @FXML CheckBox cbSobremesa2;
     @FXML VBox vbComplementos;
     @FXML Label lbComplementos;
+    @FXML Label lbSaldo;
+    @FXML Label lbTotalPagar;
+    @FXML Button btnComprar;
 
 
 
     public ComprarSenhaController(PaneOrganizer paneOrganizer, Refeicao dadosrefeicao) {
         this.po = paneOrganizer;
         this.dadosRefeicao = dadosrefeicao;
-        this.complementos = dadosRefeicao.getComplementos();
         this.senha = new Senha();
-       // saldo = paneOrganizer.getControlador().getSaldo();
-       // System.out.println(saldo);
+        senha.setPreco(dadosrefeicao.getPreco());
     }
 
     public void initialize() {
+        senha.setIdRefeicao(dadosRefeicao.getIdRefeicao());
+        this.complementos = dadosRefeicao.getComplementos();
+        lbTotalPagar.setText(""+senha.getPreco());
+        try {
+            this.saldo = po.getControlador().getSaldo();
+            DecimalFormat df = new DecimalFormat("0.00");
+            String saldoFormatado = df.format(saldo);
+            lbSaldo.setText(saldoFormatado + "€");
+        } catch (SQLException e) {
+            lbSaldo.setText("Indisponível");
+        }
+
         lbHorario.setText((dadosRefeicao.getAlmocoJantar() == 1) ? "Almoço" : "Jantar");
         lbData.setText(dadosRefeicao.getData());
         lbSopaDesc.setText(dadosRefeicao.getSopa());
@@ -56,6 +73,7 @@ public class ComprarSenhaController {
             public void handle(ActionEvent actionEvent) {
                 cbPC.setSelected(true);
                 cbPP.setSelected(false);
+                senha.setPrato(dadosRefeicao.getPratoCarne());
             }
         });
         cbPP.setOnAction(new EventHandler<ActionEvent>() {
@@ -63,6 +81,7 @@ public class ComprarSenhaController {
             public void handle(ActionEvent actionEvent) {
                 cbPP.setSelected(true);
                 cbPC.setSelected(false);
+                senha.setPrato(dadosRefeicao.getPratoPeixe());
             }
         });
         lbSobremesa1.setText(dadosRefeicao.getSombremesa1());
@@ -86,9 +105,10 @@ public class ComprarSenhaController {
 
         //Adicionar os complementos à vista
         vbComplementos.getChildren().clear();
-        vbComplementos.getChildren().add(lbComplementos);
+        vbComplementos.getChildren().addAll(lbComplementos);
         if(complementos != null){
             for(Complemento complemento: complementos){
+                HBox hb = new HBox();
                 Label lbC = new Label();
                 lbC.setText(complemento.getNomeComplemento());
                 CheckBox cbC = new CheckBox();
@@ -96,13 +116,35 @@ public class ComprarSenhaController {
                 cbC.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        senha.setPreco(senha.getPreco()+complemento.getPreco());
+                        if(!cbC.isSelected()) {
+                            senha.setPreco(senha.getPreco() - complemento.getPreco());
+                            senha.removeComplemento(complemento);
+                        }
+                        else {
+                            senha.setPreco(senha.getPreco() + complemento.getPreco());
+                            senha.addComplemento(complemento);
+                        }
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        String totalPagar = df.format(senha.getPreco());
+                        lbTotalPagar.setText(totalPagar + "€");
                     }
                 });
+                hb.getChildren().addAll(cbC, lbC);
+                vbComplementos.getChildren().addAll(hb);
             }
         }
 
-
+        //Botão comprar
+        btnComprar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    po.getControlador().buySenha(senha);
+                    po.setMenuUserView();
+                } catch (SQLException e) { }
+                catch (IOException e) { }
+            }
+        });
 
 
     }

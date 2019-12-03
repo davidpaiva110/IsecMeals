@@ -121,6 +121,7 @@ public class ComunicacaoBD {
         String sql = "SELECT * FROM refeicoes WHERE data>'" + currentDate + "' and data<='" + endDate +"'";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
+            ArrayList<Complemento> complementos = this.getComplementos(rs.getInt("idrefeicao"));
             Refeicao newRefeicao = new Refeicao(rs.getInt("idrefeicao"),
                     rs.getString("sopa"),
                     rs.getString("pratocarne"),
@@ -129,7 +130,8 @@ public class ComunicacaoBD {
                     rs.getString("sobremesa2"),
                     rs.getDouble("preco"),
                     rs.getInt("horario"),
-                    rs.getString("data"));
+                    rs.getString("data"),
+                    complementos);
             ementa.add(newRefeicao);
         }
         return ementa;
@@ -187,7 +189,7 @@ public class ComunicacaoBD {
             while(rsC.next()){
                 complementos.add(new Complemento(idComplemento,
                         rsC.getString("nome"),
-                        rs.getDouble("preco")));
+                        rsC.getFloat("preco")));
             }
         }
         if(complementos.size() <= 0)
@@ -275,6 +277,28 @@ public class ComunicacaoBD {
         saldoAtual+=saldo;
         String sql="UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
         int rs=executeUpdate(sql);
+    }
+
+    public boolean addSenha(Senha senha, int user) throws SQLException {
+        String sql = "INSERT INTO senha (numero, idrefeicao, prato, sobremesa, precototal) VALUES ('" + user +
+                "', '" + senha.getIdRefeicao() + "', '" +
+                senha.getPrato() + "', '"
+                + senha.getSombremesa() + "', '" +
+                senha.getPreco() + "')";
+        int rs = executeUpdate(sql);
+        sql = "SELECT idsenha FROM senha ORDER BY idsenha DESC";
+        ResultSet rsID = executeQuery(sql);
+        int idSenha = 0;
+        if(rsID.next())
+            idSenha = rsID.getInt("idsenha");
+        else
+            return  false;
+        for(Complemento complemento : senha.getComplementos()) {
+            sql = "INSERT INTO complementosenha (idsenha, idcomplemento) VALUES ('"
+                    + idSenha + "', '" + complemento.getIdComplemento() + "')";
+            int rs1 = executeUpdate(sql);
+        }
+        return  true;
     }
 }
 

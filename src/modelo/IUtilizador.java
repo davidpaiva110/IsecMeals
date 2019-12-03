@@ -31,7 +31,7 @@ public interface IUtilizador {
     // ==== Senhas ====
     public ArrayList<Senha> getSenhasCompradas() throws SQLException;
     public Refeicao getRefeicao(int id) throws SQLException;
-    public boolean buySenha(Refeicao dadosSenha);
+    public boolean buySenha(Senha dadosSenha) throws SQLException;
     public boolean cancelSenha(int idSenha) throws Exception;
     public boolean changeSenha(Refeicao novosDadosSenha);
 

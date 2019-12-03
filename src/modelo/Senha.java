@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Senha {
@@ -8,6 +9,7 @@ public class Senha {
     private String sombremesa;
     private double preco;
     private int idRefeicao;
+    private ArrayList<Complemento> complementos;
 
     public Senha(int idSenha, String prato, String sombremesa, double preco, int idRef) {
         this.idSenha = idSenha;
@@ -15,9 +17,11 @@ public class Senha {
         this.sombremesa = sombremesa;
         this.preco = preco;
         this.idRefeicao=idRef;
+        this.complementos = new ArrayList<>();
     }
 
     public Senha() {
+        this.complementos = new ArrayList<>();
     }
 
     public int getIdSenha() {
@@ -54,5 +58,17 @@ public class Senha {
 
     public void setIdRefeicao(int idRefeicao) {
         this.idRefeicao = idRefeicao;
+    }
+
+    public ArrayList<Complemento> getComplementos() {
+        return complementos;
+    }
+
+    public void addComplemento(Complemento complemento){
+        complementos.add(complemento);
+    }
+
+    public void removeComplemento(Complemento complemento){
+        complementos.remove(complemento);
     }
 }
