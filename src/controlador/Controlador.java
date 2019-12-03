@@ -68,4 +68,7 @@ public class Controlador {
         return modelo.buySenha(senha);
     }
 
+    public boolean hasMoreThan48Hours(int idRefeicao) {
+        return modelo.hasMoreThan48Hours(idRefeicao);
+    }
 }

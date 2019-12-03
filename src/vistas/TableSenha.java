@@ -54,5 +54,11 @@ public class TableSenha {
         return btCancelar;
     }
 
+    public void noBtCancelar(){
+        btCancelar=null;
+    }
 
+    public void noBtAlterar(){
+        btAlterar=null;
+    }
 }
