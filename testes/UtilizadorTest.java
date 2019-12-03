@@ -1,5 +1,4 @@
-package modelo;
-
+import modelo.Utilizador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,7 @@ class UtilizadorTest {
         //get numero utilizador
     void getNumeroUtilizador() {
         utilizador = new Utilizador(90000000,0);
-        assertEquals(900000, utilizador.geteUtilizador(), "numero de utilizador obtido com sucesso!");
+        assertEquals(90000000, utilizador.getNumeroUtilizador(), "numero de utilizador obtido com sucesso!");
     }
 
     @Test
@@ -20,7 +19,7 @@ class UtilizadorTest {
     void setNumeroUtilizador() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setNumeroUtilizador(89999999);
-        assertEquals(89999999,utilizador.geteUtilizador(), "numero de utilizador inserido com sucesso!");
+        assertEquals(89999999,utilizador.getNumeroUtilizador(), "numero de utilizador inserido com sucesso!");
     }
 
     @Test
