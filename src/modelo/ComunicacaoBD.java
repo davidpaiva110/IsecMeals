@@ -66,7 +66,7 @@ public class ComunicacaoBD {
      * @return saldo do utilizador
      * @throws SQLException
      */
-    public static double getSaldo(int number) throws SQLException {
+    public double getSaldo(int number) throws SQLException {
         double saldo=-1;
         String sql="SELECT saldo FROM utilizador WHERE numero=" + number;
         ResultSet rs=executeQuery(sql);
@@ -76,7 +76,7 @@ public class ComunicacaoBD {
         return saldo;
     }
 
-    public static Utilizador  getUtilizador(int number ) throws  SQLException{
+    public Utilizador  getUtilizador(int number ) throws  SQLException{
        Utilizador usr= new Utilizador(number,-1);
         String sql="SELECT *FROM utilizador WHERE numero=" + number;
         ResultSet rs=executeQuery(sql);
@@ -225,6 +225,35 @@ public class ComunicacaoBD {
         date =calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
     }
-    
+
+    public boolean deleteSenha(int id) throws Exception {
+        String sql = "DELETE FROM Senha WHERE idsenha=" + id;
+        int rs = executeUpdate(sql);
+        if (rs!=1) {
+            throw new Exception("Erro ao apagar a senha!");
+        }
+        sql="DELETE FROM ComplementoSenha WHERE idsenha=" + id;
+        rs = executeUpdate(sql);
+        return true;
+    }
+
+    public double getPrecoSenhaComprada(int id) throws Exception{
+        double preco;
+        String sql="SELECT precototal FROM senha WHERE idsenha=" + id;
+        ResultSet rs=executeQuery(sql);
+        if (rs.next()) {
+            preco=rs.getDouble("precototal");
+        }else{
+            throw new Exception("Não existe senha com o ID indicado!");
+        }
+        return preco;
+    }
+
+    public void addSaldo(int number, double saldo) throws SQLException{
+        double saldoAtual=getSaldo(number);
+        saldoAtual+=saldo;
+        String sql="UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
+        int rs=executeUpdate(sql);
+    }
 }
 

@@ -36,7 +36,7 @@ public class Controlador {
     public boolean login(int number, String password) throws Exception{
         return modelo.login(number, password);
     }
-public int geteutilizador(){return  modelo.gettipoUtilizador();}
+    public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public void logout() {
         modelo.logout();
@@ -53,5 +53,13 @@ public int geteutilizador(){return  modelo.gettipoUtilizador();}
 
     public Refeicao getRefeicao(int id) throws SQLException {
         return modelo.getRefeicao(id);
+    }
+
+    public boolean cancelSenha(int id) throws Exception{
+        return modelo.cancelSenha(id);
+    }
+
+    public double getSaldo() throws SQLException {
+        return modelo.getSaldoUtilizador();
     }
 }
