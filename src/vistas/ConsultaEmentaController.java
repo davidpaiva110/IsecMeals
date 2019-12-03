@@ -164,7 +164,10 @@ public class ConsultaEmentaController {
             btnS.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    System.out.println(btnS.getId());  //apenas para teste
+                    try {
+                        po.setComprarSenhaView(ref);
+                    } catch (IOException e) {
+                    }
                 }
             });
             btHB.getChildren().addAll(btnS);

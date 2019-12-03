@@ -17,6 +17,9 @@ public class Senha {
         this.idRefeicao=idRef;
     }
 
+    public Senha() {
+    }
+
     public int getIdSenha() {
         return idSenha;
     }
@@ -35,5 +38,21 @@ public class Senha {
 
     public int getIdRefeicao(){
         return idRefeicao;
+    }
+
+    public void setPrato(String prato) {
+        this.prato = prato;
+    }
+
+    public void setSombremesa(String sombremesa) {
+        this.sombremesa = sombremesa;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public void setIdRefeicao(int idRefeicao) {
+        this.idRefeicao = idRefeicao;
     }
 }

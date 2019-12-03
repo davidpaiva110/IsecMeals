@@ -37,9 +37,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return Saldo do utilizador
      */
     @Override
-    public double getSaldoUtilizador(){
-        //Implementar a chamada à base de dados para receber o saldo do utilizador
-        return 0.0;
+    public double getSaldoUtilizador() throws SQLException {
+        return database.getSaldo(utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -117,12 +116,17 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @param idSenha a cancelar
-     * @return true se cancelada com sucesso | false caso contrário
+     * Efetua o cancelamento de uma senha de refeição, atualizando também o saldo do utilizador
+     * @param idSenha ID da senha a cancelar
+     * @return true - se o cancelamento for efetuado com sucesso
+     * @throws Exception em caso de Erro
      */
     @Override
-    public boolean cancelSenha(int idSenha) {
-        return false;
+    public boolean cancelSenha(int idSenha) throws Exception{
+        double precoSenha=database.getPrecoSenhaComprada(idSenha);
+        boolean res=database.deleteSenha(idSenha);
+        database.addSaldo(utilizador.getNumeroUtilizador(), precoSenha);
+        return res;
     }
 
     /**
@@ -196,7 +200,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelado com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelRefeicao(int idRefeicao) {
+    public boolean cancelRefeicao(int idRefeicao){
         return false;
     }
 

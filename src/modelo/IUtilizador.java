@@ -20,7 +20,7 @@ public interface IUtilizador {
 
     public boolean login(int user, String password) throws Exception;
     public void logout();
-    public double getSaldoUtilizador();
+    public double getSaldoUtilizador() throws SQLException;
     public  int gettipoUtilizador();
 
     // ==== Pratos Favoritos ====
@@ -32,7 +32,7 @@ public interface IUtilizador {
     public ArrayList<Senha> getSenhasCompradas() throws SQLException;
     public Refeicao getRefeicao(int id) throws SQLException;
     public boolean buySenha(Refeicao dadosSenha);
-    public boolean cancelSenha(int idSenha);
+    public boolean cancelSenha(int idSenha) throws Exception;
     public boolean changeSenha(Refeicao novosDadosSenha);
 
     // ===== Funcionalidades do Administrador =====
