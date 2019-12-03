@@ -1,5 +1,4 @@
-package modelo;
-
+import modelo.Utilizador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,7 @@ class UtilizadorTest {
         //get numero utilizador
     void getNumeroUtilizador() {
         utilizador = new Utilizador(90000000,0);
-        assertEquals(900000, utilizador.geteUtilizador(), "numero de utilizador obtido com sucesso!");
+        assertEquals(90000000, utilizador.getNumeroUtilizador(), "getNumeroUtilizador()");
     }
 
     @Test
@@ -20,7 +19,7 @@ class UtilizadorTest {
     void setNumeroUtilizador() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setNumeroUtilizador(89999999);
-        assertEquals(89999999,utilizador.geteUtilizador(), "numero de utilizador inserido com sucesso!");
+        assertEquals(89999999,utilizador.getNumeroUtilizador(), "setNumeroUtilizador()");
     }
 
     @Test
@@ -28,7 +27,7 @@ class UtilizadorTest {
     void getPassword() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("HJ1F5MYP");
-        assertEquals("HJ1F5MYP", utilizador.getPassword(), "password obtida com sucesso!");
+        assertEquals("HJ1F5MYP", utilizador.getPassword(), "getPassword()");
     }
 
     @Test
@@ -36,7 +35,7 @@ class UtilizadorTest {
     void setPassword() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("HJ1F5MYP");
-        assertEquals("HJ1F5MYP", utilizador.getPassword(), "password obtida com sucesso!");
+        assertEquals("HJ1F5MYP", utilizador.getPassword(), "setPassword()");
     }
 
     @Test
@@ -44,7 +43,7 @@ class UtilizadorTest {
     void getNome() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setNome("nome de teste");
-        assertEquals("nome de teste", utilizador.getNome(), "Nome obtido com sucesso!");
+        assertEquals("nome de teste", utilizador.getNome(), "getNome()");
     }
 
     @Test
@@ -52,7 +51,7 @@ class UtilizadorTest {
     void setNome() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setNome("nome de teste");
-        assertEquals("nome de teste", utilizador.getNome(), "Nome atualizado com sucesso!");
+        assertEquals("nome de teste", utilizador.getNome(), "setNome");
     }
 
     @Test
@@ -60,7 +59,7 @@ class UtilizadorTest {
     void getSaldo() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setSaldo(5.00);
-        assertEquals(5.00, utilizador.getSaldo(), "Saldo inserido com sucesso!");
+        assertEquals(5.00, utilizador.getSaldo(), "getSaldo()");
     }
 
     @Test
@@ -68,14 +67,14 @@ class UtilizadorTest {
     void setSaldo() {
         utilizador = new Utilizador(90000000,0);
         utilizador.setSaldo(5.00);
-        assertEquals(5.00, utilizador.getSaldo(), "Saldo atualizado com sucesso!");
+        assertEquals(5.00, utilizador.getSaldo(), "setSaldo()");
     }
 
     @Test
         //get tipo de utilizador
     void geteUtilizador() {
         utilizador = new Utilizador(90000000,0);
-        assertEquals(0, utilizador.geteUtilizador(), "Tipo de utilizador obtido com sucesso!");
+        assertEquals(0, utilizador.geteUtilizador(), "geteUtilizador()");
     }
 
     @Test
@@ -83,6 +82,6 @@ class UtilizadorTest {
     void seteUtilizador() {
         utilizador = new Utilizador(90000000,1);
         utilizador.seteUtilizador(0);
-        assertEquals(0, utilizador.geteUtilizador(), "Tipo de utilizador atualizado com sucesso!");
+        assertEquals(0, utilizador.geteUtilizador(), "seteUtilizador()");
     }
 }

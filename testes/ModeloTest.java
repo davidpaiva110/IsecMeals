@@ -1,19 +1,27 @@
-package modelo;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.sun.source.tree.CompilationUnitTree;
+import modelo.ComunicacaoBD;
+import modelo.Refeicao;
+import modelo.Senha;
+import modelo.Utilizador;
+import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-class ModeloTest{
+import static org.junit.jupiter.api.Assertions.*;
+
+class ModeloTest {
 
     private Utilizador utilizador;
     private List<Refeicao> ementa;
     private ComunicacaoBD database;
-    private Refeicao refeicao;
+
+    ModeloTest() throws SQLException, ClassNotFoundException {
+        database = new ComunicacaoBD();
+        ementa = new ArrayList<>();
+        ComunicacaoBD.connectToDatabase();
+    }
 
     @Test
         //obtem saldo
@@ -25,8 +33,8 @@ class ModeloTest{
     void login1() throws Exception {
         utilizador = new Utilizador(90000000,0);
         utilizador.setPassword("HJ1F5MYP");
-        boolean resp = ComunicacaoBD.login(utilizador.getNumeroUtilizador(), utilizador.getPassword());
-        assertTrue(resp, "login nao realizado!");
+        boolean resp = ComunicacaoBD.login(90000000, "HJ1F5MYP");
+        assertTrue(resp, "login realizado com sucesso!");
     }
 
     @Test
@@ -91,10 +99,10 @@ class ModeloTest{
     void getSenhasCompradas1() throws SQLException {
         ArrayList<Senha> senhas = new ArrayList<>();
         utilizador = new Utilizador(90000000,0);
-        database.getSenhas(utilizador.getNumeroUtilizador());
         Senha senha1 = new Senha(90000000,"prato","sobremesa",2.50,999996);
         senhas.add(senha1);
-        assertEquals(senhas, database.getSenhas(90000000), "senha obtida com sucesso!");
+        //connectar a senha ao utilizador
+        assertEquals(senhas, database.getSenhas(90000000), "getSenhasCompradas1()");
     }
 
     @Test
@@ -102,28 +110,28 @@ class ModeloTest{
     void getSenhasCompradas2() throws SQLException {
         ArrayList<Senha> senhas = new ArrayList<>();
         utilizador = new Utilizador(90000000,0);
-        database.getSenhas(utilizador.getNumeroUtilizador());
         Senha senha1 = new Senha(90000000,"prato","sobremesa",2.50,999996);
         Senha senha2 = new Senha(90000000,"prato","sobremesa",2.50,999995);
         Senha senha3 = new Senha(90000000,"prato","sobremesa",2.50,999994);
         senhas.add(senha1);
         senhas.add(senha2);
         senhas.add(senha3);
-        assertEquals(senhas, database.getSenhas(90000000), "senhas obtidas com sucesso!");
+        //connectar senhas ao utilizador
+        assertEquals(senhas, database.getSenhas(90000000), "getSenhasCompradas2()");
     }
 
     @Test
         //get refeição com sucesso
     void getRefeicao1() throws SQLException {
-        refeicao=new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
+        Refeicao refeicao = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-07-28");
         boolean resp = refeicao.equals(database.getRefeicao(999999));
-        assertTrue(resp, "refeição obtida com sucesso!");
+        assertTrue(resp, "getRefeicao1()");
     }
 
     @Test
         //get refeição com sucesso, nao pode haver nenhuma refeicao com id 999998
     void getRefeicao2() throws SQLException {
-        assertNull(database.getRefeicao(999998), "refeição nao obtida com sucesso!");
+        assertNull(database.getRefeicao(999998), "getRefeicao2");
     }
 
     @Test
@@ -153,8 +161,8 @@ class ModeloTest{
     @Test
         //get ementa, 1 dia tem 2 refeições
     void getEmenta() throws SQLException {
-        Refeicao refeicao1 = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-24-28");
-        Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-24-28");
+        Refeicao refeicao1 = new Refeicao(999999,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,0,"2017-03-28");
+        Refeicao refeicao2 = new Refeicao(999998,"sopa1","pratoc1","pratop1","sobremesa1","sobremesa2",2.20,1,"2017-03-28");
         ementa.add(refeicao1);
         ementa.add(refeicao2);
         assertEquals(ementa, database.getEmenta());
