@@ -80,4 +80,12 @@ public class Controlador {
     public Senha getSenha(int idSenha) throws SQLException {
         return modelo.getSenha(idSenha);
     }
+
+    public boolean cancelRefeicao(int idref) throws Exception {
+    return modelo.cancelRefeicao(idref);
+    }
+
+    public boolean adicionaRefeicao(Refeicao ref) throws Exception {
+    return modelo.addNovaRefeicao(ref);
+    }
 }

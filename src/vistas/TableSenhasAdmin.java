@@ -1,47 +1,43 @@
 package vistas;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Button;
-
-import java.text.SimpleDateFormat;
 
 public class TableSenhasAdmin {
-    private SimpleIntegerProperty idSenhaAdmin;
+    private SimpleIntegerProperty idRefeicao;
     private SimpleStringProperty  fase;
-    private SimpleStringProperty dat;
+    private SimpleStringProperty data;
     private SimpleIntegerProperty quantPeixe;
     private SimpleIntegerProperty quantCarne;
 
-    public TableSenhasAdmin(int idSenhaAdmin, String fase, String dat, int quantPeixe, int quantCarne) {
-        this.idSenhaAdmin = new SimpleIntegerProperty(idSenhaAdmin);
+    public TableSenhasAdmin(int idRefeicao, String fase, String data, int quantPeixe, int quantCarne) {
+        this.idRefeicao = new SimpleIntegerProperty(idRefeicao);
         this.fase = new SimpleStringProperty(fase);
-        this.dat = new SimpleStringProperty(dat);
+        this.data = new SimpleStringProperty(data);
         this.quantPeixe = new SimpleIntegerProperty(quantPeixe);
         this.quantCarne =  new SimpleIntegerProperty(quantCarne);
     }
 
 
 
-    public int getIdSenhaAdmin() {
-        return idSenhaAdmin.get();
+    public int getIdRefeicao() {
+        return idRefeicao.get();
     }
 
-    public SimpleIntegerProperty idSenhaAdminProperty() {
-        return idSenhaAdmin;
+    public SimpleIntegerProperty idRefeicaoProperty() {
+        return idRefeicao;
     }
 
     public String getFase() {
         return fase.get();
     }
 
-    public String getDat() {
-        return dat.get();
+    public String getData() {
+        return data.get();
     }
 
-    public SimpleStringProperty datProperty() {
-        return dat;
+    public SimpleStringProperty dataProperty() {
+        return data;
     }
 
     public SimpleStringProperty faseProperty() {

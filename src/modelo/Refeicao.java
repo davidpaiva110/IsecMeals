@@ -42,6 +42,17 @@ public class Refeicao {
         this.data = data;
         this.complementos = complementos;
     }
+    public Refeicao( String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data) {
+        this.idRefeicao = idRefeicao;
+        this.sopa = sopa;
+        this.pratoCarne = pratoCarne;
+        this.pratoPeixe = pratoPeixe;
+        this.sombremesa1 = sombremesa1;
+        this.sombremesa2 = sombremesa2;
+        this.preco = preco;
+        this.horario = almocoJantar;
+        this.data = data;
+    }
 
     public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int horario, String data) {
         this.idRefeicao = idRefeicao;
