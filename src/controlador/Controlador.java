@@ -81,6 +81,7 @@ public class Controlador {
         return modelo.getSenha(idSenha);
     }
 
+
     public boolean addFavorito(String prato, int tipo) throws SQLException {
         return modelo.addFavorito(prato, tipo);
     }
@@ -91,5 +92,12 @@ public class Controlador {
 
     public int getPreferenciaPratoUser() {
         return modelo.getPreferenciaPratoUser();
+    }
+    public boolean cancelRefeicao(int idref) throws Exception {
+        return modelo.cancelRefeicao(idref);
+    }
+
+    public boolean adicionaRefeicao(Refeicao ref) throws Exception {
+        return modelo.addNovaRefeicao(ref);
     }
 }

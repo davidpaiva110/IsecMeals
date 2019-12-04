@@ -188,8 +188,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se foi adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean addNovaRefeicao(Refeicao novaRefeicao) {
-        return false;
+    public boolean addNovaRefeicao(Refeicao novaRefeicao) throws Exception {
+        return database.addRefeicao(novaRefeicao);
     }
 
     /**
@@ -207,8 +207,12 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelado com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelRefeicao(int idRefeicao){
-        return false;
+    public boolean cancelRefeicao(int idRefeicao) throws Exception {
+        ArrayList<Integer> senhas = new ArrayList<>();
+        senhas= database.getSenhasDaRefeicao(idRefeicao);
+        for(Integer i: senhas)
+            this.cancelSenha(i);
+        return  database.removeRefeicao(idRefeicao) ;
     }
 
     /**
@@ -232,6 +236,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     public Senha getSenha(int idSenha) throws SQLException {
         return database.getSenha(idSenha);
     }
+
 
     /**
      * Verifica se o utilizador prefere pratos de carne ou peixe

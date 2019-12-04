@@ -20,7 +20,7 @@ public interface IEmenta {
     public List getEmenta() throws SQLException;
 
     // ===== Funcionalidades do Administrador =====
-    public boolean addNovaRefeicao(Refeicao novaRefeicao);
+    public boolean addNovaRefeicao(Refeicao novaRefeicao) throws Exception;
     public boolean changeRefeicao(Refeicao dadosRefeicao);
-    public boolean cancelRefeicao(int idRefeicao);
+    public boolean cancelRefeicao(int idRefeicao) throws Exception;
 }

@@ -5,8 +5,6 @@ import java.util.Date;
 public class RefeicaoAdmin {
 
     private int idRefeicao;
-
-
     private String data;
     private String fase;
     private  int quantCarne;

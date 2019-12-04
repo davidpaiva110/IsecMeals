@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
     <HBox alignment="CENTER" prefHeight="595.0" prefWidth="595.0">
       <children>
-        <TableView editable="true" maxHeight="500.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
+        <TableView fx:id="tabelaref" editable="true" maxHeight="500.0" prefHeight="250.0" prefWidth="595.0" tableMenuButtonVisible="false">
           <columns>
-            <TableColumn minWidth="0.0" prefWidth="125.0" text="Pratos Principais" />
-            <TableColumn prefWidth="110.0" text="Almoco/Jantar" />
-            <TableColumn prefWidth="65.0" text="Data" />
-            <TableColumn prefWidth="65.0" text="Preço" />
-            <TableColumn prefWidth="115.0" text="Alterar Senha" />
-            <TableColumn prefWidth="120.0" text="Cancelar Senha" />
+            <TableColumn prefWidth="75.0" text="ID" fx:id="colID" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="130.0" text="Data" fx:id="colData" />
+            <TableColumn prefWidth="130.0" text="Almoco/Jantar" fx:id="colHorario" />
+            <TableColumn prefWidth="130.0" text="Alterar Senha" fx:id="colAlterar" />
+            <TableColumn prefWidth="130.0" text="Cancelar Senha" fx:id="colRemover" />
           </columns>
         </TableView>
       </children>
@@ -31,17 +31,17 @@
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
       <left>
-        <HBox prefHeight="100.0" prefWidth="204.0">
+        <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button fx:id="btnVoltar" onAction="#handleVoltar" depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button fx:id="btnVoltar" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
-              </HBox.margin>212
+              </HBox.margin>
             </Button>
           </children>
         </HBox>
@@ -49,7 +49,7 @@
       <right>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="213.0" BorderPane.alignment="CENTER_LEFT">
           <children>
-            <Button fx:id="btnaddRefeicao" onAction="#handleAdicionaRefeicao" mnemonicParsing="false" prefHeight="-1.0" prefWidth="225.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Adicionar Nova Refeição" textFill="WHITE">
+            <Button fx:id="btnaddRefeicao" mnemonicParsing="false" onAction="#handleAdicionaRefeicao" prefHeight="-1.0" prefWidth="225.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Adicionar Nova Refeição" textFill="WHITE">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>

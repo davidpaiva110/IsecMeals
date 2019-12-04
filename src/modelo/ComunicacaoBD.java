@@ -23,24 +23,27 @@ public class ComunicacaoBD {
 
     /**
      * Regista o driver JDBC e abre uma ligação à base de dados
+     *
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    public static void connectToDatabase() throws ClassNotFoundException, SQLException{
+    public static void connectToDatabase() throws ClassNotFoundException, SQLException {
         Class.forName(JDBC_DRIVER);
-        conn=DriverManager.getConnection(DB_URL);
+        conn = DriverManager.getConnection(DB_URL);
     }
 
     /**
      * Encerra a ligação à base de dados
+     *
      * @throws SQLException
      */
-    public static void closeConnection() throws SQLException{
+    public static void closeConnection() throws SQLException {
         conn.close();
     }
 
     /**
      * Executa uma consulta à base de dados
+     *
      * @param sql Query a executar
      * @return O resultado da consulta
      * @throws SQLException
@@ -53,6 +56,7 @@ public class ComunicacaoBD {
 
     /**
      * Executa um update à base de dados
+     *
      * @param sql Query a executar
      * @return Número de linhas afetadas pela query
      * @throws SQLException
@@ -65,35 +69,37 @@ public class ComunicacaoBD {
 
     /**
      * Devolve o saldo de um utilizador específico
+     *
      * @param number número do utilizador a pesquisar
      * @return saldo do utilizador
      * @throws SQLException
      */
     public double getSaldo(int number) throws SQLException {
-        double saldo=-1;
-        String sql="SELECT saldo FROM utilizador WHERE numero=" + number;
-        ResultSet rs=executeQuery(sql);
-        while(rs.next()) {
+        double saldo = -1;
+        String sql = "SELECT saldo FROM utilizador WHERE numero=" + number;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()) {
             saldo = rs.getDouble("saldo");
         }
         return saldo;
     }
 
-    public Utilizador  getUtilizador(int number ) throws  SQLException{
-       Utilizador usr= new Utilizador(number,-1);
-        String sql="SELECT *FROM utilizador WHERE numero=" + number;
-        ResultSet rs=executeQuery(sql);
-        while(rs.next()) {
+    public Utilizador getUtilizador(int number) throws SQLException {
+        Utilizador usr = new Utilizador(number, -1);
+        String sql = "SELECT *FROM utilizador WHERE numero=" + number;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()) {
             usr.setNome(rs.getString("nome"));
             usr.seteUtilizador(rs.getInt("permissao"));
             usr.setSaldo(getSaldo(number));
         }
-        return  usr;
+        return usr;
     }
 
     /**
      * Efetua o login na aplicação
-     * @param number número do utilizador inserido
+     *
+     * @param number   número do utilizador inserido
      * @param password password do utilizador inserida
      * @return true SE o login for bem sucedido
      * @throws Exception SE o login não for bem sucedido
@@ -113,7 +119,9 @@ public class ComunicacaoBD {
         return true;
     }
 
-     /** Devolve a Ementa
+    /**
+     * Devolve a Ementa
+     *
      * @return ementa
      * @throws SQLException
      */
@@ -125,21 +133,21 @@ public class ComunicacaoBD {
 
         String sql2 = "SELECT idrefeicao FROM senha WHERE numero=" + userNumber;
         ResultSet rs2 = executeQuery(sql2);
-        while(rs2.next()){
+        while (rs2.next()) {
             int idRef = rs2.getInt("idrefeicao");
             auxInt.add(idRef);
         }
-        
-        String sql = "SELECT * FROM refeicoes WHERE data>'" + currentDate + "' and data<='" + endDate +"'";
+
+        String sql = "SELECT * FROM refeicoes WHERE data>'" + currentDate + "' and data<='" + endDate + "'";
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
+        while (rs.next()) {
             int contador = 0;
             int idRefeicao = rs.getInt("idrefeicao");
-            for(Integer elem : auxInt){
-                if(elem != idRefeicao)
+            for (Integer elem : auxInt) {
+                if (elem != idRefeicao)
                     contador++;
             }
-            if(contador == auxInt.size()){
+            if (contador == auxInt.size()) {
                 ArrayList<Complemento> complementos = this.getComplementos(idRefeicao);
                 Refeicao newRefeicao = new Refeicao(idRefeicao,
                         rs.getString("sopa"),
@@ -171,7 +179,6 @@ public class ComunicacaoBD {
     }
 
     /**
-     *
      * @param idUser identificador do utilizador
      * @return lista de senhas compradas pelo utilizador
      * @throws SQLException
@@ -180,7 +187,7 @@ public class ComunicacaoBD {
         ArrayList<Senha> senhas = new ArrayList<>();
         String sql = "SELECT idsenha,prato,sobremensa,precototal,idrefeicao FROM senha WHERE numero=" + idUser + " ORDER BY idsenha desc";
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
+        while (rs.next()) {
             Senha senha = new Senha(rs.getInt("idsenha"),
                     rs.getString("prato"),
                     rs.getString("sobremensa"),
@@ -192,11 +199,11 @@ public class ComunicacaoBD {
     }
 
     public Refeicao getRefeicao(int id) throws SQLException {
-        Refeicao refeicao=null;
+        Refeicao refeicao = null;
         String sql = "SELECT * FROM refeicoes WHERE idrefeicao=" + id;
         ResultSet rs = executeQuery(sql);
         ArrayList<Complemento> complementos = this.getComplementos(id);
-        while (rs.next()){
+        while (rs.next()) {
             refeicao = new Refeicao(rs.getInt("idrefeicao"),
                     rs.getString("sopa"),
                     rs.getString("pratocarne"),
@@ -215,48 +222,50 @@ public class ComunicacaoBD {
         ArrayList<Complemento> complementos = new ArrayList<>();
         String sql = "SELECT * FROM complementorefeicao WHERE idrefeicao=" + idRefeicao;
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
+        while (rs.next()) {
             int idComplemento = rs.getInt("idcomplemento");
             String sqlC = "SELECT * FROM complemento WHERE idcomplemento=" + idComplemento;
             ResultSet rsC = executeQuery(sqlC);
-            while(rsC.next()){
+            while (rsC.next()) {
                 complementos.add(new Complemento(idComplemento,
                         rsC.getString("nome"),
                         rsC.getFloat("preco")));
             }
         }
-        if(complementos.size() <= 0)
+        if (complementos.size() <= 0)
             complementos = null;
         return complementos;
     }
 
     /**
      * Coloca a data atual mais um dia no formato "YYYY/MM/DD"
+     *
      * @return data atual
      */
-    private String getCurrentDate(){
+    private String getCurrentDate() {
         Calendar calender = Calendar.getInstance();
         String currentDate = LocalDate.now().toString();
-        return  currentDate;
+        return currentDate;
     }
 
     /**
      * Encontra a data de fim para o intervalo em que seram mostradas as senhas
+     *
      * @param currentDate Data de inicio
      * @return data de fim
      */
-    private String getEndDate(String currentDate){
+    private String getEndDate(String currentDate) {
         String date = null;
 
         Calendar calender = Calendar.getInstance();
-        String[] result  = currentDate.split("-");
+        String[] result = currentDate.split("-");
         calender.set(Calendar.YEAR, Integer.parseInt(result[0]));
         calender.set(Calendar.MONTH, Integer.parseInt(result[1]));
         calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));  //
 
         int dayOfWeek = calender.get(Calendar.DAY_OF_WEEK);
-        dayOfWeek = dayOfWeek -2;
-        switch (dayOfWeek){
+        dayOfWeek = dayOfWeek - 2;
+        switch (dayOfWeek) {
             case Calendar.MONDAY:
                 calender.add(Calendar.DAY_OF_MONTH, 4);
                 break;
@@ -278,7 +287,7 @@ public class ComunicacaoBD {
                 calender.add(Calendar.DAY_OF_MONTH, 5);
                 break;
         }
-        date =calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
+        date = calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
     }
 
@@ -317,31 +326,31 @@ public class ComunicacaoBD {
     public boolean deleteSenha(int id) throws Exception {
         String sql = "DELETE FROM Senha WHERE idsenha=" + id;
         int rs = executeUpdate(sql);
-        if (rs!=1) {
+        if (rs != 1) {
             throw new Exception("Erro ao apagar a senha!");
         }
-        sql="DELETE FROM ComplementoSenha WHERE idsenha=" + id;
+        sql = "DELETE FROM ComplementoSenha WHERE idsenha=" + id;
         rs = executeUpdate(sql);
         return true;
     }
 
-    public double getPrecoSenhaComprada(int id) throws Exception{
+    public double getPrecoSenhaComprada(int id) throws Exception {
         double preco;
-        String sql="SELECT precototal FROM senha WHERE idsenha=" + id;
-        ResultSet rs=executeQuery(sql);
+        String sql = "SELECT precototal FROM senha WHERE idsenha=" + id;
+        ResultSet rs = executeQuery(sql);
         if (rs.next()) {
-            preco=rs.getDouble("precototal");
-        }else{
+            preco = rs.getDouble("precototal");
+        } else {
             throw new Exception("Não existe senha com o ID indicado!");
         }
         return preco;
     }
 
-    public void addSaldo(int number, double saldo) throws SQLException{
-        double saldoAtual=getSaldo(number);
-        saldoAtual+=saldo;
-        String sql="UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
-        int rs=executeUpdate(sql);
+    public void addSaldo(int number, double saldo) throws SQLException {
+        double saldoAtual = getSaldo(number);
+        saldoAtual += saldo;
+        String sql = "UPDATE utilizador SET saldo=" + saldoAtual + " WHERE numero=" + number;
+        int rs = executeUpdate(sql);
     }
 
     public boolean addSenha(Senha senha, int user) throws SQLException {
@@ -354,16 +363,16 @@ public class ComunicacaoBD {
         sql = "SELECT idsenha FROM senha ORDER BY idsenha DESC";
         ResultSet rsID = executeQuery(sql);
         int idSenha = 0;
-        if(rsID.next())
+        if (rsID.next())
             idSenha = rsID.getInt("idsenha");
         else
-            return  false;
-        for(Complemento complemento : senha.getComplementos()) {
+            return false;
+        for (Complemento complemento : senha.getComplementos()) {
             sql = "INSERT INTO complementosenha (idsenha, idcomplemento) VALUES ('"
                     + idSenha + "', '" + complemento.getIdComplemento() + "')";
             int rs1 = executeUpdate(sql);
         }
-        return  true;
+        return true;
     }
 
     public void removeSaldo(int number, double saldo) throws SQLException {
@@ -395,7 +404,7 @@ public class ComunicacaoBD {
     public boolean removeFavorito(int id) throws Exception {
         String sql = "DELETE FROM favorito WHERE idfavorito=" + id;
         int rs = executeUpdate(sql);
-        if (rs!=1) {
+        if (rs != 1) {
             throw new Exception("Erro ao apagar o favorito!");
         }
         String sql2 = "DELETE FROM favoritoutilizador WHERE idfavorito="+ id;
@@ -408,7 +417,7 @@ public class ComunicacaoBD {
 
     public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
         ArrayList<RefeicaoAdmin> refeicoes = new ArrayList<>();
-        String sql = "SELECT idrefeicao,horario,data FROM refeicoes";
+        String sql = "SELECT idrefeicao,horario,data FROM refeicoes ORDER BY idrefeicao DESC";
         ResultSet rs = executeQuery(sql);
         while (rs.next()) {
             int id = rs.getInt("idrefeicao");
@@ -418,20 +427,15 @@ public class ComunicacaoBD {
                 aux = "Almoco";
             } else aux = "Jantar";
 
-            String d = rs.getDate("data").toString();
+            String d = rs.getString("data");
 
-            String sqlquantPeixe = "SELECT COUNT(idsenha) FROM senha, refeicoes" +
-                    "WHERE " + id + "refeicoes.idrefeicao= senha.idrefeicao" +
-                    "AND senha.prato=refeicoes.pratopeixe;";
+            String sqlquantPeixe = "SELECT COUNT(idsenha) FROM senha, refeicoes WHERE senha.idrefeicao=" + id + " AND senha.prato=refeicoes.pratopeixe;";
             ResultSet rsa = executeQuery(sqlquantPeixe);
             int qtpeixe = rsa.getInt("count(idsenha)");
 
-            String sqlquantCarne = "SELECT COUNT(idsenha) FROM senha, refeicoes" +
-                    "WHERE " + id + "refeicoes.idrefeicao= senha.idrefeicao" +
-                    "AND senha.prato=refeicoes.pratocarne;";
+            String sqlquantCarne = "SELECT COUNT(idsenha) FROM senha, refeicoes WHERE senha.idrefeicao=" + id + " AND senha.prato=refeicoes.pratocarne;";
             ResultSet rsc = executeQuery(sqlquantCarne);
-            int qtcarne = rsa.getInt("count(idsenha)");
-
+            int qtcarne = rsc.getInt("count(idsenha)");
             refeicoes.add(new RefeicaoAdmin(id, d, aux, qtcarne, qtpeixe));
 
         }
@@ -440,11 +444,11 @@ public class ComunicacaoBD {
     }
 
     public Senha getSenha(int idSenha) throws SQLException {
-        Senha senha=null;
+        Senha senha = null;
         String sql = "SELECT idrefeicao, prato, sobremensa, precototal FROM senha WHERE idsenha=" + idSenha;
         ResultSet rs = executeQuery(sql);
         ArrayList<Complemento> complementos = this.getComplementosSenha(idSenha);
-        while (rs.next()){
+        while (rs.next()) {
             senha = new Senha(idSenha,
                     rs.getString("prato"),
                     rs.getString("sobremensa"),
@@ -459,17 +463,17 @@ public class ComunicacaoBD {
         ArrayList<Complemento> complementos = new ArrayList<>();
         String sql = "SELECT * FROM complementosenha WHERE idsenha=" + idSenha;
         ResultSet rs = executeQuery(sql);
-        while (rs.next()){
+        while (rs.next()) {
             int idComplemento = rs.getInt("idcomplemento");
             String sqlC = "SELECT * FROM complemento WHERE idcomplemento=" + idComplemento;
             ResultSet rsC = executeQuery(sqlC);
-            while(rsC.next()){
+            while (rsC.next()) {
                 complementos.add(new Complemento(idComplemento,
                         rsC.getString("nome"),
                         rsC.getFloat("preco")));
             }
         }
-        if(complementos.size() <= 0)
+        if (complementos.size() <= 0)
             complementos = null;
         return complementos;
     }
@@ -543,5 +547,36 @@ public class ComunicacaoBD {
         return count;
     }
 
+
+    public ArrayList<Integer> getSenhasDaRefeicao(int id) throws SQLException {
+        ArrayList<Integer> senhas = new ArrayList<>();
+        String sql ="SELECT idsenha FROM senha WHERE senha.idrefeicao = " +id;
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()) {
+            int idsenha = rs.getInt("idsenha");
+                    senhas.add(idsenha);
+        }
+        return senhas;
+    }
+
+    public boolean removeRefeicao(int idRefeicao) throws Exception {
+        String sql =" DELETE FROM refeicoes WHERE idrefeicao= " +idRefeicao;
+        int rs = executeUpdate(sql);
+        if (rs != 1) {
+            throw new Exception("Erro ao apagar a refeicao");
+        }
+        return true;
+    }
+
+    public boolean addRefeicao(Refeicao ref) throws Exception {
+        String sql ="  INSERT  INTO refeicoes ( sopa, pratocarne, pratopeixe, sobremesa1, sobremesa2, preco, horario, data)  VALUES('"+ref.getSopa()+"','" +ref.getPratoCarne() +"','"+ref.getPratoPeixe()+"','" +ref.getSombremesa1()+
+               "','"+ref.getSombremesa2()+"',"+ ref.getPreco()+","+ref.getAlmocoJantar() + ",'"+ref.getData() +"')";
+        int rs = executeUpdate(sql);
+        if (rs != 1) {
+            throw new Exception("Erro ao adioconar a refeicao");
+        }
+        return true;
+    }
 }
+
 
