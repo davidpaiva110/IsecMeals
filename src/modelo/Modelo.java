@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.Password.PasswordUtils;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -155,15 +157,7 @@ public class Modelo  implements IUtilizador, IEmenta{
         return 0;
     }
 
-    /**
-     * Funcionalidade do Administrador
-     * @param novoUtilizador dados do novo utilizador
-     * @return true se foi adicionado com sucesso | false caso contrário
-     */
-    @Override
-    public boolean addUtilizador(Utilizador novoUtilizador) {
-        return false;
-    }
+
 
     /**
      * Funcionalidade do Administrador
@@ -238,6 +232,7 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
 
+
     /**
      * Verifica se o utilizador prefere pratos de carne ou peixe
      * @return 0 - Se preferir carne ou for indiferente | 1 - Se preferir peixe
@@ -252,4 +247,18 @@ public class Modelo  implements IUtilizador, IEmenta{
             return 0;
         }
     }
+
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        Utilizador uti = new Utilizador(userNumber, nome, saldo);
+        String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
+        uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
+        boolean resultado = database.addNewUser(uti);
+
+        if(resultado == true){
+            //enviar a password por email ao utilizador
+        }
+
+        return password;
+    }
+
 }

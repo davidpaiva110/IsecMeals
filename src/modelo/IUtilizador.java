@@ -37,7 +37,7 @@ public interface IUtilizador {
 
     // ===== Funcionalidades do Administrador =====
     public double setNovoSaldoUtilizador();
-    public boolean addUtilizador(Utilizador novoUtilizador);
+    //public boolean addUtilizador(Utilizador novoUtilizador);
     public boolean removeUtilizador(int numeroUtilizador);
 
 

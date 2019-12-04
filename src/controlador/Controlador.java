@@ -86,6 +86,7 @@ public class Controlador {
         return modelo.addFavorito(prato, tipo);
     }
 
+
     public boolean updateSenha(Senha senha) throws Exception {
         return modelo.changeSenha(senha);
     }
@@ -99,5 +100,8 @@ public class Controlador {
 
     public boolean adicionaRefeicao(Refeicao ref) throws Exception {
         return modelo.addNovaRefeicao(ref);
+    }
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        return modelo.addNewUser(userNumber, nome, saldo);
     }
 }
