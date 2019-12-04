@@ -77,7 +77,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return lista com os favoritos do utilizador
      */
     public ArrayList<Favoritos> getFavoritos() throws SQLException {
-        return database.getFavoritos();
+        return database.getFavoritos(utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -85,8 +85,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean addFavorito(String descricaoFavorito) {
-        return false;
+    public boolean addFavorito(String descricaoFavorito, int tipo) throws SQLException {
+        return database.addFavorito(descricaoFavorito, tipo, utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -228,4 +228,5 @@ public class Modelo  implements IUtilizador, IEmenta{
     public Senha getSenha(int idSenha) throws SQLException {
         return database.getSenha(idSenha);
     }
+
 }

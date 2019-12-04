@@ -80,4 +80,8 @@ public class Controlador {
     public Senha getSenha(int idSenha) throws SQLException {
         return modelo.getSenha(idSenha);
     }
+
+    public boolean addFavorito(String prato, int tipo) throws SQLException {
+        return modelo.addFavorito(prato, tipo);
+    }
 }

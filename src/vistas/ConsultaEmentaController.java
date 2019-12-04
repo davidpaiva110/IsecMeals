@@ -10,11 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import modelo.Favoritos;
 import modelo.Refeicao;
 
 import java.io.File;
@@ -28,20 +30,24 @@ import static jdk.nashorn.internal.objects.Global.Infinity;
 
 public class ConsultaEmentaController {
 
+    public static final int PRATO_CARNE_TYPE = 0;
+    public static final int PRATO_PEIXE_TYPE = 1;
+
     private PaneOrganizer po;
     private ArrayList<Refeicao> ementa;
+    private ArrayList<Favoritos> favoritos;
     int i = 0;
-    @FXML
-    private HBox hBoxEmenta;
+    @FXML private HBox hBoxEmenta;
+    private boolean carneFav = false;
+    private boolean peixeFac = false;
 
 
     public ConsultaEmentaController(PaneOrganizer po) {
         this.po = po;
         try {
             ementa = po.controlador.getEmenta();
-            //System.out.println(ementa.size());
+            favoritos = po.controlador.getFavoritos();
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
 
@@ -84,7 +90,7 @@ public class ConsultaEmentaController {
             Label sopaDesc = new Label();
             sopaDesc.setText(ref.getSopa());
 
-            //Prato Carne
+            //===================== Prato Carne =====================
             HBox carneHB = new HBox();
             carneHB.setPrefHeight(-1.0);
             carneHB.setPrefWidth(-1.0);
@@ -105,14 +111,48 @@ public class ConsultaEmentaController {
             favIcon.setFitWidth(30.0);
             favIcon.setPickOnBounds(true);
             favIcon.setPreserveRatio(true);
-            File file = new File("..\\m6.PNG");
+            File file = new File("src/m6.png");
             Image image = new Image(file.toURI().toString());
             favIcon.setImage(image);
             carneHB.getChildren().addAll(carneTitle, favIcon);
+            //Verificar se o prato de carne é um favorito
+
+            System.out.println(favoritos.size());
+            for (Favoritos fav : favoritos){
+                if(fav.getPrato().equals(ref.getPratoCarne())){
+                    //System.out.println("estou aqui");
+                    File files = new File("src/m3.png");
+                    Image images = new Image(files.toURI().toString());
+                    favIcon.setImage(images);
+                    carneFav = true;
+                    break;
+                }
+            }
+            //Tratar o click da imagem no prato de carne
+            favIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    File files;
+                    Image images;
+                    if(carneFav == false){
+                        try {
+                            po.getControlador().addFavorito(ref.getPratoCarne(), PRATO_CARNE_TYPE);  //0 - prato de carne | 1 - prato de peixe
+                        } catch (SQLException e) {
+                           // e.printStackTrace();
+                            System.out.println("impossivel adicionar favorito");
+                        }
+                        files = new File("src/m3.png");
+                        images = new Image(files.toURI().toString());
+                        favIcon.setImage(images);
+                        carneFav = true;
+                    }
+                   // favIcon.setImage(image);
+                }
+            });
             Label carneDesc = new Label();
             carneDesc.setText(ref.getPratoCarne());
 
-            //Prato Peixe
+            //===================== Prato Peixe =====================
             HBox peixeHB = new HBox();
             peixeHB.setPrefHeight(-1.0);
             peixeHB.setPrefWidth(-1.0);

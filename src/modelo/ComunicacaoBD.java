@@ -270,14 +270,32 @@ public class ComunicacaoBD {
     }
 
 
-    public ArrayList<Favoritos> getFavoritos() throws SQLException {
+    public ArrayList<Favoritos> getFavoritos(int userNumber) throws SQLException {
         ArrayList<Favoritos> favoritos = new ArrayList<>();
-        String sql = "SELECT idfavorito,prato FROM favorito";
+        ArrayList<Integer> favIds = new ArrayList<>();
+        String sqlId = "SELECT idfavorito FROM favoritoutilizador WHERE numero=" + userNumber;
+        ResultSet rsId = executeQuery(sqlId);
+        while (rsId.next()){
+            int favid = rsId.getInt("idfavorito");
+            favIds.add(favid);
+        }
+
+
+
+        String sql = "SELECT * FROM favorito";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
-            Favoritos favorito = new Favoritos(rs.getInt("idfavorito"),
-                                                rs.getString("prato"));
-            favoritos.add(favorito);
+            int conta = 0;
+            int idfav = rs.getInt("idfavorito");
+            for(int fav : favIds){
+                if(fav == idfav){
+                    Favoritos favorito = new Favoritos(rs.getInt("idfavorito"),
+                            rs.getString("prato"),
+                            rs.getInt("tipo"));
+                    favoritos.add(favorito);
+                    break;
+                }
+            }
         }
         return favoritos;
     }
@@ -436,6 +454,21 @@ public class ComunicacaoBD {
         if(complementos.size() <= 0)
             complementos = null;
         return complementos;
+    }
+
+    public boolean addFavorito(String prato, int tipo, int userNumber) throws SQLException {
+        String sql = "INSERT INTO favorito (prato, tipo) VALUES ('" + prato +"','" + tipo + "')";
+        int rs = executeUpdate(sql);
+        String sql2 = "SELECT idfavorito FROM favorito ORDER BY idfavorito DESC";
+        int idFavorito = 0;
+        ResultSet rsID = executeQuery(sql2);
+        if(rsID.next())
+            idFavorito = rsID.getInt("idfavorito");
+        else
+            return  false;
+        String sql3 = "INSERT INTO favoritoutilizador (numero, idfavorito) VALUES ('" + userNumber +"','" + idFavorito + "')";
+        int rs3 = executeUpdate(sql3);
+        return true;
     }
 }
 
