@@ -26,7 +26,10 @@ public class Senha {
         this.sombremesa = sombremesa;
         this.preco = preco;
         this.idRefeicao=idRef;
-        this.complementos = comp;
+        if(comp!=null)
+            this.complementos = comp;
+        else
+            this.complementos = new ArrayList<>();
     }
 
     public Senha() {
@@ -79,5 +82,9 @@ public class Senha {
 
     public void removeComplemento(Complemento complemento){
         complementos.remove(complemento);
+    }
+
+    public void setComplementos(ArrayList<Complemento> complementos) {
+        this.complementos = complementos;
     }
 }

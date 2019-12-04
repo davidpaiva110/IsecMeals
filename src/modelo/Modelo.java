@@ -133,12 +133,16 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @param novosDadosSenha
+     * @param novaSenha
      * @return true se alterada com sucesso | false caso contrario
      */
     @Override
-    public boolean changeSenha(Refeicao novosDadosSenha) {
-        return false;
+    public boolean changeSenha(Senha novaSenha) throws Exception{
+        double precoSenhaAntiga=database.changeSenha(novaSenha);
+        double dif=precoSenhaAntiga-novaSenha.getPreco();
+        if(dif>0) database.addSaldo(utilizador.getNumeroUtilizador(), dif);
+        else if(dif<0) database.removeSaldo(utilizador.getNumeroUtilizador(), Math.abs(dif));
+        return true;
     }
 
 
@@ -227,5 +231,20 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     public Senha getSenha(int idSenha) throws SQLException {
         return database.getSenha(idSenha);
+    }
+
+    /**
+     * Verifica se o utilizador prefere pratos de carne ou peixe
+     * @return 0 - Se preferir carne ou for indiferente | 1 - Se preferir peixe
+     */
+    public int getPreferenciaPratoUser() {
+        try {
+            int carne=database.getNumPratosFavCarne(utilizador.getNumeroUtilizador());
+            int peixe=database.getNumPratosFavPeixe(utilizador.getNumeroUtilizador());
+            if(carne>=peixe) return 0;
+            else return 1;
+        } catch (SQLException e) {
+            return 0;
+        }
     }
 }

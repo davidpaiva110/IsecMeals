@@ -39,9 +39,8 @@ public class ConsultaEmentaController {
         this.po = po;
         try {
             ementa = po.controlador.getEmenta();
-            //System.out.println(ementa.size());
         } catch (SQLException e) {
-            e.printStackTrace();
+            ementa=new ArrayList<>();
         }
 
 
@@ -50,6 +49,10 @@ public class ConsultaEmentaController {
     public void initialize() {
 
         hBoxEmenta.getChildren().clear();
+        if(ementa.size()==0){
+            Label label=new Label("Não existem refeições disponíveis!");
+            hBoxEmenta.getChildren().add(label);
+        }
         for (Refeicao ref : ementa) {
             VBox principal = new VBox();
             principal.setMaxHeight(300.0);
@@ -171,8 +174,10 @@ public class ConsultaEmentaController {
                 }
             });
             btHB.getChildren().addAll(btnS);
-
-            principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
+            if(ref.isJaComprada())
+                principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB);
+            else
+                principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
             hBoxEmenta.getChildren().add(principal);
         }
 

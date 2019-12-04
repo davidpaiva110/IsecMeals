@@ -80,4 +80,12 @@ public class Controlador {
     public Senha getSenha(int idSenha) throws SQLException {
         return modelo.getSenha(idSenha);
     }
+
+    public boolean updateSenha(Senha senha) throws Exception {
+        return modelo.changeSenha(senha);
+    }
+
+    public int getPreferenciaPratoUser() {
+        return modelo.getPreferenciaPratoUser();
+    }
 }

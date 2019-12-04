@@ -150,7 +150,20 @@ public class ComunicacaoBD {
                         rs.getDouble("preco"),
                         rs.getInt("horario"),
                         rs.getString("data"),
-                        complementos);
+                        complementos, false);
+                ementa.add(newRefeicao);
+            }else{
+                ArrayList<Complemento> complementos = this.getComplementos(idRefeicao);
+                Refeicao newRefeicao = new Refeicao(idRefeicao,
+                        rs.getString("sopa"),
+                        rs.getString("pratocarne"),
+                        rs.getString("pratopeixe"),
+                        rs.getString("sobremesa1"),
+                        rs.getString("sobremesa2"),
+                        rs.getDouble("preco"),
+                        rs.getInt("horario"),
+                        rs.getString("data"),
+                        complementos, true);
                 ementa.add(newRefeicao);
             }
         }
@@ -436,6 +449,49 @@ public class ComunicacaoBD {
         if(complementos.size() <= 0)
             complementos = null;
         return complementos;
+    }
+
+    public double changeSenha(Senha novaSenha) throws Exception {
+        double precototalAntigo=-1;
+        String sql = "SELECT precototal FROM senha WHERE idsenha=" + novaSenha.getIdSenha();
+        ResultSet rs = executeQuery(sql);
+        if(rs.next())
+            precototalAntigo=rs.getDouble("precototal");
+        else
+            throw new Exception("Erro ao atualizar a senha!");
+        sql="UPDATE senha SET prato='" + novaSenha.getPrato() + "', sobremensa='" + novaSenha.getSombremesa() + "', precototal=" + novaSenha.getPreco() + " WHERE idsenha=" + novaSenha.getIdSenha();
+        int r=executeUpdate(sql);
+        if(r!=1) throw new Exception("Erro ao atualizar a senha!");
+
+        sql="DELETE FROM ComplementoSenha WHERE idsenha=" + novaSenha.getIdSenha();
+        r = executeUpdate(sql);
+        for(Complemento complemento : novaSenha.getComplementos()) {
+            sql = "INSERT INTO complementosenha (idsenha, idcomplemento) VALUES ('"
+                    + novaSenha.getIdSenha() + "', '" + complemento.getIdComplemento() + "')";
+            r = executeUpdate(sql);
+        }
+
+        return precototalAntigo;
+    }
+
+    public int getNumPratosFavCarne(int userNumber) throws SQLException {
+        int count=0;
+        String sql="SELECT COUNT(numero) FROM favoritoutilizador, favorito WHERE favoritoutilizador.idfavorito=favorito.idfavorito AND favorito.tipo=0 AND favoritoutilizador.numero=" + userNumber;
+        ResultSet rs = executeQuery(sql);
+        if(!rs.next())
+            throw new SQLException();
+        count=rs.getInt("COUNT(numero)");
+        return count;
+    }
+
+    public int getNumPratosFavPeixe(int userNumber) throws SQLException {
+        int count=0;
+        String sql="SELECT COUNT(numero) FROM favoritoutilizador, favorito WHERE favoritoutilizador.idfavorito=favorito.idfavorito AND favorito.tipo=1 AND favoritoutilizador.numero=" + userNumber;
+        ResultSet rs = executeQuery(sql);
+        if(!rs.next())
+            throw new SQLException();
+        count=rs.getInt("COUNT(numero)");
+        return count;
     }
 }
 

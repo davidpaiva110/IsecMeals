@@ -33,7 +33,7 @@ public interface IUtilizador {
     public Refeicao getRefeicao(int id) throws SQLException;
     public boolean buySenha(Senha dadosSenha) throws SQLException;
     public boolean cancelSenha(int idSenha) throws Exception;
-    public boolean changeSenha(Refeicao novosDadosSenha);
+    public boolean changeSenha(Senha novaSenha) throws Exception;
 
     // ===== Funcionalidades do Administrador =====
     public double setNovoSaldoUtilizador();
