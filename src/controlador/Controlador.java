@@ -100,4 +100,8 @@ public class Controlador {
     public boolean adicionaRefeicao(Refeicao ref) throws Exception {
         return modelo.addNovaRefeicao(ref);
     }
+
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        return modelo.getTodosComplementos();
+    }
 }
