@@ -19,6 +19,7 @@ import modelo.Refeicao;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static jdk.nashorn.internal.objects.Global.Infinity;
@@ -34,7 +35,7 @@ public class ConsultaEmentaController {
     private ArrayList<Favoritos> favoritos;
     int i = 0;
     @FXML private HBox hBoxEmenta;
-    
+    @FXML private Label lbSaldo;
     public ConsultaEmentaController(PaneOrganizer po) {
         this.po = po;
         try {
@@ -46,7 +47,14 @@ public class ConsultaEmentaController {
     }
 
     public void initialize() {
-
+        try {
+            double saldo = po.getControlador().getSaldo();
+            DecimalFormat df = new DecimalFormat("0.00");
+            String saldoFormatado = df.format(saldo);
+            lbSaldo.setText(saldoFormatado + "€");
+        } catch (SQLException e) {
+            lbSaldo.setText("Indisponível");
+        }
         hBoxEmenta.getChildren().clear();
         if(ementa.size()==0){
             Label label=new Label("Não existem refeições disponíveis!");

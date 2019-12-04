@@ -10,6 +10,7 @@ import modelo.Senha;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GerirFavoritosController {
@@ -19,6 +20,7 @@ public class GerirFavoritosController {
 
     @FXML TableColumn<TableFavoritos, String> ColPrato;
     @FXML TableColumn<TableFavoritos, Button> ColOpcao;
+    @FXML Label lbSaldo;
 
     public GerirFavoritosController(PaneOrganizer po) {
         this.po=po;
@@ -33,6 +35,14 @@ public class GerirFavoritosController {
         po.setMenuUserView();
     }
      public void initialize()  {
+         try {
+             double saldo = po.getControlador().getSaldo();
+             DecimalFormat df = new DecimalFormat("0.00");
+             String saldoFormatado = df.format(saldo);
+             lbSaldo.setText(saldoFormatado + "€");
+         } catch (SQLException e) {
+             lbSaldo.setText("Indisponível");
+         }
          TabelaFavoritos.setEditable(false);
          ColOpcao.setCellValueFactory(new PropertyValueFactory<>("BtRemover"));
          ColPrato.setCellValueFactory(new PropertyValueFactory<>("Prato"));
