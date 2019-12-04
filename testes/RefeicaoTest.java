@@ -113,9 +113,14 @@ class RefeicaoTest {
 
     @Test
     void getData() {
+        refeicao = new Refeicao(90000000,"sopa","pratoc","pratop","sobremesa1","sobremesa2",2.50,1,"2017-06-28");
+        assertEquals("2017-06-28",refeicao.getData(), "getData()");
     }
 
     @Test
     void setData() {
+        refeicao = new Refeicao(90000000,"sopa","pratoc","pratop","sobremesa1","sobremesa2",2.50,1,"2017-06-28");
+        refeicao.setData("2017-06-29");
+        assertEquals("2017-06-29",refeicao.getAlmocoJantar(), "setData()");
     }
 }
