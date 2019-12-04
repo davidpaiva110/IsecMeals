@@ -4,16 +4,13 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import modelo.Favoritos;
@@ -23,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static jdk.nashorn.internal.objects.Global.Infinity;
 
@@ -39,7 +35,7 @@ public class ConsultaEmentaController {
     int i = 0;
     @FXML private HBox hBoxEmenta;
     private boolean carneFav = false;
-    private boolean peixeFac = false;
+    private boolean peixeFav = false;
 
 
     public ConsultaEmentaController(PaneOrganizer po) {
@@ -115,12 +111,10 @@ public class ConsultaEmentaController {
             Image image = new Image(file.toURI().toString());
             favIcon.setImage(image);
             carneHB.getChildren().addAll(carneTitle, favIcon);
-            //Verificar se o prato de carne é um favorito
 
-            System.out.println(favoritos.size());
+            // Verificar se o prato de carne é um favorito
             for (Favoritos fav : favoritos){
                 if(fav.getPrato().equals(ref.getPratoCarne())){
-                    //System.out.println("estou aqui");
                     File files = new File("src/m3.png");
                     Image images = new Image(files.toURI().toString());
                     favIcon.setImage(images);
@@ -134,19 +128,34 @@ public class ConsultaEmentaController {
                 public void handle(MouseEvent mouseEvent) {
                     File files;
                     Image images;
-                    if(carneFav == false){
+                    if (carneFav == false) {
                         try {
                             po.getControlador().addFavorito(ref.getPratoCarne(), PRATO_CARNE_TYPE);  //0 - prato de carne | 1 - prato de peixe
                         } catch (SQLException e) {
-                           // e.printStackTrace();
-                            System.out.println("impossivel adicionar favorito");
+                            // e.printStackTrace();
+                            // System.out.println("impossivel adicionar favorito");
                         }
                         files = new File("src/m3.png");
                         images = new Image(files.toURI().toString());
                         favIcon.setImage(images);
                         carneFav = true;
+                    } else if (carneFav == true){
+                        for (Favoritos fav : favoritos) {
+                            if (fav.getPrato().equals(ref.getPratoCarne())) {
+                                try {
+                                    po.getControlador().RemoveFavorito(fav.getIdFavorito());
+                                    favIcon.setImage(image);
+                                    carneFav = false;
+                                } catch (Exception e) {
+                                    //e.printStackTrace();
+                                }
+                            }
+                        }
                     }
-                   // favIcon.setImage(image);
+                    try {
+                        favoritos = po.getControlador().getFavoritos();
+                    } catch (SQLException e) {
+                    }
                 }
             });
             Label carneDesc = new Label();
@@ -169,11 +178,60 @@ public class ConsultaEmentaController {
             peixeTitle.setFont(new Font("Arial", 18.0));
             ImageView favIcon2 = new ImageView();
             favIcon2.setImage(image);
-            favIcon.setFitHeight(30.0);
-            favIcon.setFitWidth(30.0);
-            favIcon.setPickOnBounds(true);
-            favIcon.setPreserveRatio(true);
+            favIcon2.setFitHeight(30.0);
+            favIcon2.setFitWidth(30.0);
+            favIcon2.setPickOnBounds(true);
+            favIcon2.setPreserveRatio(true);
             peixeHB.getChildren().addAll(peixeTitle, favIcon2);
+
+            // Verificar se o prato de peixe é um favorito
+            for (Favoritos fav : favoritos){
+                if(fav.getPrato().equals(ref.getPratoPeixe())){
+                    File files = new File("src/m3.png");
+                    Image images = new Image(files.toURI().toString());
+                    favIcon2.setImage(images);
+                    peixeFav = true;
+                    break;
+                }
+            }
+            //Tratar o click da imagem no prato de peixe
+            favIcon2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    File files;
+                    Image images;
+                    if (peixeFav == false) {
+                        try {
+                            po.getControlador().addFavorito(ref.getPratoPeixe(), PRATO_PEIXE_TYPE);  //0 - prato de carne | 1 - prato de peixe
+                        } catch (SQLException e) {
+                            // e.printStackTrace();
+                            // System.out.println("impossivel adicionar favorito");
+                        }
+                        files = new File("src/m3.png");
+                        images = new Image(files.toURI().toString());
+                        favIcon2.setImage(images);
+                        peixeFav = true;
+                    } else if (peixeFav == true){
+                        for (Favoritos fav : favoritos) {
+                            if (fav.getPrato().equals(ref.getPratoPeixe())) {
+                                try {
+                                    po.getControlador().RemoveFavorito(fav.getIdFavorito());
+                                    favIcon2.setImage(image);
+                                    peixeFav = false;
+                                } catch (Exception e) {
+                                    //e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                    try {
+                        favoritos = po.getControlador().getFavoritos();
+                    } catch (SQLException e) {
+                    }
+                }
+            });
+
+
             Label peixeDesc = new Label();
             peixeDesc.setText(ref.getPratoPeixe());
 

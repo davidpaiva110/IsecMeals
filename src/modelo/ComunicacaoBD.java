@@ -385,6 +385,11 @@ public class ComunicacaoBD {
         if (rs!=1) {
             throw new Exception("Erro ao apagar o favorito!");
         }
+        String sql2 = "DELETE FROM favoritoutilizador WHERE idfavorito="+ id;
+        int rs2 = executeUpdate(sql2);
+        if (rs2!=1) {
+            throw new Exception("Erro ao apagar o favorito!");
+        }
        return true;
     }
 
