@@ -569,13 +569,36 @@ public class ComunicacaoBD {
     }
 
     public boolean addRefeicao(Refeicao ref) throws Exception {
-        String sql ="  INSERT  INTO refeicoes ( sopa, pratocarne, pratopeixe, sobremesa1, sobremesa2, preco, horario, data)  VALUES('"+ref.getSopa()+"','" +ref.getPratoCarne() +"','"+ref.getPratoPeixe()+"','" +ref.getSombremesa1()+
+        String sql ="INSERT  INTO refeicoes (sopa, pratocarne, pratopeixe, sobremesa1, sobremesa2, preco, horario, data)  VALUES('"+ref.getSopa()+"','" +ref.getPratoCarne() +"','"+ref.getPratoPeixe()+"','" +ref.getSombremesa1()+
                "','"+ref.getSombremesa2()+"',"+ ref.getPreco()+","+ref.getAlmocoJantar() + ",'"+ref.getData() +"')";
         int rs = executeUpdate(sql);
         if (rs != 1) {
-            throw new Exception("Erro ao adioconar a refeicao");
+            throw new Exception("Erro ao adicionar a refeição!");
+        }
+        sql = "SELECT idrefeicao FROM refeicoes ORDER BY idrefeicao DESC";
+        ResultSet rsID = executeQuery(sql);
+        int idRef = 0;
+        if (rsID.next())
+            idRef = rsID.getInt("idrefeicao");
+        else
+            throw new Exception("Erro ao adicionar os complementos da refeição!");
+        for (Complemento complemento : ref.getComplementos()) {
+            sql = "INSERT INTO complementorefeicao (idrefeicao, idcomplemento) VALUES ('"
+                    + idRef + "', '" + complemento.getIdComplemento() + "')";
+            int rs1 = executeUpdate(sql);
         }
         return true;
+    }
+
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        ArrayList<Complemento> comp = new ArrayList<>();
+        String sql="SELECT * FROM complemento";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()) {
+            Complemento c = new Complemento(rs.getInt("idcomplemento"), rs.getString("nome"), rs.getDouble("preco"));
+            comp.add(c);
+        }
+        return comp;
     }
 }
 

@@ -132,9 +132,9 @@
             </VBox>
           </children>
         </HBox>
-        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0">
+        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0" fx:id="vbComplementos">
           <children>
-            <Label font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
+            <Label fx:id="lbComplementos" font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">

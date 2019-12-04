@@ -261,4 +261,8 @@ public class Modelo  implements IUtilizador, IEmenta{
         return password;
     }
 
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        return database.getTodosComplementos();
+    }
+
 }

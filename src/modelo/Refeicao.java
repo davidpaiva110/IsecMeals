@@ -43,7 +43,7 @@ public class Refeicao {
         this.data = data;
         this.complementos = complementos;
     }
-    public Refeicao( String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data) {
+    public Refeicao( String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> comp) {
         this.idRefeicao = idRefeicao;
         this.sopa = sopa;
         this.pratoCarne = pratoCarne;
@@ -53,6 +53,7 @@ public class Refeicao {
         this.preco = preco;
         this.horario = almocoJantar;
         this.data = data;
+        this.complementos=comp;
     }
 
     public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> complementos, boolean comp) {

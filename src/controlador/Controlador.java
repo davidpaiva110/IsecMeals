@@ -104,4 +104,8 @@ public class Controlador {
     public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
         return modelo.addNewUser(userNumber, nome, saldo);
     }
+
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        return modelo.getTodosComplementos();
+    }
 }
