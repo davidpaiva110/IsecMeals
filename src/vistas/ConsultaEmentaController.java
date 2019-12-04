@@ -45,8 +45,6 @@ public class ConsultaEmentaController {
             favoritos = po.controlador.getFavoritos();
         } catch (SQLException e) {
         }
-
-
     }
 
     public void initialize() {

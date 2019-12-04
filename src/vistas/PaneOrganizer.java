@@ -3,7 +3,6 @@ package vistas;
 import controlador.Controlador;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import modelo.Refeicao;
@@ -25,6 +24,7 @@ public class PaneOrganizer {
     BorderPane AdicionaRefeicaoAdmin;
     BorderPane comprarSenha;
     BorderPane alterarSenha;
+    BorderPane adicionarUtilizadorAdmin;
     Stage primaryStage;
 
     FXMLLoader loader;
@@ -129,5 +129,13 @@ public class PaneOrganizer {
         alterarSenha=loader.load();
         new Scene( alterarSenha, 600, 400);
         primaryStage.setScene(alterarSenha.getScene());
+    }
+
+    public  void setAdicionarUtilizadorAdmin() throws IOException {
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/AdicionarUtilizadorAdmin.fxml"));
+        loader.setController(new AdicionarUtilizadorAdminController(this));
+        adicionarUtilizadorAdmin=loader.load();
+        new Scene( adicionarUtilizadorAdmin, 600, 400);
+        primaryStage.setScene(adicionarUtilizadorAdmin.getScene());
     }
 }

@@ -475,5 +475,7 @@ public class ComunicacaoBD {
         int rs3 = executeUpdate(sql3);
         return true;
     }
+
+    
 }
 
