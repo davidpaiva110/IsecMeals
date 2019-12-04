@@ -34,10 +34,7 @@ public class ConsultaEmentaController {
     private ArrayList<Favoritos> favoritos;
     int i = 0;
     @FXML private HBox hBoxEmenta;
-    private boolean carneFav = false;
-    private boolean peixeFav = false;
-
-
+    
     public ConsultaEmentaController(PaneOrganizer po) {
         this.po = po;
         try {
@@ -121,17 +118,18 @@ public class ConsultaEmentaController {
                     File files = new File("src/m3.png");
                     Image images = new Image(files.toURI().toString());
                     favIcon.setImage(images);
-                    carneFav = true;
+                    favIcon.setId("true");
                     break;
                 }
             }
+
             //Tratar o click da imagem no prato de carne
             favIcon.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     File files;
                     Image images;
-                    if (carneFav == false) {
+                    if (Boolean.parseBoolean(favIcon.getId()) == false) {
                         try {
                             po.getControlador().addFavorito(ref.getPratoCarne(), PRATO_CARNE_TYPE);  //0 - prato de carne | 1 - prato de peixe
                         } catch (SQLException e) {
@@ -141,14 +139,14 @@ public class ConsultaEmentaController {
                         files = new File("src/m3.png");
                         images = new Image(files.toURI().toString());
                         favIcon.setImage(images);
-                        carneFav = true;
-                    } else if (carneFav == true){
+                        favIcon.setId("true");
+                    } else if (Boolean.parseBoolean(favIcon.getId()) == true){
                         for (Favoritos fav : favoritos) {
                             if (fav.getPrato().equals(ref.getPratoCarne())) {
                                 try {
                                     po.getControlador().RemoveFavorito(fav.getIdFavorito());
                                     favIcon.setImage(image);
-                                    carneFav = false;
+                                    favIcon.setId("false");
                                 } catch (Exception e) {
                                     //e.printStackTrace();
                                 }
@@ -193,7 +191,7 @@ public class ConsultaEmentaController {
                     File files = new File("src/m3.png");
                     Image images = new Image(files.toURI().toString());
                     favIcon2.setImage(images);
-                    peixeFav = true;
+                    favIcon2.setId("true");
                     break;
                 }
             }
@@ -203,7 +201,7 @@ public class ConsultaEmentaController {
                 public void handle(MouseEvent mouseEvent) {
                     File files;
                     Image images;
-                    if (peixeFav == false) {
+                    if (Boolean.parseBoolean(favIcon2.getId()) == false) {
                         try {
                             po.getControlador().addFavorito(ref.getPratoPeixe(), PRATO_PEIXE_TYPE);  //0 - prato de carne | 1 - prato de peixe
                         } catch (SQLException e) {
@@ -213,14 +211,14 @@ public class ConsultaEmentaController {
                         files = new File("src/m3.png");
                         images = new Image(files.toURI().toString());
                         favIcon2.setImage(images);
-                        peixeFav = true;
-                    } else if (peixeFav == true){
+                        favIcon2.setId("true");
+                    } else if (Boolean.parseBoolean(favIcon2.getId()) == true){
                         for (Favoritos fav : favoritos) {
                             if (fav.getPrato().equals(ref.getPratoPeixe())) {
                                 try {
                                     po.getControlador().RemoveFavorito(fav.getIdFavorito());
                                     favIcon2.setImage(image);
-                                    peixeFav = false;
+                                    favIcon2.setId("false");
                                 } catch (Exception e) {
                                     //e.printStackTrace();
                                 }

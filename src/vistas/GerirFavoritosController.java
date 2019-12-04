@@ -40,8 +40,6 @@ public class GerirFavoritosController {
              favoritos = po.getControlador().getFavoritos();
          if(favoritos!=null) {
              for (Favoritos fav : favoritos) {
-
-                 System.out.println(fav.getPrato());
                  TableFavoritos tbFav = new TableFavoritos(fav.getIdFavorito(), fav.getPrato());
                  tbFav.getBtRemover().setOnAction(new EventHandler<ActionEvent>() {
                      @Override
