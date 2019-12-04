@@ -10,6 +10,9 @@ package modelo;
 /* Data de Edição: 12/05/2019                 */
 /* Ficheiro: Utilizador.java                  */
 /* Descrição: Representa um utilizador        */
+
+import modelo.Password.PasswordUtils;
+
 /**********************************************/
 
 
@@ -24,6 +27,14 @@ public class Utilizador {
     public Utilizador(int numeroUtilizador, int eUtilizador ) {
         this.numeroUtilizador = numeroUtilizador;
         this.eUtilizador = eUtilizador;
+    }
+
+    public Utilizador(int numeroUtilizador, String nome, double saldo) {
+        this.numeroUtilizador = numeroUtilizador;
+        this.nome = nome;
+        this.saldo = saldo;
+        this.eUtilizador = 0;
+        this.password = PasswordUtils.generateRandomPassword();
     }
 
     /****************************************

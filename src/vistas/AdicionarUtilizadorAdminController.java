@@ -5,12 +5,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import vistas.PaneOrganizer;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AdicionarUtilizadorAdminController {
 
@@ -68,10 +71,24 @@ public class AdicionarUtilizadorAdminController {
         po.setGerirUtilizadoresAdminView();
     }
     @FXML
-    public void handleAdicionar(ActionEvent action) {
+    public void handleAdicionar(ActionEvent action) throws IOException {
         String userName = tfUserName.getText();
         int userID = Integer.parseInt(tfUserNumber.getText());
         double userSaldo = Double.parseDouble(tfUserSaldo.getText());
+        try {
+            String pass = po.getControlador().addNewUser(userID, userName, userSaldo);
+            Alert error = new Alert(Alert.AlertType.INFORMATION, pass, ButtonType.OK);
+            error.setTitle("Password");
+            error.setHeaderText("Password Gerada");
+            error.showAndWait();
+            po.setGerirUtilizadoresAdminView();
+        } catch (SQLException e) {
+            String errorMsg = "O utilizador com o número: " + userID + " já se encontra registado.";
+            Alert error = new Alert(Alert.AlertType.ERROR, errorMsg, ButtonType.OK);
+            error.setHeaderText("Não foi possível adicionar o novo utilizador!");
+            error.setTitle("Erro");
+            error.showAndWait();
+        }
     }
 
 

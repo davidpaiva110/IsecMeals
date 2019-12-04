@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.Password.PasswordUtils;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -151,15 +153,7 @@ public class Modelo  implements IUtilizador, IEmenta{
         return 0;
     }
 
-    /**
-     * Funcionalidade do Administrador
-     * @param novoUtilizador dados do novo utilizador
-     * @return true se foi adicionado com sucesso | false caso contrário
-     */
-    @Override
-    public boolean addUtilizador(Utilizador novoUtilizador) {
-        return false;
-    }
+
 
     /**
      * Funcionalidade do Administrador
@@ -227,6 +221,19 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     public Senha getSenha(int idSenha) throws SQLException {
         return database.getSenha(idSenha);
+    }
+
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        Utilizador uti = new Utilizador(userNumber, nome, saldo);
+        String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
+        uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
+        boolean resultado = database.addNewUser(uti);
+
+        if(resultado == true){
+            //enviar a password por email ao utilizador
+        }
+
+        return password;
     }
 
 }

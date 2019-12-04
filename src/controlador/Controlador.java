@@ -84,4 +84,8 @@ public class Controlador {
     public boolean addFavorito(String prato, int tipo) throws SQLException {
         return modelo.addFavorito(prato, tipo);
     }
+
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        return modelo.addNewUser(userNumber, nome, saldo);
+    }
 }
