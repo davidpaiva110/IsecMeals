@@ -476,6 +476,16 @@ public class ComunicacaoBD {
         return true;
     }
 
-    
+
+    public boolean addNewUser(Utilizador utilizador) throws SQLException {
+        String sql = "INSERT INTO utilizador VALUES ('" + utilizador.getNumeroUtilizador() + "', '"
+                                                + utilizador.getNome() + "', '"
+                                                + utilizador.getPassword() + "', '"
+                                                + utilizador.getSaldo() + "', '"
+                                                + utilizador.geteUtilizador() + "')";
+        int rs = executeUpdate(sql);
+        return rs == 1;
+    }
+
 }
 
