@@ -68,6 +68,14 @@ public class ComprarSenhaController {
         lbSopaDesc.setText(dadosRefeicao.getSopa());
         lbPratoCarneDesc.setText(dadosRefeicao.getPratoCarne());
         lbPratoPeixeDesc.setText(dadosRefeicao.getPratoPeixe());
+        int pref=po.getControlador().getPreferenciaPratoUser();
+        if(pref==0) {
+            cbPC.setSelected(true);
+            senha.setPrato(dadosRefeicao.getPratoCarne());
+        }else{
+            cbPP.setSelected(true);
+            senha.setPrato(dadosRefeicao.getPratoPeixe());
+        }
         cbPC.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -86,6 +94,8 @@ public class ComprarSenhaController {
         });
         lbSobremesa1.setText(dadosRefeicao.getSombremesa1());
         lbSobremesa2.setText(dadosRefeicao.getSombremesa2());
+        cbSobremesa1.setSelected(true);
+        senha.setSombremesa(dadosRefeicao.getSombremesa1());
         cbSobremesa1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

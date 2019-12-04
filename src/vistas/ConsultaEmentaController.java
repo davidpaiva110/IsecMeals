@@ -44,12 +44,17 @@ public class ConsultaEmentaController {
             ementa = po.controlador.getEmenta();
             favoritos = po.controlador.getFavoritos();
         } catch (SQLException e) {
+            ementa=new ArrayList<>();
         }
     }
 
     public void initialize() {
 
         hBoxEmenta.getChildren().clear();
+        if(ementa.size()==0){
+            Label label=new Label("Não existem refeições disponíveis!");
+            hBoxEmenta.getChildren().add(label);
+        }
         for (Refeicao ref : ementa) {
             VBox principal = new VBox();
             principal.setMaxHeight(300.0);
@@ -267,8 +272,10 @@ public class ConsultaEmentaController {
                 }
             });
             btHB.getChildren().addAll(btnS);
-
-            principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
+            if(ref.isJaComprada())
+                principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB);
+            else
+                principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
             hBoxEmenta.getChildren().add(principal);
         }
 

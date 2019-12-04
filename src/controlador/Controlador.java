@@ -84,4 +84,12 @@ public class Controlador {
     public boolean addFavorito(String prato, int tipo) throws SQLException {
         return modelo.addFavorito(prato, tipo);
     }
+
+    public boolean updateSenha(Senha senha) throws Exception {
+        return modelo.changeSenha(senha);
+    }
+
+    public int getPreferenciaPratoUser() {
+        return modelo.getPreferenciaPratoUser();
+    }
 }

@@ -21,7 +21,7 @@ public class GerirSenhasController {
     @FXML TableColumn<TableSenha, Integer> colNumero;
     @FXML TableColumn<TableSenha, String> colPrato;
     @FXML TableColumn<TableSenha, String> colSobremesa;
-    @FXML TableColumn<TableSenha, Double> colPreco;
+    @FXML TableColumn<TableSenha, String> colPreco;
     @FXML TableColumn<TableSenha, Button> colAlterar;
     @FXML TableColumn<TableSenha, Button> colCancelar;
     @FXML Label lbSaldo;
@@ -61,7 +61,9 @@ public class GerirSenhasController {
         try {
             senhas = po.getControlador().getSenhasCompradas();
             for (Senha senha : senhas) {
-                TableSenha tbSenha=new TableSenha(senha.getIdSenha(), senha.getPrato(), senha.getSombremesa(), senha.getPreco(), senha.getIdRefeicao());
+                DecimalFormat df = new DecimalFormat("0.00");
+                String preco = df.format(senha.getPreco());
+                TableSenha tbSenha=new TableSenha(senha.getIdSenha(), senha.getPrato(), senha.getSombremesa(), preco, senha.getIdRefeicao());
                 tbSenha.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
