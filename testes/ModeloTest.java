@@ -1,4 +1,3 @@
-import com.sun.source.tree.CompilationUnitTree;
 import modelo.*;
 import org.junit.jupiter.api.*;
 
@@ -109,10 +108,10 @@ class ModeloTest {
      */
     @Test
     void removeFavorito() throws Exception {
-        ArrayList<Favoritos> favorito1 = database.getFavoritos();
+        ArrayList<Favoritos> favorito1 = database.getFavoritos(21270877);
         int nf1 = favorito1.size();
         database.removeFavorito(1);
-        favorito1 = database.getFavoritos();
+        favorito1 = database.getFavoritos(21270877);
         assertEquals(nf1-1, favorito1.size(), "removeFavorito()");
     }
 
@@ -124,7 +123,7 @@ class ModeloTest {
     void getFavoritos() throws SQLException {
         ArrayList<Favoritos> favoritos1 = new ArrayList<>();
         favoritos1.add(new Favoritos(1,"Grelhado Misto"));
-        ArrayList<Favoritos> favoritos2 = database.getFavoritos();
+        ArrayList<Favoritos> favoritos2 = database.getFavoritos(21270877);
         boolean isEqual = favoritos1.equals(favoritos2);
         assertTrue(isEqual, "getFavoritos()");
 
@@ -306,5 +305,29 @@ class ModeloTest {
      */
     @Test
     void getSenha() {
+    }
+
+    /**
+     * Verifica se o programa esta a verificar se o utilizador prefere pratos de peixe ou carne
+     * @return true - se esta a verificar com sucesso | false - se esta a verificar sem sucesso
+     */
+    @Test
+    void getPreferenciaPratoUser() {
+    }
+
+    /**
+     * Verifica se o programa esta a adicionar um novo utilizador
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
+    @Test
+    void addNewUser() {
+    }
+
+    /**
+     * Verifica se o programa esta a retornar todos os complementos
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
+    @Test
+    void getTodosComplementos() {
     }
 }

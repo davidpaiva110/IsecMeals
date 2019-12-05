@@ -1,7 +1,6 @@
 import modelo.*;
 import org.junit.jupiter.api.Test;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static modelo.ComunicacaoBD.executeUpdate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ComunicacaoBDTest {
@@ -27,6 +25,10 @@ class ComunicacaoBDTest {
         database.connectToDatabase();
     }
 
+    /**
+     * Verifica se o programa esta a retornar o saldo
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getSaldo() throws SQLException {
         double saldo = database.getSaldo(21270877);
@@ -35,6 +37,10 @@ class ComunicacaoBDTest {
         assertTrue(isEqual, "getSaldo()");
     }
 
+    /**
+     * Verifica se o programa esta a retornar um utilizador
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getUtilizador() throws SQLException {
         utilizador = new Utilizador(21270877, 0);
@@ -67,14 +73,26 @@ class ComunicacaoBDTest {
         assertTrue(isEqual, "getUtilizador()");
     }
 
+    /**
+     * Verifica se o programa esta a efetuar login
+     * @return true - se esta a efetuar com sucesso | false - se esta a efetuar sem sucesso
+     */
     @Test
     void login() {
     }
 
+    /**
+     * Verifica se o programa esta a retornar um a ementa
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getEmenta() {
     }
 
+    /**
+     * Verifica se o programa esta a retornar as senhas de um utilizador
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getSenhas() throws SQLException {
         ArrayList<Senha> senhas1 = new ArrayList<>();
@@ -87,6 +105,10 @@ class ComunicacaoBDTest {
         assertTrue(isEqual, "getUtilizador()");
     }
 
+    /**
+     * Verifica se o programa esta a retornar uma refeicao pelo id
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getRefeicao() throws SQLException {
         Refeicao refeicao1 = new Refeicao(3,"Sopa de Ceneura","Picado de Frango","Polvo Frito","Fruta","Arroz Doce",2.65,1,"2019-12-6");
@@ -98,17 +120,25 @@ class ComunicacaoBDTest {
         assertTrue(isEqual, "getUtilizador()");
     }
 
+    /**
+     * Verifica se o programa esta a retornar a lista de favoritos de um utilizador
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getFavoritos() throws SQLException {
         ArrayList<Favoritos> favoritos1 = new ArrayList<>();
         favoritos1.add(new Favoritos(1,"Grelhado Misto"));
-        ArrayList<Favoritos> favoritos2 = database.getFavoritos();
+        ArrayList<Favoritos> favoritos2 = database.getFavoritos(21270877);
         //addfavorito() ao utilizador, ainda nao implementado
         //verificar se está igual aos favoritos do utilziador na bd
         boolean isEqual = favoritos1.equals(favoritos2);
         assertTrue(isEqual, "getFavoritos()");
     }
 
+    /**
+     * Verifica se o programa esta a apagar uma senha
+     * @return true - se esta a apagar com sucesso | false - se esta a apagar sem sucesso
+     */
     @Test
     void deleteSenha() throws Exception {
         ArrayList<Senha> senhas1 = new ArrayList<>();
@@ -121,6 +151,10 @@ class ComunicacaoBDTest {
         assertTrue(isEqual, "deleteSenha()");
     }
 
+    /**
+     * Verifica se o programa esta o retorna o preco de uma senha comprada
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getPrecoSenhaComprada() throws SQLException {
         double preco;
@@ -131,6 +165,10 @@ class ComunicacaoBDTest {
 
     }
 
+    /**
+     * Verifica se o programa esta a adicionar o saldo de um utilizador
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
     @Test
     void addSaldo() throws SQLException {
         double saldo1 = 1.48;
@@ -139,6 +177,10 @@ class ComunicacaoBDTest {
         assertEquals(3.96, saldo2, "addSaldo()");
     }
 
+    /**
+     * Verifica se o programa esta a adicionar uma senha a um utilizador
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
     @Test
     void addSenha() throws SQLException {
         utilizador = new Utilizador(21270878,0);
@@ -149,6 +191,10 @@ class ComunicacaoBDTest {
         assertEquals(0, utilizador.geteUtilizador(), "gettipoUtilizador1()");
     }
 
+    /**
+     * Verifica se o programa esta a remover o saldo de um utilizador
+     * @return true - se esta a remover com sucesso | false - se esta a remover sem sucesso
+     */
     @Test
     void removeSaldo() throws SQLException {
         double saldo1 = 1.46;
@@ -157,6 +203,10 @@ class ComunicacaoBDTest {
         assertEquals(1.02, saldo2, "removeSaldo()");
     }
 
+    /**
+     * Verifica se o programa esta a validar o tempo da senha (pode alterar, ainda não passou + de 48h)
+     * @return true - se esta a verificar com sucesso | false - se esta a verificar sem sucesso
+     */
     @Test
     void hasMoreThan48Hours1() throws ParseException {
         Date data = null;
@@ -171,6 +221,10 @@ class ComunicacaoBDTest {
     }
     @Test
 
+    /**
+     * Verifica se o programa esta a validar o tempo da senha (não pode alterar, já passou + de 48h)
+     * @return true - se esta a verificar com sucesso | false - se esta a verificar sem sucesso
+     */
     void hasMoreThan48Hours2() throws ParseException {
         Date data = null;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -183,6 +237,10 @@ class ComunicacaoBDTest {
         assertFalse(resp, "hasMoreThan48Hours2()");
     }
 
+    /**
+     * Verifica se o programa esta a remover um favorito
+     * @return true - se esta a remover com sucesso | false - se esta a remover sem sucesso
+     */
     @Test
     void removeFavorito() {
         utilizador = new Utilizador(21270878,0);
@@ -191,6 +249,10 @@ class ComunicacaoBDTest {
         //verificar se removeu
     }
 
+    /**
+     * Verifica se o programa esta a retornar o total de senhas compradas ao administrador
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getSenhasCompradasAdmin() throws SQLException {
         ArrayList<RefeicaoAdmin> refeicoes = new ArrayList<>();
@@ -198,36 +260,98 @@ class ComunicacaoBDTest {
         Senha senha2 = database.getSenha(2);
         Senha senha3 = database.getSenha(3);
         Senha senha4 = database.getSenha(4);
-        /*while (1) {
-            int id = rs.getInt("idrefeicao");
-            int horario = rs.getInt("horario");
-            String aux;
-            if (horario == 0) {
-                aux = "Almoco";
-            } else aux = "Jantar";
-
-            String d = rs.getDate("data").toString();
-
-            String sqlquantPeixe = "SELECT COUNT(idsenha) FROM senha, refeicoes" +
-                    "WHERE " + id + "refeicoes.idrefeicao= senha.idrefeicao" +
-                    "AND senha.prato=refeicoes.pratopeixe;";
-            ResultSet rsa = executeQuery(sqlquantPeixe);
-            int qtpeixe = rsa.getInt("count(idsenha)");
-
-            String sqlquantCarne = "SELECT COUNT(idsenha) FROM senha, refeicoes" +
-                    "WHERE " + id + "refeicoes.idrefeicao= senha.idrefeicao" +
-                    "AND senha.prato=refeicoes.pratocarne;";
-            ResultSet rsc = executeQuery(sqlquantCarne);
-            int qtcarne = rsa.getInt("count(idsenha)");
-
-            refeicoes.add(new RefeicaoAdmin(id, d, aux, qtcarne, qtpeixe));*/
     }
 
+    /**
+     * Verifica se o programa esta a retornar uma senha
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
     @Test
     void getSenha() throws SQLException {
         Senha senha1 = new Senha(4,"Grelhado Misto","Fruta",2.65,1);
         Senha senha2 = database.getSenha(4);
         boolean isEqual = senha1.equals(senha2);
         assertTrue(isEqual, "getSenha()");
+    }
+
+
+    /**
+     * Verifica se o programa esta a adicionar um favorito
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
+    @Test
+    void addFavorito() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a adicionar um novo utilizador
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
+    @Test
+    void addNewUser() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a remover o saldo de um utilizador
+     * @return true - se esta a remover com sucesso | false - se esta a remover sem sucesso
+     */
+    @Test
+    void changeSenha() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a retornar o total de numeros favoritos de carne
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
+    @Test
+    void getNumPratosFavCarne() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a retornar o total de numeros favoritos de peixe
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
+    @Test
+    void getNumPratosFavPeixe() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a retornar as senhas de uma refeicao
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
+    @Test
+    void getSenhasDaRefeicao() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a remover uma refeicao
+     * @return true - se esta a remover com sucesso | false - se esta a remover sem sucesso
+     */
+    @Test
+    void removeRefeicao() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a adicionar uma refeicao
+     * @return true - se esta a adicionar com sucesso | false - se esta a adicionar sem sucesso
+     */
+    @Test
+    void addRefeicao() {
+    }
+
+
+    /**
+     * Verifica se o programa esta a retornar todos os complementos
+     * @return true - se esta a retornar com sucesso | false - se esta a retornar sem sucesso
+     */
+    @Test
+    void getTodosComplementos() {
     }
 }
