@@ -17,4 +17,9 @@ public class GerirUtilizadoresAdminControler {
    private void handleVoltar(ActionEvent action) throws IOException {
       po.setMenuAdminVIew();
    }
+
+   @FXML
+   private  void handleAddNewUser(ActionEvent action) throws IOException {
+      po.setAdicionarUtilizadorAdmin();
+   }
 }

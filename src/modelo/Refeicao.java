@@ -29,6 +29,7 @@ public class Refeicao {
     private int horario;   // 1 - Jantar | 0 - Almoço
     private String data;
     private ArrayList<Complemento> complementos;
+    private boolean jaComprada=false;
 
     public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> complementos) {
         this.idRefeicao = idRefeicao;
@@ -41,6 +42,32 @@ public class Refeicao {
         this.horario = almocoJantar;
         this.data = data;
         this.complementos = complementos;
+    }
+    public Refeicao( String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> comp) {
+        this.idRefeicao = idRefeicao;
+        this.sopa = sopa;
+        this.pratoCarne = pratoCarne;
+        this.pratoPeixe = pratoPeixe;
+        this.sombremesa1 = sombremesa1;
+        this.sombremesa2 = sombremesa2;
+        this.preco = preco;
+        this.horario = almocoJantar;
+        this.data = data;
+        this.complementos=comp;
+    }
+
+    public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int almocoJantar, String data, ArrayList<Complemento> complementos, boolean comp) {
+        this.idRefeicao = idRefeicao;
+        this.sopa = sopa;
+        this.pratoCarne = pratoCarne;
+        this.pratoPeixe = pratoPeixe;
+        this.sombremesa1 = sombremesa1;
+        this.sombremesa2 = sombremesa2;
+        this.preco = preco;
+        this.horario = almocoJantar;
+        this.data = data;
+        this.complementos = complementos;
+        this.jaComprada=comp;
     }
 
     public Refeicao(int idRefeicao, String sopa, String pratoCarne, String pratoPeixe, String sombremesa1, String sombremesa2, double preco, int horario, String data) {
@@ -133,5 +160,9 @@ public class Refeicao {
 
     public ArrayList<Complemento> getComplementos() {
         return complementos;
+    }
+
+    public boolean isJaComprada() {
+        return jaComprada;
     }
 }

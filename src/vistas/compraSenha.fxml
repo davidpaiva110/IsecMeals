@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <bottom>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
@@ -80,10 +81,10 @@
               <children>
                 <CheckBox id="x1" fx:id="cbSobremesa2" mnemonicParsing="false" text="" />
                 <Label fx:id="lbSobremesa2" text="LABEL" />
-                <Label id="x2" text="Label" fx:id="x7" />
-                <HBox id="x8" prefHeight="0.0" prefWidth="160.0" fx:id="x9">
+                <Label id="x2" fx:id="x7" text="Label" />
+                <HBox id="x8" fx:id="x9" prefHeight="0.0" prefWidth="160.0">
                   <children>
-                    <CheckBox id="x1" mnemonicParsing="false" text="" fx:id="x6" />
+                    <CheckBox id="x1" fx:id="x6" mnemonicParsing="false" text="" />
                     <fx:reference source="x7" />
                   </children>
                 </HBox>
@@ -94,9 +95,9 @@
         <VBox id="x7" fx:id="vbComplementos" alignment="TOP_CENTER" maxHeight="170.0" prefHeight="50.0" prefWidth="160.0" style="-fx-border-color: black;&#10;-fx-border-width: 3;&#10;-fx-padding: 10;" HBox.margin="$x3">
           <children>
             <Label id="x1" fx:id="lbComplementos" font="$x1" prefWidth="134.0" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;&#10;" text="Complementos" />
-            <HBox id="x4" prefHeight="0.0" prefWidth="200.0" fx:id="x8">
+            <HBox id="x4" fx:id="x8" prefHeight="0.0" prefWidth="200.0">
               <children>
-                <CheckBox id="x2" mnemonicParsing="false" text="" fx:id="x4" />
+                <CheckBox id="x2" fx:id="x4" mnemonicParsing="false" text="" />
                 <Label id="x2" text="Label" />
               </children>
             </HBox>
@@ -108,29 +109,32 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <bottom>
+        <Label alignment="CENTER" text="Comprar Senha" textFill="#7d222b" BorderPane.alignment="CENTER">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </bottom>
       <center>
-        <BorderPane prefHeight="200.0" prefWidth="200.0">
-          <bottom>
-            <HBox alignment="CENTER" prefHeight="126.0" prefWidth="190.0" BorderPane.alignment="CENTER">
-              <children>
-                <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Senha" />
-                <Label fx:id="lbHorario" text="Label">
-                  <HBox.margin>
-                    <Insets left="10.0" />
-                  </HBox.margin>
-                </Label>
-                <Label fx:id="lbData" text="Label">
-                  <HBox.margin>
-                    <Insets left="10.0" right="10.0" />
-                  </HBox.margin>
-                </Label>
-              </children>
-              <BorderPane.margin>
-                <Insets />
-              </BorderPane.margin>
-            </HBox>
-          </bottom>
-        </BorderPane>
+        <HBox alignment="CENTER" prefHeight="126.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+          <children>
+            <Label style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Senha" />
+            <Label fx:id="lbHorario" text="Label">
+              <HBox.margin>
+                <Insets left="10.0" />
+              </HBox.margin>
+            </Label>
+            <Label fx:id="lbData" text="Label">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" />
+              </HBox.margin>
+            </Label>
+          </children>
+          <BorderPane.margin>
+            <Insets />
+          </BorderPane.margin>
+        </HBox>
       </center>
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">

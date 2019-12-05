@@ -69,4 +69,12 @@ public class PasswordUtils {
         return returnValue;
     }
 
+
+    public static String generateRandomPassword(){
+        String password = new Random().ints(10, 33, 122).collect(StringBuilder::new,
+                StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        return password;
+    }
+
 }

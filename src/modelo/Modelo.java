@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.Password.PasswordUtils;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +79,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return lista com os favoritos do utilizador
      */
     public ArrayList<Favoritos> getFavoritos() throws SQLException {
-        return database.getFavoritos();
+        return database.getFavoritos(utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -85,8 +87,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean addFavorito(String descricaoFavorito) {
-        return false;
+    public boolean addFavorito(String descricaoFavorito, int tipo) throws SQLException {
+        return database.addFavorito(descricaoFavorito, tipo, utilizador.getNumeroUtilizador());
     }
 
     /**
@@ -133,12 +135,16 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @param novosDadosSenha
+     * @param novaSenha
      * @return true se alterada com sucesso | false caso contrario
      */
     @Override
-    public boolean changeSenha(Refeicao novosDadosSenha) {
-        return false;
+    public boolean changeSenha(Senha novaSenha) throws Exception{
+        double precoSenhaAntiga=database.changeSenha(novaSenha);
+        double dif=precoSenhaAntiga-novaSenha.getPreco();
+        if(dif>0) database.addSaldo(utilizador.getNumeroUtilizador(), dif);
+        else if(dif<0) database.removeSaldo(utilizador.getNumeroUtilizador(), Math.abs(dif));
+        return true;
     }
 
 
@@ -151,15 +157,7 @@ public class Modelo  implements IUtilizador, IEmenta{
         return 0;
     }
 
-    /**
-     * Funcionalidade do Administrador
-     * @param novoUtilizador dados do novo utilizador
-     * @return true se foi adicionado com sucesso | false caso contrário
-     */
-    @Override
-    public boolean addUtilizador(Utilizador novoUtilizador) {
-        return false;
-    }
+
 
     /**
      * Funcionalidade do Administrador
@@ -184,8 +182,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se foi adicionado com sucesso | false caso contrário
      */
     @Override
-    public boolean addNovaRefeicao(Refeicao novaRefeicao) {
-        return false;
+    public boolean addNovaRefeicao(Refeicao novaRefeicao) throws Exception {
+        return database.addRefeicao(novaRefeicao);
     }
 
     /**
@@ -203,8 +201,12 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se cancelado com sucesso | false caso contrário
      */
     @Override
-    public boolean cancelRefeicao(int idRefeicao){
-        return false;
+    public boolean cancelRefeicao(int idRefeicao) throws Exception {
+        ArrayList<Integer> senhas = new ArrayList<>();
+        senhas= database.getSenhasDaRefeicao(idRefeicao);
+        for(Integer i: senhas)
+            this.cancelSenha(i);
+        return  database.removeRefeicao(idRefeicao) ;
     }
 
     /**
@@ -228,4 +230,39 @@ public class Modelo  implements IUtilizador, IEmenta{
     public Senha getSenha(int idSenha) throws SQLException {
         return database.getSenha(idSenha);
     }
+
+
+
+    /**
+     * Verifica se o utilizador prefere pratos de carne ou peixe
+     * @return 0 - Se preferir carne ou for indiferente | 1 - Se preferir peixe
+     */
+    public int getPreferenciaPratoUser() {
+        try {
+            int carne=database.getNumPratosFavCarne(utilizador.getNumeroUtilizador());
+            int peixe=database.getNumPratosFavPeixe(utilizador.getNumeroUtilizador());
+            if(carne>=peixe) return 0;
+            else return 1;
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        Utilizador uti = new Utilizador(userNumber, nome, saldo);
+        String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
+        uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
+        boolean resultado = database.addNewUser(uti);
+
+        if(resultado == true){
+            //enviar a password por email ao utilizador
+        }
+
+        return password;
+    }
+
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        return database.getTodosComplementos();
+    }
+
 }

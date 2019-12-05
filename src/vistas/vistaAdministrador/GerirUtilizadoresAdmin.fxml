@@ -2,16 +2,10 @@
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <center>
     <HBox alignment="CENTER" prefHeight="595.0" prefWidth="595.0">
       <children>
@@ -32,12 +26,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="204.0">
           <children>
-            <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button fx:id="btnVoltar" onAction="#handleVoltar" depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button fx:id="btnVoltar" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>
@@ -45,6 +39,13 @@
           </children>
         </HBox>
       </left>
+         <right>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0" BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <Button fx:id="btnAddNewUser" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleAddNewUser" prefHeight="33.0" prefWidth="238.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Adicionar um novo Utilizador" />
+               </children>
+            </HBox>
+         </right>
     </BorderPane>
   </top>
 </BorderPane>

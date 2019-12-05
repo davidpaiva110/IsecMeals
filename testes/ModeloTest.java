@@ -14,7 +14,6 @@ class ModeloTest {
     private List<Refeicao> ementa1;
     private ComunicacaoBD database;
 
-  
     ModeloTest() throws SQLException, ClassNotFoundException {
         database = new ComunicacaoBD();
         ementa1 = new ArrayList<>();
@@ -89,8 +88,7 @@ class ModeloTest {
     /**
      * Verifica se o retorno do tipo de utilizador (administrador) foi efetuado com sucesso
      * @return 1 - se foi retornado com sucesso | 0 - se foi retornado efetuado sem sucesso
-     */
-    @Test
+
     void gettipoUtilizador2() throws SQLException {
         utilizador = database.getUtilizador(21270547);
         assertEquals(1, utilizador.geteUtilizador(), "gettipoUtilizador2()");
@@ -251,7 +249,7 @@ class ModeloTest {
      * @return true - se foi retornada com sucesso | false - se foi retornada sem sucesso
      */
     @Test
-        //get ementa, 1 dia tem 2 refeições
+    //get ementa, 1 dia tem 2 refeições
     void getEmenta() throws SQLException {
         Refeicao refeicao1 = new Refeicao(2,"Sopa de Feijão","Costeletinha de Novilho","Truta do Nilo","Fruta","Gelatina",2.65,0,"2019-12-6");
         Refeicao refeicao2 = new Refeicao(3,"Sopa de Ceneura","Picado de Frango","Polvo Frito","Fruta","Arroz Doce",2.65,1,"2019-12-6");

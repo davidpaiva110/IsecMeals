@@ -3,9 +3,7 @@ package vistas;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Complemento;
@@ -23,6 +21,7 @@ public class AlterarSenhaController {
     private Refeicao dadosRefeicao;
     private Senha senha;
     private ArrayList<Complemento> complementos;
+    private ArrayList<Complemento> complementosSenha;
     private double saldo;
     @FXML Label lbSopaDesc;
     @FXML Label lbPratoCarneDesc;
@@ -47,12 +46,10 @@ public class AlterarSenhaController {
         this.po = paneOrganizer;
         this.dadosRefeicao = dadosrefeicao;
         this.senha = senha;
+        complementosSenha=senha.getComplementos();
     }
 
     public void initialize() {
-        /*senha.setIdRefeicao(dadosRefeicao.getIdRefeicao());
-        this.complementos = dadosRefeicao.getComplementos();
-        lbTotalPagar.setText(""+senha.getPreco());
         try {
             this.saldo = po.getControlador().getSaldo();
             DecimalFormat df = new DecimalFormat("0.00");
@@ -67,6 +64,13 @@ public class AlterarSenhaController {
         lbSopaDesc.setText(dadosRefeicao.getSopa());
         lbPratoCarneDesc.setText(dadosRefeicao.getPratoCarne());
         lbPratoPeixeDesc.setText(dadosRefeicao.getPratoPeixe());
+        if(senha.getPrato().equalsIgnoreCase(dadosRefeicao.getPratoCarne())) {
+            cbPC.setSelected(true);
+            cbPP.setSelected(false);
+        }else{
+            cbPP.setSelected(true);
+            cbPC.setSelected(false);
+        }
         cbPC.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -83,8 +87,19 @@ public class AlterarSenhaController {
                 senha.setPrato(dadosRefeicao.getPratoPeixe());
             }
         });
+        DecimalFormat df = new DecimalFormat("0.00");
+        String totalPagar = df.format(senha.getPreco());
+        lbTotalPagar.setText(totalPagar+"€");
+        this.complementos = dadosRefeicao.getComplementos();
         lbSobremesa1.setText(dadosRefeicao.getSombremesa1());
         lbSobremesa2.setText(dadosRefeicao.getSombremesa2());
+        if(senha.getSombremesa().equalsIgnoreCase(dadosRefeicao.getSombremesa1())) {
+            cbSobremesa1.setSelected(true);
+            cbSobremesa2.setSelected(false);
+        }else{
+            cbSobremesa2.setSelected(true);
+            cbSobremesa1.setSelected(false);
+        }
         cbSobremesa1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -112,12 +127,23 @@ public class AlterarSenhaController {
                 lbC.setText(complemento.getNomeComplemento());
                 CheckBox cbC = new CheckBox();
                 cbC.setId(""+complemento.getIdComplemento());
+                for (Complemento comp: senha.getComplementos()) {
+                    if(comp.getIdComplemento()==complemento.getIdComplemento()){
+                        cbC.setSelected(true);
+                        break;
+                    }
+                }
                 cbC.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         if(!cbC.isSelected()) {
                             senha.setPreco(senha.getPreco() - complemento.getPreco());
-                            senha.removeComplemento(complemento);
+                            for (Complemento co: complementosSenha) {
+                                if(co.getIdComplemento()==Integer.parseInt(cbC.getId())) {
+                                    complementosSenha.remove(co);
+                                    break;
+                                }
+                            }
                         }
                         else {
                             senha.setPreco(senha.getPreco() + complemento.getPreco());
@@ -138,15 +164,21 @@ public class AlterarSenhaController {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    System.out.println("i am aqui");
-                    po.getControlador().buySenha(senha);
-                    po.setMenuUserView();
-                } catch (SQLException e) { }
-                catch (IOException e) { }
+                    senha.setComplementos(complementosSenha);
+                    po.getControlador().updateSenha(senha);
+                    Alert success = new Alert(Alert.AlertType.INFORMATION, "Senha alterada com sucesso!", ButtonType.OK);
+                    success.setHeaderText("Senha Alterada");
+                    success.setTitle("Sucesso");
+                    success.showAndWait();
+                    po.setGestaoSenhasView();
+                } catch (Exception e) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+                    error.setHeaderText("Erro ao Alterar a Senha");
+                    error.setTitle("Erro");
+                    error.showAndWait();
+                }
             }
         });
-*/
-
     }
 
     @FXML

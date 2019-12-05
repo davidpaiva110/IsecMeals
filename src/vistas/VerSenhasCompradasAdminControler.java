@@ -20,7 +20,7 @@ public class VerSenhasCompradasAdminControler {
     private ArrayList<RefeicaoAdmin> refeicoes;
     @FXML private TableView tabelarefadmin;
     @FXML TableColumn<TableSenhasAdmin,Integer > colID;
-    @FXML TableColumn<TableSenhasAdmin, DateFormat> colData;
+    @FXML TableColumn<TableSenhasAdmin, String> colData;
     @FXML TableColumn<TableSenhasAdmin, String> colHorario;
     @FXML TableColumn<TableSenhasAdmin,Integer > colQuantPeixe;
     @FXML TableColumn<TableSenhasAdmin, Integer> colQuantCarne;
@@ -40,18 +40,17 @@ public class VerSenhasCompradasAdminControler {
     public void initialize(){
         tabelarefadmin.setEditable(false);
         colID.setCellValueFactory(new PropertyValueFactory<>("IdRefeicao"));
-        colData.setCellValueFactory(new PropertyValueFactory<>("Fase"));
-        colHorario.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        colHorario.setCellValueFactory(new PropertyValueFactory<>("Fase"));
+        colData.setCellValueFactory(new PropertyValueFactory<>("Data"));
         colQuantPeixe.setCellValueFactory(new PropertyValueFactory<>("QuantPeixe"));
         colQuantCarne.setCellValueFactory(new PropertyValueFactory<>("QuantCarne"));
         try {
- refeicoes = po.getControlador().getSenhasCompradasAdmin();
+            refeicoes = po.getControlador().getSenhasCompradasAdmin();
             for ( RefeicaoAdmin ref : refeicoes) {
                 TableSenhasAdmin tab =new TableSenhasAdmin(ref.getIdRefeicao(), ref.getFase(), ref.getData(),ref.getQuantPeixe(),ref.getQuantCarne());
                 tabelarefadmin.getItems().add(tab);
 
             }
-
 
         }catch (SQLException e) {
                 tabelarefadmin.setPlaceholder(new Label(e.getMessage().toString()));

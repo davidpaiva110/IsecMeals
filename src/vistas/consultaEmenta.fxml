@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
     <HBox fx:id="hBoxEmenta" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
@@ -106,19 +106,41 @@
     </HBox>
   </center>
   <top>
-    <HBox prefHeight="100.0" prefWidth="200.0">
-      <children>
-        <Button fx:id="btnSair" onAction="#handleSair" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
-          <HBox.margin>
-            <Insets left="10.0" top="5.0" />
-          </HBox.margin>
-        </Button>
-        <Button fx:id="btnVoltar" onAction="#handleVoltar" depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
-          <HBox.margin>
-            <Insets left="15.0" top="5.0" />
-          </HBox.margin>
-        </Button>
-      </children>
-    </HBox>
+    <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label alignment="CENTER" prefWidth="256.0" text="Consultar Ementa" textFill="#7d222b">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
+      <left>
+        <HBox prefHeight="100.0" prefWidth="129.0">
+          <children>
+            <Button id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+              <HBox.margin>
+                <Insets left="10.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+            <Button id="btnVoltar" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+              <HBox.margin>
+                <Insets left="15.0" top="5.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+      </left>
+      <right>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="169.0">
+          <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" style="-fx-text-fill: #7D222B;&#10;-fx-font-weight: bold;" text="Saldo Disponível:" />
+            <Label fx:id="lbSaldo" alignment="CENTER_RIGHT" text="Label" />
+          </children>
+          <padding>
+            <Insets top="10.0" />
+          </padding>
+        </HBox>
+      </right>
+    </BorderPane>
   </top>
 </BorderPane>

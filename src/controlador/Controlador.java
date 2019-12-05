@@ -80,4 +80,32 @@ public class Controlador {
     public Senha getSenha(int idSenha) throws SQLException {
         return modelo.getSenha(idSenha);
     }
+
+
+    public boolean addFavorito(String prato, int tipo) throws SQLException {
+        return modelo.addFavorito(prato, tipo);
+    }
+
+
+    public boolean updateSenha(Senha senha) throws Exception {
+        return modelo.changeSenha(senha);
+    }
+
+    public int getPreferenciaPratoUser() {
+        return modelo.getPreferenciaPratoUser();
+    }
+    public boolean cancelRefeicao(int idref) throws Exception {
+        return modelo.cancelRefeicao(idref);
+    }
+
+    public boolean adicionaRefeicao(Refeicao ref) throws Exception {
+        return modelo.addNovaRefeicao(ref);
+    }
+    public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
+        return modelo.addNewUser(userNumber, nome, saldo);
+    }
+
+    public ArrayList<Complemento> getTodosComplementos() throws SQLException {
+        return modelo.getTodosComplementos();
+    }
 }

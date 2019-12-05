@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.text.Font?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -29,6 +30,13 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label text="Senhas Compradas" textFill="#7d222b" BorderPane.alignment="CENTER_LEFT">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
