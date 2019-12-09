@@ -108,4 +108,8 @@ public class Controlador {
     public ArrayList<Complemento> getTodosComplementos() throws SQLException {
         return modelo.getTodosComplementos();
     }
+
+    public ArrayList<Utilizador> getUserAdmin() throws SQLException {
+    return modelo.getUserAdmin();
+    }
 }

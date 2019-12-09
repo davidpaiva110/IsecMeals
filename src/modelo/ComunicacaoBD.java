@@ -600,6 +600,17 @@ public class ComunicacaoBD {
         }
         return comp;
     }
+
+    public ArrayList<Utilizador> getUserAdmin() throws SQLException {
+        ArrayList<Utilizador> uti= new ArrayList<>();
+        String sql ="SELECT numero,nome,saldo FROM UTILIZADOR WHERE PERMISSAO = "+0;
+        ResultSet rs = executeQuery(sql);
+        while(rs.next()){
+            Utilizador us = new Utilizador(rs.getInt("numero"),rs.getString("nome"),rs.getFloat("saldo"));
+            uti.add(us);
+        }
+        return uti;
+    }
 }
 
 

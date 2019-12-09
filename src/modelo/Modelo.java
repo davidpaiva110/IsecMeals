@@ -265,4 +265,9 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getTodosComplementos();
     }
 
+    public ArrayList<Utilizador> getUserAdmin() throws SQLException {
+        return database.getUserAdmin();
+    }
+
+
 }
