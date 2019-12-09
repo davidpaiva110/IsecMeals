@@ -248,19 +248,27 @@ public class Modelo  implements IUtilizador, IEmenta{
         }
     }
 
+    /**
+     *
+     * @param userNumber : Número do novo utilizador
+     * @param nome : Nome do novo utilizador
+     * @param saldo : Saldo do novo utilizador
+     * @return password do utilizador
+     * @throws SQLException
+     */
     public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
         Utilizador uti = new Utilizador(userNumber, nome, saldo);
         String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
         uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
         boolean resultado = database.addNewUser(uti);
-
-        if(resultado == true){
-            //enviar a password por email ao utilizador
-        }
-
         return password;
     }
 
+    /**
+     *
+     * @return lsita de todos os complementos existentes
+     * @throws SQLException
+     */
     public ArrayList<Complemento> getTodosComplementos() throws SQLException {
         return database.getTodosComplementos();
     }

@@ -198,6 +198,12 @@ public class ComunicacaoBD {
         return senhas;
     }
 
+    /**
+     *
+     * @param id de uma determinada Refeição
+     * @return Objeto Refeição, com toda a informação a si associada
+     * @throws SQLException
+     */
     public Refeicao getRefeicao(int id) throws SQLException {
         Refeicao refeicao = null;
         String sql = "SELECT * FROM refeicoes WHERE idrefeicao=" + id;
@@ -218,6 +224,12 @@ public class ComunicacaoBD {
         return refeicao;
     }
 
+    /**
+     *
+     * @param idRefeicao : id da refeição que se pretende consultar os complementos
+     * @return uma lista de complementos refentes aquela refeição
+     * @throws SQLException
+     */
     private ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException {
         ArrayList<Complemento> complementos = new ArrayList<>();
         String sql = "SELECT * FROM complementorefeicao WHERE idrefeicao=" + idRefeicao;
@@ -256,15 +268,13 @@ public class ComunicacaoBD {
      */
     private String getEndDate(String currentDate) {
         String date = null;
-
         Calendar calender = Calendar.getInstance();
         String[] result = currentDate.split("-");
         calender.set(Calendar.YEAR, Integer.parseInt(result[0]));
-        calender.set(Calendar.MONTH, Integer.parseInt(result[1]));
-        calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));  //
-
+        int mes = Integer.parseInt(result[1])-1;
+        calender.set(Calendar.MONTH, mes);
+        calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));
         int dayOfWeek = calender.get(Calendar.DAY_OF_WEEK);
-        dayOfWeek = dayOfWeek - 2;
         switch (dayOfWeek) {
             case Calendar.MONDAY:
                 calender.add(Calendar.DAY_OF_MONTH, 4);
@@ -287,11 +297,17 @@ public class ComunicacaoBD {
                 calender.add(Calendar.DAY_OF_MONTH, 5);
                 break;
         }
-        date = calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
+        mes =  calender.get(Calendar.MONTH) +1;
+        date = calender.get(Calendar.YEAR) + "-" + mes + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
     }
 
-
+    /**
+     *
+     * @param userNumber : número do utilizador
+     * @return lista de favoritos do utilizador
+     * @throws SQLException
+     */
     public ArrayList<Favoritos> getFavoritos(int userNumber) throws SQLException {
         ArrayList<Favoritos> favoritos = new ArrayList<>();
         ArrayList<Integer> favIds = new ArrayList<>();
@@ -301,9 +317,6 @@ public class ComunicacaoBD {
             int favid = rsId.getInt("idfavorito");
             favIds.add(favid);
         }
-
-
-
         String sql = "SELECT * FROM favorito";
         ResultSet rs = executeQuery(sql);
         while (rs.next()){
@@ -322,7 +335,12 @@ public class ComunicacaoBD {
         return favoritos;
     }
 
-
+    /**
+     *
+     * @param id da senha a elminar
+     * @return true se bem sucedido
+     * @throws Exception caso tenha ocorrido um erro ao eliminar a senha
+     */
     public boolean deleteSenha(int id) throws Exception {
         String sql = "DELETE FROM Senha WHERE idsenha=" + id;
         int rs = executeUpdate(sql);
@@ -334,6 +352,12 @@ public class ComunicacaoBD {
         return true;
     }
 
+    /**
+     *
+     * @param id da senha a consultar o preço
+     * @return preço da senha
+     * @throws Exception caso não exista uma senha com o ID indicado
+     */
     public double getPrecoSenhaComprada(int id) throws Exception {
         double preco;
         String sql = "SELECT precototal FROM senha WHERE idsenha=" + id;
@@ -346,6 +370,12 @@ public class ComunicacaoBD {
         return preco;
     }
 
+    /**
+     *
+     * @param number : número do utilizador a retirar o saldo
+     * @param saldo : saldo a adicionar ao já existente
+     * @throws SQLException
+     */
     public void addSaldo(int number, double saldo) throws SQLException {
         double saldoAtual = getSaldo(number);
         saldoAtual += saldo;
@@ -353,6 +383,13 @@ public class ComunicacaoBD {
         int rs = executeUpdate(sql);
     }
 
+    /**
+     *
+     * @param senha : Dados da nova Senha
+     * @param user : número do utilziador
+     * @return true se operação executada com sucesso| false se operação falhou
+     * @throws SQLException
+     */
     public boolean addSenha(Senha senha, int user) throws SQLException {
         String sql = "INSERT INTO senha (numero, idrefeicao, prato, sobremensa, precototal) VALUES ('" + user +
                 "', '" + senha.getIdRefeicao() + "', '" +
@@ -375,6 +412,12 @@ public class ComunicacaoBD {
         return true;
     }
 
+    /**
+     *
+     * @param number : número do utilizador a remover saldo
+     * @param saldo : valor a retirar do saldo
+     * @throws SQLException
+     */
     public void removeSaldo(int number, double saldo) throws SQLException {
         double saldoAtual = getSaldo(number);
         saldoAtual -= saldo;
@@ -382,6 +425,11 @@ public class ComunicacaoBD {
         int rs = executeUpdate(sql);
     }
 
+    /**
+     *  Verifica se ainda falta mais de 48 horas para uma refeição
+     * @param idRefeicao : id da refeição
+     * @return true - se faltar mais de 48 horas | false - se faltar menos de 48 horas
+     */
     public boolean hasMoreThan48Hours(int idRefeicao) {
         Date data = null;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -401,6 +449,12 @@ public class ComunicacaoBD {
         return resp;
     }
 
+    /**
+     *
+     * @param id do favorito a remover
+     * @return true se removido com sucesso
+     * @throws Exception no caso de ter ocorrido um erro
+     */
     public boolean removeFavorito(int id) throws Exception {
         String sql = "DELETE FROM favorito WHERE idfavorito=" + id;
         int rs = executeUpdate(sql);
@@ -415,6 +469,11 @@ public class ComunicacaoBD {
        return true;
     }
 
+    /**
+     *
+     * @return lista com senhas adquiridas pelos utilizadores do sistema
+     * @throws SQLException
+     */
     public ArrayList<RefeicaoAdmin> getSenhasCompradasAdmin() throws SQLException {
         ArrayList<RefeicaoAdmin> refeicoes = new ArrayList<>();
         String sql = "SELECT idrefeicao,horario,data FROM refeicoes ORDER BY idrefeicao DESC";
@@ -443,6 +502,12 @@ public class ComunicacaoBD {
         return refeicoes;
     }
 
+    /**
+     *
+     * @param idSenha da senha a consultar
+     * @return objeto Senha com os dados de uma senha
+     * @throws SQLException
+     */
     public Senha getSenha(int idSenha) throws SQLException {
         Senha senha = null;
         String sql = "SELECT idrefeicao, prato, sobremensa, precototal FROM senha WHERE idsenha=" + idSenha;
@@ -459,6 +524,12 @@ public class ComunicacaoBD {
         return senha;
     }
 
+    /**
+     *
+     * @param idSenha da senha que se pretende obter os complementos
+     * @return Lista de complementos da senha com o id = ideSenha
+     * @throws SQLException
+     */
     private ArrayList<Complemento> getComplementosSenha(int idSenha) throws SQLException {
         ArrayList<Complemento> complementos = new ArrayList<>();
         String sql = "SELECT * FROM complementosenha WHERE idsenha=" + idSenha;
@@ -478,6 +549,14 @@ public class ComunicacaoBD {
         return complementos;
     }
 
+    /**
+     *
+     * @param prato descrição do prato favorito
+     * @param tipo tipo do prato: carne | peixe
+     * @param userNumber : número do utilizador
+     * @return true se novo favorito adicionado com sucesso
+     * @throws SQLException
+     */
     public boolean addFavorito(String prato, int tipo, int userNumber) throws SQLException {
         String sql = "INSERT INTO favorito (prato, tipo) VALUES ('" + prato +"','" + tipo + "')";
         int rs = executeUpdate(sql);
@@ -493,7 +572,12 @@ public class ComunicacaoBD {
         return true;
     }
 
-
+    /**
+     *
+     * @param utilizador dados do novo utilizador
+     * @return true se o novo utilizador foi adicionado com sucesso
+     * @throws SQLException
+     */
     public boolean addNewUser(Utilizador utilizador) throws SQLException {
         String sql = "INSERT INTO utilizador VALUES ('" + utilizador.getNumeroUtilizador() + "', '"
                                                 + utilizador.getNome() + "', '"
@@ -504,6 +588,13 @@ public class ComunicacaoBD {
         return rs == 1;
     }
 
+
+    /**
+     *
+     * @param novaSenha : Novos dados da Senha
+     * @return preço antigo da senha
+     * @throws Exception
+     */
     public double changeSenha(Senha novaSenha) throws Exception {
         double precototalAntigo=-1;
         String sql = "SELECT precototal FROM senha WHERE idsenha=" + novaSenha.getIdSenha();
@@ -527,6 +618,12 @@ public class ComunicacaoBD {
         return precototalAntigo;
     }
 
+    /**
+     *
+     * @param userNumber : número do utilizador
+     * @return o número de favoritos que são pratos de carne
+     * @throws SQLException
+     */
     public int getNumPratosFavCarne(int userNumber) throws SQLException {
         int count=0;
         String sql="SELECT COUNT(numero) FROM favoritoutilizador, favorito WHERE favoritoutilizador.idfavorito=favorito.idfavorito AND favorito.tipo=0 AND favoritoutilizador.numero=" + userNumber;
@@ -537,6 +634,12 @@ public class ComunicacaoBD {
         return count;
     }
 
+    /**
+     *
+     * @param userNumber : número do utilizador
+     * @return o número de favoritos que são pratos de peixe
+     * @throws SQLException
+     */
     public int getNumPratosFavPeixe(int userNumber) throws SQLException {
         int count=0;
         String sql="SELECT COUNT(numero) FROM favoritoutilizador, favorito WHERE favoritoutilizador.idfavorito=favorito.idfavorito AND favorito.tipo=1 AND favoritoutilizador.numero=" + userNumber;
@@ -547,7 +650,12 @@ public class ComunicacaoBD {
         return count;
     }
 
-
+    /**
+     *
+     * @param id de uma refeição
+     * @return Lista de senhas que foram compradas que sejam de uma refeição com o idreeicao = id
+     * @throws SQLException
+     */
     public ArrayList<Integer> getSenhasDaRefeicao(int id) throws SQLException {
         ArrayList<Integer> senhas = new ArrayList<>();
         String sql ="SELECT idsenha FROM senha WHERE senha.idrefeicao = " +id;
@@ -559,6 +667,12 @@ public class ComunicacaoBD {
         return senhas;
     }
 
+    /**
+     *
+     * @param idRefeicao : id da refeição a remover
+     * @return true se a refeição foi removida com sucesso
+     * @throws Exception caso tenha ocorrido um erro
+     */
     public boolean removeRefeicao(int idRefeicao) throws Exception {
         String sql =" DELETE FROM refeicoes WHERE idrefeicao= " +idRefeicao;
         int rs = executeUpdate(sql);
@@ -568,6 +682,12 @@ public class ComunicacaoBD {
         return true;
     }
 
+    /**
+     *
+     * @param ref dados da nova refeição
+     * @return true se a nova refeição foi adicionada com sucesso
+     * @throws Exception
+     */
     public boolean addRefeicao(Refeicao ref) throws Exception {
         String sql ="INSERT  INTO refeicoes (sopa, pratocarne, pratopeixe, sobremesa1, sobremesa2, preco, horario, data)  VALUES('"+ref.getSopa()+"','" +ref.getPratoCarne() +"','"+ref.getPratoPeixe()+"','" +ref.getSombremesa1()+
                "','"+ref.getSombremesa2()+"',"+ ref.getPreco()+","+ref.getAlmocoJantar() + ",'"+ref.getData() +"')";
@@ -590,6 +710,11 @@ public class ComunicacaoBD {
         return true;
     }
 
+    /**
+     *
+     * @return lista de todos os complementos existentes
+     * @throws SQLException
+     */
     public ArrayList<Complemento> getTodosComplementos() throws SQLException {
         ArrayList<Complemento> comp = new ArrayList<>();
         String sql="SELECT * FROM complemento";
