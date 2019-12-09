@@ -256,15 +256,13 @@ public class ComunicacaoBD {
      */
     private String getEndDate(String currentDate) {
         String date = null;
-
         Calendar calender = Calendar.getInstance();
         String[] result = currentDate.split("-");
         calender.set(Calendar.YEAR, Integer.parseInt(result[0]));
-        calender.set(Calendar.MONTH, Integer.parseInt(result[1]));
-        calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));  //
-
+        int mes = Integer.parseInt(result[1])-1;
+        calender.set(Calendar.MONTH, mes);
+        calender.set(Calendar.DAY_OF_MONTH, Integer.parseInt(result[2]));
         int dayOfWeek = calender.get(Calendar.DAY_OF_WEEK);
-        dayOfWeek = dayOfWeek - 2;
         switch (dayOfWeek) {
             case Calendar.MONDAY:
                 calender.add(Calendar.DAY_OF_MONTH, 4);
@@ -287,7 +285,8 @@ public class ComunicacaoBD {
                 calender.add(Calendar.DAY_OF_MONTH, 5);
                 break;
         }
-        date = calender.get(Calendar.YEAR) + "-" + calender.get(Calendar.MONTH) + "-" + calender.get(Calendar.DAY_OF_MONTH);
+        mes =  calender.get(Calendar.MONTH) +1;
+        date = calender.get(Calendar.YEAR) + "-" + mes + "-" + calender.get(Calendar.DAY_OF_MONTH);
         return date;
     }
 
