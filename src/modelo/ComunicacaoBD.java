@@ -187,7 +187,7 @@ public class ComunicacaoBD {
     public ArrayList<Refeicao> getEmentaToda() throws SQLException {
         ArrayList<Refeicao> ementa = new ArrayList<>();
 
-        String sql = "SELECT * FROM refeicoes";
+        String sql = "SELECT * FROM refeicoes ORDER BY idrefeicao DESC";
         ResultSet rs = executeQuery(sql);
         while (rs.next()) {
             int contador = 0;

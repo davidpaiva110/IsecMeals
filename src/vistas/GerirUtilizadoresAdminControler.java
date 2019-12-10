@@ -49,7 +49,9 @@ public class GerirUtilizadoresAdminControler {
       try {
          users = po.getControlador().getUserAdmin();
          for (Utilizador us : users) {
-            TableUsersAdmin tbuser=new TableUsersAdmin(us.getNumeroUtilizador(),us.getNome(),us.getSaldo());
+            DecimalFormat df = new DecimalFormat("0.00");
+            String saldo = df.format(us.getSaldo());
+            TableUsersAdmin tbuser=new TableUsersAdmin(us.getNumeroUtilizador(),us.getNome(),saldo + "€");
             /*tbuser.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent actionEvent) {

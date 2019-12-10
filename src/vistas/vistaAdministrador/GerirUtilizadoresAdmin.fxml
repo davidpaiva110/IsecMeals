@@ -4,6 +4,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
@@ -15,7 +16,7 @@
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="201.0" text="Nome" fx:id="CoLNome" />
             <TableColumn prefWidth="65.0" text="Saldo" fx:id="Colsaldo" />
             <TableColumn prefWidth="115.0" text="Alterar" fx:id="colAlterar" />
-            <TableColumn prefWidth="120.0" text="Remover" fx:id="colCancelar"/>
+            <TableColumn prefWidth="120.0" text="Remover" fx:id="colCancelar" />
           </columns>
         </TableView>
       </children>
@@ -23,8 +24,15 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label prefWidth="250.0" text="Gerir Utilizadores" textFill="#7d222b">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
       <left>
-        <HBox prefHeight="100.0" prefWidth="204.0">
+        <HBox prefHeight="100.0" prefWidth="126.0">
           <children>
             <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
@@ -40,9 +48,9 @@
         </HBox>
       </left>
       <right>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="300.0" BorderPane.alignment="CENTER_LEFT">
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="179.0" BorderPane.alignment="CENTER_LEFT">
           <children>
-            <Button fx:id="btnAddNewUser" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleAddNewUser" prefHeight="33.0" prefWidth="238.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Adicionar um novo Utilizador" />
+            <Button fx:id="btnAddNewUser" depthTest="INHERIT" mnemonicParsing="false" onAction="#handleAddNewUser" prefHeight="33.0" prefWidth="165.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Adicionar Novo Utilizador" />
           </children>
         </HBox>
       </right>
