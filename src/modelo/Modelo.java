@@ -165,8 +165,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false caso contrário
      */
     @Override
-    public boolean removeUtilizador(int numeroUtilizador) {
-        return false;
+    public boolean removeUtilizador(int numeroUtilizador) throws Exception {
+        return  database.removeUtilizador(numeroUtilizador);
     }
 
     /**
@@ -295,5 +295,6 @@ public class Modelo  implements IUtilizador, IEmenta{
     public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException{
         return database.getComplementos(idRefeicao);
     }
+
 
 }

@@ -125,4 +125,8 @@ public class Controlador {
     public boolean alteraRefeicao(Refeicao ref) throws Exception{
         return modelo.changeRefeicao(ref);
     }
+
+    public Boolean removeUtilizador(int id) throws Exception {
+        return modelo.removeUtilizador(id);
+    }
 }
