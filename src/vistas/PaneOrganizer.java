@@ -25,6 +25,7 @@ public class PaneOrganizer {
     BorderPane comprarSenha;
     BorderPane alterarSenha;
     BorderPane adicionarUtilizadorAdmin;
+    BorderPane alterarRefeicaoAdmin;
     Stage primaryStage;
 
     FXMLLoader loader;
@@ -137,5 +138,13 @@ public class PaneOrganizer {
         adicionarUtilizadorAdmin=loader.load();
         new Scene( adicionarUtilizadorAdmin, 600, 400);
         primaryStage.setScene(adicionarUtilizadorAdmin.getScene());
+    }
+
+    public  void setAlterarRefeicaoAdminView(Refeicao ref) throws IOException {
+        loader= new FXMLLoader(getClass().getResource("vistaAdministrador/AlteraRefeicaoAdmin.fxml"));
+        loader.setController(new AlterarRefeicaoAdmin(this, ref));
+        alterarRefeicaoAdmin=loader.load();
+        new Scene( alterarRefeicaoAdmin, 600, 400);
+        primaryStage.setScene(alterarRefeicaoAdmin.getScene());
     }
 }

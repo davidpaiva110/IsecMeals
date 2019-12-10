@@ -51,7 +51,7 @@ public class GerirEmentaAdminControler {
         colAlterar.setCellValueFactory(new PropertyValueFactory<>("btalterar"));
         colRemover.setCellValueFactory(new PropertyValueFactory<>("btcancelar"));
        try {
-            refeicoes = po.getControlador().getEmenta();
+            refeicoes = po.getControlador().getEmentaToda();
 
             for (Refeicao ref : refeicoes) {
                 if (ref.getAlmocoJantar() == 0)
@@ -85,6 +85,21 @@ public class GerirEmentaAdminControler {
                     }
                 }
             });
+
+                tab.getBtalterar().setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            Refeicao ref = po.getControlador().getRefeicao(Integer.parseInt(tab.getBtalterar().getId()));
+                            po.setAlterarRefeicaoAdminView(ref);
+                        } catch (SQLException | IOException e) {
+                            Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+                            error.setHeaderText("Erro ao Carregar Vista");
+                            error.setTitle("Erro");
+                            error.showAndWait();
+                        }
+                    }
+                });
 
                 tabelaref.getItems().add(tab);
             }
