@@ -95,6 +95,11 @@ public class AlterarUtilizadorAdminController {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        try {
+            po.setGerirUtilizadoresAdminView();
+        } catch (IOException e) {
+
+        }
     }
 
     @FXML private void onClickGerarPassword(ActionEvent action){
