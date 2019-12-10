@@ -92,8 +92,15 @@ public class AlterarUtilizadorAdminController {
         utilizador.setNome(tfNome.getText());
         try {
             po.getControlador().updateUser(utilizador, oldUserNumber);
+            Alert success = new Alert(Alert.AlertType.INFORMATION, "Dados do utilizador alterados com sucesso!", ButtonType.OK);
+            success.setHeaderText("Dados Alterados");
+            success.setTitle("Sucesso");
+            success.showAndWait();
         } catch (SQLException e) {
-            System.out.println(e);
+            Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
+            error.setHeaderText("Erro ao Alterar os dados do utilizador");
+            error.setTitle("Erro");
+            error.showAndWait();
         }
         try {
             po.setGerirUtilizadoresAdminView();

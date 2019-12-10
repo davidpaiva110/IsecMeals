@@ -300,16 +300,35 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getComplementos(idRefeicao);
     }
 
+    /**
+     *
+     * @param id número do utilizador
+     * @return utilizador em questão
+     * @throws SQLException
+     */
     public Utilizador getUtilizador(int id) throws SQLException {
         return database.getUtilizador(id);
     }
 
+    /**
+     * Altera a password de um utilizador
+     * @param numeroUtilizador número do utilizador
+     * @return nova password
+     * @throws SQLException
+     */
     public String setNewPassword(int numeroUtilizador) throws SQLException {
         String password = PasswordUtils.generateRandomPassword();
         boolean resultado = database.setNewPassword(numeroUtilizador, PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt()));
         return password;
     }
 
+    /**
+     *
+     * @param utilizador Dados do utilizador atualizados
+     * @param oldUserNumber Número do utilizador
+     * @return true - se a atualização for bem sucedida
+     * @throws SQLException
+     */
     public boolean updateUser(Utilizador utilizador, int oldUserNumber) throws SQLException {
         return database.updateUser(utilizador, oldUserNumber);
     }
