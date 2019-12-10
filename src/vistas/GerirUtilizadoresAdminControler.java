@@ -65,6 +65,17 @@ public class GerirUtilizadoresAdminControler {
                   }
                }
             });*/
+            tbuser.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
+               @Override
+               public void handle(ActionEvent actionEvent) {
+                  try {
+                     Utilizador utilizador = po.getControlador().getUtilizador(Integer.parseInt(tbuser.getBtAlterar().getId()));
+                     po.setAlterarUtilizadorAdmin(utilizador);
+                  } catch (SQLException | IOException e) {
+                     // fazer algo
+                  }
+               }
+            });
             tbuser.getBtCancelar().setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent actionEvent) {
