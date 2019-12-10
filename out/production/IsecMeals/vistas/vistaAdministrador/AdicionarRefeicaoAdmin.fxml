@@ -132,7 +132,7 @@
             </VBox>
           </children>
         </HBox>
-        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0" fx:id="vbComplementos">
+        <VBox fx:id="vbComplementos" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label fx:id="lbComplementos" font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -170,6 +170,13 @@
           </children>
         </HBox>
       </left>
+         <center>
+            <Label text="Adicionar Refeição" textFill="#7d222b" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </center>
     </BorderPane>
   </top>
 </BorderPane>

@@ -19,7 +19,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <bottom>
-    <Button mnemonicParsing="false" fx:id="btAlterar" onAction="#handleAlterar" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
+    <Button fx:id="btAlterar" mnemonicParsing="false" onAction="#handleAlterar" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
       <BorderPane.margin>
         <Insets bottom="30.0" />
       </BorderPane.margin>
@@ -120,7 +120,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <DatePicker fx:id="datepi"  />
+                                    <DatePicker fx:id="datepi" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -132,7 +132,7 @@
             </VBox>
           </children>
         </HBox>
-        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0" fx:id="vbComplementos">
+        <VBox fx:id="vbComplementos" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label fx:id="lbComplementos" font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
           </children>
@@ -158,6 +158,13 @@
           </children>
         </HBox>
       </left>
+         <center>
+            <Label text="Alterar Refeição" textFill="#7d222b" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </center>
     </BorderPane>
   </top>
 </BorderPane>
