@@ -179,6 +179,37 @@ public class ComunicacaoBD {
     }
 
     /**
+     * Devolve a todos os pratos da ementa
+     *
+     * @return ementa
+     * @throws SQLException
+     */
+    public ArrayList<Refeicao> getEmentaToda() throws SQLException {
+        ArrayList<Refeicao> ementa = new ArrayList<>();
+
+        String sql = "SELECT * FROM refeicoes";
+        ResultSet rs = executeQuery(sql);
+        while (rs.next()) {
+            int contador = 0;
+            int idRefeicao = rs.getInt("idrefeicao");
+
+                ArrayList<Complemento> complementos = this.getComplementos(idRefeicao);
+                Refeicao newRefeicao = new Refeicao(idRefeicao,
+                        rs.getString("sopa"),
+                        rs.getString("pratocarne"),
+                        rs.getString("pratopeixe"),
+                        rs.getString("sobremesa1"),
+                        rs.getString("sobremesa2"),
+                        rs.getDouble("preco"),
+                        rs.getInt("horario"),
+                        rs.getString("data"));
+                ementa.add(newRefeicao);
+        }
+        return ementa;
+    }
+
+
+    /**
      * @param idUser identificador do utilizador
      * @return lista de senhas compradas pelo utilizador
      * @throws SQLException
@@ -230,7 +261,7 @@ public class ComunicacaoBD {
      * @return uma lista de complementos refentes aquela refeição
      * @throws SQLException
      */
-    private ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException {
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException {
         ArrayList<Complemento> complementos = new ArrayList<>();
         String sql = "SELECT * FROM complementorefeicao WHERE idrefeicao=" + idRefeicao;
         ResultSet rs = executeQuery(sql);
@@ -679,6 +710,8 @@ public class ComunicacaoBD {
         if (rs != 1) {
             throw new Exception("Erro ao apagar a refeicao");
         }
+        sql = "DELETE FROM ComplementoRefeicao WHERE idrefeicao=" + idRefeicao;
+        rs = executeUpdate(sql);
         return true;
     }
 
@@ -727,14 +760,29 @@ public class ComunicacaoBD {
     }
 
     public ArrayList<Utilizador> getUserAdmin() throws SQLException {
-        ArrayList<Utilizador> uti= new ArrayList<>();
-        String sql ="SELECT numero,nome,saldo FROM UTILIZADOR WHERE PERMISSAO = "+0;
-        ResultSet rs = executeQuery(sql);
-        while(rs.next()){
-            Utilizador us = new Utilizador(rs.getInt("numero"),rs.getString("nome"),rs.getFloat("saldo"));
-            uti.add(us);
+            ArrayList<Utilizador> uti = new ArrayList<>();
+            String sql = "SELECT numero,nome,saldo FROM UTILIZADOR WHERE PERMISSAO = " + 0;
+            ResultSet rs = executeQuery(sql);
+            while (rs.next()) {
+                Utilizador us = new Utilizador(rs.getInt("numero"), rs.getString("nome"), rs.getFloat("saldo"));
+                uti.add(us);
+            }
+            return uti;
+    }
+
+    public boolean changeRefeicao(Refeicao dadosRefeicao) throws Exception{
+        String sql="UPDATE refeicoes SET sopa='" + dadosRefeicao.getSopa() + "', pratocarne='" + dadosRefeicao.getPratoCarne() + "', pratopeixe='" + dadosRefeicao.getPratoPeixe() +"', sobremesa1='" + dadosRefeicao.getSombremesa1() + "', sobremesa2='" + dadosRefeicao.getSombremesa2() +"', horario=" + dadosRefeicao.getAlmocoJantar() +", data='" + dadosRefeicao.getData() +"', preco=" + dadosRefeicao.getPreco() + " WHERE idrefeicao=" + dadosRefeicao.getIdRefeicao();
+        int r=executeUpdate(sql);
+        if(r!=1) throw new Exception("Erro ao atualizar a refeição!");
+
+        sql="DELETE FROM ComplementoRefeicao WHERE idrefeicao=" + dadosRefeicao.getIdRefeicao();
+        r = executeUpdate(sql);
+        for(Complemento complemento : dadosRefeicao.getComplementos()) {
+            sql = "INSERT INTO complementoRefeicao (idrefeicao, idcomplemento) VALUES ('"
+                    + dadosRefeicao.getIdRefeicao() + "', '" + complemento.getIdComplemento() + "')";
+            r = executeUpdate(sql);
         }
-        return uti;
+        return true;
     }
 }
 

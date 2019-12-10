@@ -42,6 +42,11 @@ public class Controlador {
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
     }
+
+    public ArrayList<Refeicao> getEmentaToda() throws SQLException {
+        return modelo.getEmentaToda();
+    }
+
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
     }
@@ -110,6 +115,14 @@ public class Controlador {
     }
 
     public ArrayList<Utilizador> getUserAdmin() throws SQLException {
-    return modelo.getUserAdmin();
+        return modelo.getUserAdmin();
+    }
+
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException{
+        return modelo.getComplementos(idRefeicao);
+    }
+
+    public boolean alteraRefeicao(Refeicao ref) throws Exception{
+        return modelo.changeRefeicao(ref);
     }
 }

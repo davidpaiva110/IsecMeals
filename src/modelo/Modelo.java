@@ -178,6 +178,14 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
+     * @return uma lista com todos os pratos inseridos no sistema
+     */
+    @Override
+    public ArrayList<Refeicao> getEmentaToda() throws SQLException {
+        return database.getEmentaToda();
+    }
+
+    /**
      * @param novaRefeicao
      * @return true se foi adicionado com sucesso | false caso contrário
      */
@@ -187,12 +195,12 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @param dadosRefeicao
+     * @param dadosRefeicao Dados da refeição atualizada
      * @return true se alterado com sucesso | false caso contrário
      */
     @Override
-    public boolean changeRefeicao(Refeicao dadosRefeicao) {
-        return false;
+    public boolean changeRefeicao(Refeicao dadosRefeicao) throws Exception{
+        return database.changeRefeicao(dadosRefeicao);
     }
 
     /**
@@ -277,5 +285,15 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getUserAdmin();
     }
 
+    /**
+     * Complementos de uma refeição
+     * @param idRefeicao ID da refeição a pesquisar
+     * @return ArrayList com os complementos da refeição
+     * @throws SQLException
+     */
+    @Override
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException{
+        return database.getComplementos(idRefeicao);
+    }
 
 }

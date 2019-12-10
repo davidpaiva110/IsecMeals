@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +21,9 @@ public interface IEmenta {
     public List getEmenta() throws SQLException;
 
     // ===== Funcionalidades do Administrador =====
+    public List getEmentaToda() throws SQLException;
     public boolean addNovaRefeicao(Refeicao novaRefeicao) throws Exception;
-    public boolean changeRefeicao(Refeicao dadosRefeicao);
+    public boolean changeRefeicao(Refeicao dadosRefeicao) throws Exception;
     public boolean cancelRefeicao(int idRefeicao) throws Exception;
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException;
 }

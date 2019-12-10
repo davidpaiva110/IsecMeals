@@ -19,7 +19,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <bottom>
-    <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
+    <Button mnemonicParsing="false" fx:id="btAlterar" onAction="#handleAlterar" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
       <BorderPane.margin>
         <Insets bottom="30.0" />
       </BorderPane.margin>
@@ -42,7 +42,7 @@
                         <Color blue="0.169" green="0.133" red="0.490" fx:id="x2" />
                       </textFill>
                     </Label>
-                    <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
+                    <TextField fx:id="tfSopa" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
                   </children>
                 </VBox>
               </children>
@@ -55,7 +55,7 @@
                 <VBox prefHeight="200.0" prefWidth="200.0" HBox.margin="$x3">
                   <children>
                     <Label font="$x1" text="Prato de Peixe" textFill="$x2" />
-                    <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
+                    <TextField fx:id="tfPeixe" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
                   </children>
                 </VBox>
               </children>
@@ -65,7 +65,7 @@
                 <VBox prefHeight="200.0" prefWidth="200.0" HBox.margin="$x3">
                   <children>
                     <Label font="$x1" text="Preço" textFill="$x2" />
-                    <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;">
+                    <TextField fx:id="tfPreco" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;">
                       <VBox.margin>
                         <Insets />
                       </VBox.margin>
@@ -79,7 +79,7 @@
                 <VBox prefHeight="200.0" prefWidth="200.0" HBox.margin="$x3">
                   <children>
                     <Label font="$x1" text="Prato de Carne" textFill="$x2" />
-                    <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
+                    <TextField fx:id="tfCarne" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
                   </children>
                 </VBox>
               </children>
@@ -95,7 +95,7 @@
                     <VBox prefHeight="200.0" prefWidth="250.0">
                       <children>
                         <Label font="$x1" text="Sobremesa - Opção 1" textFill="$x2" />
-                        <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
+                        <TextField fx:id="tfSob1" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
                       </children>
                     </VBox>
                   </children>
@@ -105,7 +105,7 @@
                     <VBox prefHeight="200.0" prefWidth="200.0">
                       <children>
                         <Label font="$x1" text="Sobremesa - Opção 2" textFill="$x2" />
-                        <TextField prefHeight="35.0" prefWidth="10.0" style="-fx-border-color: #7D222B;" />
+                        <TextField fx:id="tfSob2" prefHeight="35.0" prefWidth="10.0" style="-fx-border-color: #7D222B;" />
                       </children>
                     </VBox>
                   </children>
@@ -113,14 +113,14 @@
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                   <children>
                     <!--<DatePicker layoutX="10.0" layoutY="250.0" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />-->
-                    <ChoiceBox prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" HBox.margin="$x3" />
+                    <ChoiceBox fx:id="cbhorario" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" HBox.margin="$x3" />
                   </children>
                 </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <DatePicker />
+                                    <DatePicker fx:id="datepi"  />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -132,9 +132,9 @@
             </VBox>
           </children>
         </HBox>
-        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0">
+        <VBox alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0" fx:id="vbComplementos">
           <children>
-            <Label font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
+            <Label fx:id="lbComplementos" font="$x1" style="-fx-text-fill: #7D222B;&#10;" text="Complementos" VBox.margin="$x3" />
           </children>
         </VBox>
       </children>
@@ -145,12 +145,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button depthTest="INHERIT" mnemonicParsing="false" onAction="#handleVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>
