@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 public class TableUsersAdmin {
     private SimpleIntegerProperty numeroUser;
     private SimpleStringProperty nome;
-    private SimpleDoubleProperty saldo;
+    private SimpleStringProperty saldo;
     private Button btAlterar;
     private Button btCancelar;
 
@@ -28,11 +28,11 @@ public class TableUsersAdmin {
         return nome;
     }
 
-    public double getSaldo() {
+    public String getSaldo() {
         return saldo.get();
     }
 
-    public SimpleDoubleProperty saldoProperty() {
+    public SimpleStringProperty saldoProperty() {
         return saldo;
     }
 
@@ -44,10 +44,10 @@ public class TableUsersAdmin {
         return btCancelar;
     }
 
-    public TableUsersAdmin(int numeroUser, String nome, Double saldo) {
+    public TableUsersAdmin(int numeroUser, String nome, String saldo) {
         this.numeroUser =  new SimpleIntegerProperty(numeroUser);
         this.nome =  new SimpleStringProperty(nome);
-        this.saldo = new SimpleDoubleProperty(saldo);
+        this.saldo = new SimpleStringProperty(saldo);
         this.btAlterar = new Button("Alterar");
         btAlterar.setId(""+numeroUser);
         this.btCancelar = new Button("Remover");

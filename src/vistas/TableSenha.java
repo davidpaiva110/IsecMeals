@@ -11,15 +11,19 @@ public class TableSenha {
     private SimpleStringProperty sobremesa;
     private SimpleStringProperty preco;
     private SimpleIntegerProperty idRefeicao;
+    private SimpleStringProperty data;
+    private SimpleStringProperty horario;
     private Button btAlterar;
     private Button btCancelar;
 
-    public TableSenha(int idSenha, String prato, String sombremesa, String preco, int idRef) {
+    public TableSenha(int idSenha, String prato, String sombremesa, String preco, int idRef, String data, String horario) {
         this.idSenha = new SimpleIntegerProperty(idSenha);
         this.prato = new SimpleStringProperty(prato);
         this.sobremesa = new SimpleStringProperty(sombremesa);
         this.preco = new SimpleStringProperty(preco);
         this.idRefeicao=new SimpleIntegerProperty(idRef);
+        this.data=new SimpleStringProperty(data);
+        this.horario=new SimpleStringProperty(horario);
         btAlterar=new Button("Alterar");
         btAlterar.setId(""+idSenha);
         btCancelar=new Button("Cancelar");
@@ -61,4 +65,13 @@ public class TableSenha {
     public void noBtAlterar(){
         btAlterar=null;
     }
+
+    public String getData() {
+        return data.get();
+    }
+
+    public String getHorario() {
+        return horario.get();
+    }
+
 }

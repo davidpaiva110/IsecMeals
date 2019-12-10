@@ -79,6 +79,13 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label text="Alterar Utilizador" textFill="#7d222b">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
@@ -95,6 +102,9 @@
           </children>
         </HBox>
       </left>
+      <right>
+        <HBox prefHeight="100.0" prefWidth="129.0" />
+      </right>
     </BorderPane>
   </top>
 </BorderPane>
