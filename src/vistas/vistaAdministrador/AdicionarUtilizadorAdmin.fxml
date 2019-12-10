@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <bottom>
     <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#handleAdicionar" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Adicionar" textFill="WHITE" BorderPane.alignment="CENTER">
       <BorderPane.margin>
@@ -26,7 +27,7 @@
                     <Font size="18.0" fx:id="x1" />
                   </font>
                   <textFill>
-                    <Color red="0.490" green="0.133" blue="0.169" fx:id="x2" />
+                    <Color blue="0.169" green="0.133" red="0.490" fx:id="x2" />
                   </textFill>
                   <HBox.margin>
                     <Insets right="10.0" fx:id="x3" />
@@ -74,8 +75,15 @@
   </center>
   <top>
     <BorderPane prefHeight="100.0" prefWidth="200.0">
+      <center>
+        <Label text="Adicionar Utilizador" textFill="#7d222b">
+          <font>
+            <Font name="System Bold" size="30.0" />
+          </font>
+        </Label>
+      </center>
       <left>
-        <HBox prefHeight="100.0" prefWidth="200.0">
+        <HBox prefHeight="100.0" prefWidth="167.0">
           <children>
             <Button fx:id="btnSair" mnemonicParsing="false" onAction="#handleSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
@@ -90,6 +98,9 @@
           </children>
         </HBox>
       </left>
+      <right>
+        <HBox prefHeight="100.0" prefWidth="120.0" />
+      </right>
     </BorderPane>
   </top>
 </BorderPane>

@@ -42,6 +42,11 @@ public class Controlador {
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return modelo.getEmenta();
     }
+
+    public ArrayList<Refeicao> getEmentaToda() throws SQLException {
+        return modelo.getEmentaToda();
+    }
+
     public ArrayList<Senha> getSenhasCompradas() throws SQLException {
         return modelo.getSenhasCompradas();
     }
@@ -63,6 +68,10 @@ public class Controlador {
 
     public double getSaldo() throws SQLException {
         return modelo.getSaldoUtilizador();
+    }
+
+    public double getSaldo(int id) throws SQLException {
+        return modelo.getSaldoDeUmUtilizador(id);
     }
 
     public boolean buySenha(Senha senha) throws SQLException {
@@ -107,5 +116,33 @@ public class Controlador {
 
     public ArrayList<Complemento> getTodosComplementos() throws SQLException {
         return modelo.getTodosComplementos();
+    }
+
+    public ArrayList<Utilizador> getUserAdmin() throws SQLException {
+        return modelo.getUserAdmin();
+    }
+
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException{
+        return modelo.getComplementos(idRefeicao);
+    }
+
+    public boolean alteraRefeicao(Refeicao ref) throws Exception{
+        return modelo.changeRefeicao(ref);
+    }
+
+    public Boolean removeUtilizador(int id) throws Exception {
+        return modelo.removeUtilizador(id);
+    }
+
+    public  Utilizador getUtilizador(int id) throws SQLException {
+        return modelo.getUtilizador(id);
+    }
+
+    public String setNewPassword(int numeroUtilizador) throws SQLException {
+        return modelo.setNewPassword(numeroUtilizador);
+    }
+
+    public boolean updateUser(Utilizador utilizador, int oldUserNumber) throws SQLException {
+        return modelo.updateUser(utilizador, oldUserNumber);
     }
 }

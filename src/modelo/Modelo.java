@@ -43,6 +43,10 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getSaldo(utilizador.getNumeroUtilizador());
     }
 
+    public double getSaldoDeUmUtilizador(int id) throws SQLException {
+        return database.getSaldo(id);
+    }
+
     /**
      * @param user - número de utilizador
      * @param password - password do utilizador
@@ -165,8 +169,8 @@ public class Modelo  implements IUtilizador, IEmenta{
      * @return true se removido com sucesso | false caso contrário
      */
     @Override
-    public boolean removeUtilizador(int numeroUtilizador) {
-        return false;
+    public boolean removeUtilizador(int numeroUtilizador) throws Exception {
+        return  database.removeUtilizador(numeroUtilizador);
     }
 
     /**
@@ -175,6 +179,14 @@ public class Modelo  implements IUtilizador, IEmenta{
     @Override
     public ArrayList<Refeicao> getEmenta() throws SQLException {
         return database.getEmenta(utilizador.getNumeroUtilizador());
+    }
+
+    /**
+     * @return uma lista com todos os pratos inseridos no sistema
+     */
+    @Override
+    public ArrayList<Refeicao> getEmentaToda() throws SQLException {
+        return database.getEmentaToda();
     }
 
     /**
@@ -187,12 +199,12 @@ public class Modelo  implements IUtilizador, IEmenta{
     }
 
     /**
-     * @param dadosRefeicao
+     * @param dadosRefeicao Dados da refeição atualizada
      * @return true se alterado com sucesso | false caso contrário
      */
     @Override
-    public boolean changeRefeicao(Refeicao dadosRefeicao) {
-        return false;
+    public boolean changeRefeicao(Refeicao dadosRefeicao) throws Exception{
+        return database.changeRefeicao(dadosRefeicao);
     }
 
     /**
@@ -248,21 +260,76 @@ public class Modelo  implements IUtilizador, IEmenta{
         }
     }
 
+    /**
+     *
+     * @param userNumber : Número do novo utilizador
+     * @param nome : Nome do novo utilizador
+     * @param saldo : Saldo do novo utilizador
+     * @return password do utilizador
+     * @throws SQLException
+     */
     public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
         Utilizador uti = new Utilizador(userNumber, nome, saldo);
-        String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
+        String password = uti.getPassword();
         uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
         boolean resultado = database.addNewUser(uti);
-
-        if(resultado == true){
-            //enviar a password por email ao utilizador
-        }
-
         return password;
     }
 
+    /**
+     *
+     * @return lsita de todos os complementos existentes
+     * @throws SQLException
+     */
     public ArrayList<Complemento> getTodosComplementos() throws SQLException {
         return database.getTodosComplementos();
     }
 
+    public ArrayList<Utilizador> getUserAdmin() throws SQLException {
+        return database.getUserAdmin();
+    }
+
+    /**
+     * Complementos de uma refeição
+     * @param idRefeicao ID da refeição a pesquisar
+     * @return ArrayList com os complementos da refeição
+     * @throws SQLException
+     */
+    @Override
+    public ArrayList<Complemento> getComplementos(int idRefeicao) throws SQLException{
+        return database.getComplementos(idRefeicao);
+    }
+
+    /**
+     *
+     * @param id número do utilizador
+     * @return utilizador em questão
+     * @throws SQLException
+     */
+    public Utilizador getUtilizador(int id) throws SQLException {
+        return database.getUtilizador(id);
+    }
+
+    /**
+     * Altera a password de um utilizador
+     * @param numeroUtilizador número do utilizador
+     * @return nova password
+     * @throws SQLException
+     */
+    public String setNewPassword(int numeroUtilizador) throws SQLException {
+        String password = PasswordUtils.generateRandomPassword();
+        boolean resultado = database.setNewPassword(numeroUtilizador, PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt()));
+        return password;
+    }
+
+    /**
+     *
+     * @param utilizador Dados do utilizador atualizados
+     * @param oldUserNumber Número do utilizador
+     * @return true - se a atualização for bem sucedida
+     * @throws SQLException
+     */
+    public boolean updateUser(Utilizador utilizador, int oldUserNumber) throws SQLException {
+        return database.updateUser(utilizador, oldUserNumber);
+    }
 }

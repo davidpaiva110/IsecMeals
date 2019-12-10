@@ -20,8 +20,9 @@ public class GerirSenhasController {
     @FXML private TableView tableSenhas;
     @FXML TableColumn<TableSenha, Integer> colNumero;
     @FXML TableColumn<TableSenha, String> colPrato;
-    @FXML TableColumn<TableSenha, String> colSobremesa;
+    @FXML TableColumn<TableSenha, String> colData;
     @FXML TableColumn<TableSenha, String> colPreco;
+    @FXML TableColumn<TableSenha, String> colHorario;
     @FXML TableColumn<TableSenha, Button> colAlterar;
     @FXML TableColumn<TableSenha, Button> colCancelar;
     @FXML Label lbSaldo;
@@ -53,7 +54,8 @@ public class GerirSenhasController {
         tableSenhas.setEditable(false);
         colNumero.setCellValueFactory(new PropertyValueFactory<>("IdSenha"));
         colPrato.setCellValueFactory(new PropertyValueFactory<>("Prato"));
-        colSobremesa.setCellValueFactory(new PropertyValueFactory<>("Sobremesa"));
+        colData.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        colHorario.setCellValueFactory(new PropertyValueFactory<>("Horario"));
         colPreco.setCellValueFactory(new PropertyValueFactory<>("Preco"));
         colAlterar.setCellValueFactory(new PropertyValueFactory<>("BtAlterar"));
         colCancelar.setCellValueFactory(new PropertyValueFactory<>("BtCancelar"));
@@ -63,7 +65,11 @@ public class GerirSenhasController {
             for (Senha senha : senhas) {
                 DecimalFormat df = new DecimalFormat("0.00");
                 String preco = df.format(senha.getPreco());
-                TableSenha tbSenha=new TableSenha(senha.getIdSenha(), senha.getPrato(), senha.getSombremesa(), preco, senha.getIdRefeicao());
+                Refeicao ref=po.getControlador().getRefeicao(senha.getIdRefeicao());
+                String horario="";
+                if(ref.getAlmocoJantar()==0) horario="Almoço";
+                else horario="Jantar";
+                TableSenha tbSenha=new TableSenha(senha.getIdSenha(), senha.getPrato(), senha.getSombremesa(), preco, senha.getIdRefeicao(), ref.getData(), horario);
                 tbSenha.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {

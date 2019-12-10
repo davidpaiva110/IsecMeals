@@ -21,6 +21,7 @@ public class AdicionarUtilizadorAdminController {
     @FXML private TextField tfUserNumber;
     @FXML private TextField tfUserName;
     @FXML private TextField tfUserSaldo;
+    @FXML private Button btnAdicionar;
 
     public AdicionarUtilizadorAdminController(PaneOrganizer po) {
         this.po = po;
@@ -28,6 +29,7 @@ public class AdicionarUtilizadorAdminController {
 
 
     public void initialize(){
+        btnAdicionar.setDisable(true);
        tfUserNumber.textProperty().addListener(new ChangeListener<String>() {
            @Override
            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
@@ -42,6 +44,12 @@ public class AdicionarUtilizadorAdminController {
                if(newValue.length()>8){
                    tfUserNumber.setText(oldValue);
                }
+               if(tfUserName.getText().length() >0 && tfUserNumber.getText().length()>=8 && tfUserSaldo.getText().length()>0 ){
+                   btnAdicionar.setDisable(false);
+               }
+               else
+                   btnAdicionar.setDisable(true);
+
            }
        });
 
@@ -56,8 +64,34 @@ public class AdicionarUtilizadorAdminController {
                        tfUserSaldo.setText(oldValue);
                    }
                }
+               if(tfUserName.getText().length() >0 && tfUserNumber.getText().length()>=8 && tfUserSaldo.getText().length()>0 ){
+                   btnAdicionar.setDisable(false);
+               }
+               else
+                   btnAdicionar.setDisable(true);
            }
+
        });
+        tfUserName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if(newValue.length()>0) {
+                    try {
+                        tfUserName.setText(newValue);
+                    } catch (Exception e) {
+                        tfUserName.setText(oldValue);
+                    }
+                }
+                if(tfUserName.getText().length() >0 && tfUserNumber.getText().length()>=8 && tfUserSaldo.getText().length()>0 ){
+                    btnAdicionar.setDisable(false);
+                }
+                else
+                    btnAdicionar.setDisable(true);
+            }
+
+        });
+
+
     }
 
     @FXML
@@ -75,11 +109,12 @@ public class AdicionarUtilizadorAdminController {
         String userName = tfUserName.getText();
         int userID = Integer.parseInt(tfUserNumber.getText());
         double userSaldo = Double.parseDouble(tfUserSaldo.getText());
+
         try {
             String pass = po.getControlador().addNewUser(userID, userName, userSaldo);
-            Alert error = new Alert(Alert.AlertType.INFORMATION, pass, ButtonType.OK);
+            Alert error = new Alert(Alert.AlertType.INFORMATION, "A password deveria ser enviada por email ao utilizador, mas de acordo com o Change Request #1 a funcionalidade não foi implementada.", ButtonType.OK);
             error.setTitle("Password");
-            error.setHeaderText("Password Gerada");
+            error.setHeaderText("Password Gerada: " + pass);
             error.showAndWait();
             po.setGerirUtilizadoresAdminView();
         } catch (SQLException e) {
