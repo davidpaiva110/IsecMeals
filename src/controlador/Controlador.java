@@ -112,4 +112,8 @@ public class Controlador {
     public ArrayList<Utilizador> getUserAdmin() throws SQLException {
     return modelo.getUserAdmin();
     }
+
+    public Boolean removeUtilizador(int id) throws Exception {
+        return modelo.removeUtilizador(id);
+    }
 }

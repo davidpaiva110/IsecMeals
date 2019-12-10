@@ -50,7 +50,7 @@ public class TableUsersAdmin {
         this.saldo = new SimpleDoubleProperty(saldo);
         this.btAlterar = new Button("Alterar");
         btAlterar.setId(""+numeroUser);
-        this.btCancelar = new Button("Cancelar");
+        this.btCancelar = new Button("Remover");
         btCancelar.setId(""+numeroUser);
     }
     public void noBtCancelar(){

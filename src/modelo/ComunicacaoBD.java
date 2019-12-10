@@ -352,6 +352,23 @@ public class ComunicacaoBD {
         return true;
     }
 
+    public boolean removeUtilizador( int numeroUtilizador) throws Exception {
+
+        ArrayList<Senha> senhas = new ArrayList<>();
+        senhas=getSenhas(numeroUtilizador);
+        if(senhas.size()!=0){
+            for(Senha se : senhas) {
+                this.deleteSenha(se.getIdSenha());
+            }
+        }
+        String sql=  "DELETE FROM utilizador WHERE numero=" + numeroUtilizador;
+    int rs= executeUpdate(sql);
+         if(rs != 1){
+             throw  new  Exception("Erro ao remover o utilizador");
+         }
+    return true;
+    }
+
     /**
      *
      * @param id da senha a consultar o preço
@@ -736,6 +753,8 @@ public class ComunicacaoBD {
         }
         return uti;
     }
+
+
 }
 
 

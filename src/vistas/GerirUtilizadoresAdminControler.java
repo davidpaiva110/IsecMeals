@@ -75,7 +75,7 @@ public class GerirUtilizadoresAdminControler {
                   confirmation.showAndWait();
                   if (confirmation.getResult() == btSim) {
                      try {
-                      //  po.getControlador().cancelSenha(Integer.parseInt(tbuser.getBtAlterar().getId()));
+                        po.getControlador().removeUtilizador(Integer.parseInt(tbuser.getBtAlterar().getId()));
                      } catch (Exception e) {
                         Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
                         error.setHeaderText("Erro ao Remover o Utilizador");
@@ -83,7 +83,7 @@ public class GerirUtilizadoresAdminControler {
                         error.showAndWait();
                      }
                      try {
-                        po.setGestaoSenhasView();
+                        po.setGerirUtilizadoresAdminView();
                      } catch (IOException e) {
                         Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
                         error.setHeaderText("Erro ao Atualizar a Vista");
