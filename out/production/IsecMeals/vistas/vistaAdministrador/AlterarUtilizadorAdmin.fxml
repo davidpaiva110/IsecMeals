@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <bottom>
-    <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
+    <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#onClickAlterar" prefHeight="35.0" prefWidth="110.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Alterar" textFill="WHITE" BorderPane.alignment="CENTER">
       <BorderPane.margin>
         <Insets bottom="30.0" />
       </BorderPane.margin>
@@ -35,13 +26,13 @@
                     <Font size="18.0" fx:id="x1" />
                   </font>
                   <textFill>
-                    <Color blue="0.169" green="0.133" red="0.490" fx:id="x2" />
+                    <Color red="0.490" green="0.133" blue="0.169" fx:id="x2" />
                   </textFill>
                   <HBox.margin>
                     <Insets right="10.0" fx:id="x3" />
                   </HBox.margin>
                 </Label>
-                <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
+                <TextField fx:id="tfUserId" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" />
               </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -53,7 +44,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
                   <children>
-                    <TextField alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;">
+                    <TextField fx:id="tfNome" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;">
                       <HBox.margin>
                         <Insets left="10.0" fx:id="x4" />
                       </HBox.margin>
@@ -71,14 +62,14 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="250.0">
                   <children>
-                    <TextField prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" HBox.margin="$x4" />
+                    <TextField fx:id="tfSaldo" prefHeight="35.0" prefWidth="220.0" style="-fx-border-color: #7D222B;" HBox.margin="$x4" />
                   </children>
                 </HBox>
               </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
               <children>
-                <Button alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Gerar Password" textFill="WHITE" />
+                <Button fx:id="btnGerarPassword" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onClickGerarPassword" prefHeight="35.0" prefWidth="140.0" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Gerar Password" textFill="WHITE" />
               </children>
             </HBox>
           </children>
@@ -91,12 +82,12 @@
       <left>
         <HBox prefHeight="100.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
+            <Button mnemonicParsing="false" onAction="#onClickSair" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;" text="Sair">
               <HBox.margin>
                 <Insets left="10.0" top="5.0" />
               </HBox.margin>
             </Button>
-            <Button depthTest="INHERIT" mnemonicParsing="false" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
+            <Button depthTest="INHERIT" mnemonicParsing="false" onAction="#onClickVoltar" style="-fx-border-color: #8A817A; -fx-background-color: #7D222B;&#10;-fx-text-fill: white;&#10;" text="Voltar">
               <HBox.margin>
                 <Insets left="15.0" top="5.0" />
               </HBox.margin>

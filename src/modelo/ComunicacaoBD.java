@@ -802,6 +802,17 @@ public class ComunicacaoBD {
         return true;
     }
 
+    public boolean setNewPassword(int numeroUtilizador, String securePassword) throws SQLException {
+        String sql = "UPDATE utilizador SET password='" + securePassword + "' WHERE numero =" + numeroUtilizador;
+        int rs = executeUpdate(sql);
+        return true;
+    }
+
+    public boolean updateUser(Utilizador utilizador, int oldNumber) throws SQLException {
+        String sql = "UPDATE utilizador SET nome='" + utilizador.getNome() + "', saldo='" + utilizador.getSaldo() + "' WHERE numero =" + oldNumber;
+        int rs = executeUpdate(sql);
+        return true;
+    }
 
 }
 

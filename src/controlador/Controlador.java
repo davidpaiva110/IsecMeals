@@ -70,6 +70,10 @@ public class Controlador {
         return modelo.getSaldoUtilizador();
     }
 
+    public double getSaldo(int id) throws SQLException {
+        return modelo.getSaldoDeUmUtilizador(id);
+    }
+
     public boolean buySenha(Senha senha) throws SQLException {
         return modelo.buySenha(senha);
     }
@@ -128,5 +132,17 @@ public class Controlador {
 
     public Boolean removeUtilizador(int id) throws Exception {
         return modelo.removeUtilizador(id);
+    }
+
+    public  Utilizador getUtilizador(int id) throws SQLException {
+        return modelo.getUtilizador(id);
+    }
+
+    public String setNewPassword(int numeroUtilizador) throws SQLException {
+        return modelo.setNewPassword(numeroUtilizador);
+    }
+
+    public boolean updateUser(Utilizador utilizador, int oldUserNumber) throws SQLException {
+        return modelo.updateUser(utilizador, oldUserNumber);
     }
 }

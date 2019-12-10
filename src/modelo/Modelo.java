@@ -43,6 +43,10 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getSaldo(utilizador.getNumeroUtilizador());
     }
 
+    public double getSaldoDeUmUtilizador(int id) throws SQLException {
+        return database.getSaldo(id);
+    }
+
     /**
      * @param user - número de utilizador
      * @param password - password do utilizador
@@ -266,7 +270,7 @@ public class Modelo  implements IUtilizador, IEmenta{
      */
     public String addNewUser(int userNumber, String nome, double saldo) throws SQLException {
         Utilizador uti = new Utilizador(userNumber, nome, saldo);
-        String password = uti.getPassword();  // Esta password é para ser enviada ao utilizador por email
+        String password = uti.getPassword();
         uti.setPassword(PasswordUtils.generateSecurePassword(uti.getPassword(), PasswordUtils.getSalt()));
         boolean resultado = database.addNewUser(uti);
         return password;
@@ -296,5 +300,17 @@ public class Modelo  implements IUtilizador, IEmenta{
         return database.getComplementos(idRefeicao);
     }
 
+    public Utilizador getUtilizador(int id) throws SQLException {
+        return database.getUtilizador(id);
+    }
 
+    public String setNewPassword(int numeroUtilizador) throws SQLException {
+        String password = PasswordUtils.generateRandomPassword();
+        boolean resultado = database.setNewPassword(numeroUtilizador, PasswordUtils.generateSecurePassword(password, PasswordUtils.getSalt()));
+        return password;
+    }
+
+    public boolean updateUser(Utilizador utilizador, int oldUserNumber) throws SQLException {
+        return database.updateUser(utilizador, oldUserNumber);
+    }
 }

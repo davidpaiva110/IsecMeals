@@ -50,21 +50,17 @@ public class GerirUtilizadoresAdminControler {
          users = po.getControlador().getUserAdmin();
          for (Utilizador us : users) {
             TableUsersAdmin tbuser=new TableUsersAdmin(us.getNumeroUtilizador(),us.getNome(),us.getSaldo());
-            /*tbuser.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
+            tbuser.getBtAlterar().setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent actionEvent) {
-                  /*try {
-                     Senha senha = po.getControlador().getSenha(Integer.parseInt(tbSenha.getBtAlterar().getId()));
-                     Refeicao ref = po.getControlador().getRefeicao(senha.getIdRefeicao());
-                     po.setAlterarSenhaView(ref, senha);
+                  try {
+                     Utilizador utilizador = po.getControlador().getUtilizador(Integer.parseInt(tbuser.getBtAlterar().getId()));
+                     po.setAlterarUtilizadorAdmin(utilizador);
                   } catch (SQLException | IOException e) {
-                     Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage().toString(), ButtonType.OK);
-                     error.setHeaderText("Erro ao Carregar Vista");
-                     error.setTitle("Erro");
-                     error.showAndWait();
+                     // fazer algo
                   }
                }
-            });*/
+            });
             tbuser.getBtCancelar().setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent actionEvent) {
