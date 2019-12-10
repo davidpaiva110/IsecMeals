@@ -278,10 +278,14 @@ public class ConsultaEmentaController {
                 }
             });
             btHB.getChildren().addAll(btnS);
-            if(ref.isJaComprada())
+            try {
+                if(ref.isJaComprada() || ref.getPreco()>po.getControlador().getSaldo())
+                    principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB);
+                else
+                    principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
+            } catch (SQLException e) {
                 principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB);
-            else
-                principal.getChildren().addAll(dataHB, tipoHB, sopaTitle, sopaDesc, carneHB, carneDesc, peixeHB, peixeDesc, precoHB, btHB);
+            }
             hBoxEmenta.getChildren().add(principal);
         }
 

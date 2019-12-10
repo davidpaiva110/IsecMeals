@@ -77,9 +77,9 @@ public class AdicionarUtilizadorAdminController {
         double userSaldo = Double.parseDouble(tfUserSaldo.getText());
         try {
             String pass = po.getControlador().addNewUser(userID, userName, userSaldo);
-            Alert error = new Alert(Alert.AlertType.INFORMATION, pass, ButtonType.OK);
+            Alert error = new Alert(Alert.AlertType.INFORMATION, "A password deveria ser enviada por email ao utilizador, mas de acordo com o Change Request #1 a funcionalidade não foi implementada.", ButtonType.OK);
             error.setTitle("Password");
-            error.setHeaderText("Password Gerada");
+            error.setHeaderText("Password Gerada: " + pass);
             error.showAndWait();
             po.setGerirUtilizadoresAdminView();
         } catch (SQLException e) {
