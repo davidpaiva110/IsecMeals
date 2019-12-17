@@ -102,6 +102,10 @@ public class GerirSenhasController {
                                 error.setTitle("Erro");
                                 error.showAndWait();
                             }
+                            Alert success = new Alert(Alert.AlertType.INFORMATION, "Senha cancelada com sucesso!", ButtonType.OK);
+                            success.setHeaderText("Cancelamento de Senha");
+                            success.setTitle("Gestão de Senhas");
+                            success.showAndWait();
                             try {
                                 po.setGestaoSenhasView();
                             } catch (IOException e) {

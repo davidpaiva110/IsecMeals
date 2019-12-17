@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -148,6 +150,10 @@ public class ConsultaEmentaController {
                         images = new Image(files.toURI().toString());
                         favIcon.setImage(images);
                         favIcon.setId("true");
+                        Alert success = new Alert(Alert.AlertType.INFORMATION, "Favorito Adicionado com Sucesso!", ButtonType.OK);
+                        success.setHeaderText("Favorito Adicionado");
+                        success.setTitle("Favoritos");
+                        success.showAndWait();
                     } else if (Boolean.parseBoolean(favIcon.getId()) == true){
                         for (Favoritos fav : favoritos) {
                             if (fav.getPrato().equals(ref.getPratoCarne())) {
@@ -220,6 +226,10 @@ public class ConsultaEmentaController {
                         images = new Image(files.toURI().toString());
                         favIcon2.setImage(images);
                         favIcon2.setId("true");
+                        Alert success = new Alert(Alert.AlertType.INFORMATION, "Favorito Adicionado com Sucesso!", ButtonType.OK);
+                        success.setHeaderText("Favorito Adicionado");
+                        success.setTitle("Favoritos");
+                        success.showAndWait();
                     } else if (Boolean.parseBoolean(favIcon2.getId()) == true){
                         for (Favoritos fav : favoritos) {
                             if (fav.getPrato().equals(ref.getPratoPeixe())) {

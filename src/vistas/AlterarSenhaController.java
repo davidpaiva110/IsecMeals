@@ -146,8 +146,14 @@ public class AlterarSenhaController {
                             }
                         }
                         else {
-                            senha.setPreco(senha.getPreco() + complemento.getPreco());
-                            senha.addComplemento(complemento);
+                            try {
+                                if (complemento.getPreco() <= po.getControlador().getSaldo()) {
+                                    senha.setPreco(senha.getPreco() + complemento.getPreco());
+                                    senha.addComplemento(complemento);
+                                } else {
+                                    cbC.setSelected(false);
+                                }
+                            } catch (SQLException e) { }
                         }
                         DecimalFormat df = new DecimalFormat("0.00");
                         String totalPagar = df.format(senha.getPreco());
