@@ -5,3 +5,9 @@ This work aimed to develop a software project following the waterfall methodolog
 A desktop program was developed to manage meal vouchers for the ISEC canteen.
 
 Project Dashboard: https://sites.google.com/view/lei-gps1920-g42
+
+
+Technologies Used:
+- Java
+- JavaFX /FXML
+- SQLite
